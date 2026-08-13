@@ -18,7 +18,10 @@ let package = Package(
         .testTarget(
             name: "Pips39CoreTests",
             dependencies: ["Pips39Core"],
-            resources: [.copy("Resources/vectors.json")]
+            resources: [
+                .copy("Resources/vectors.json"),
+                .copy("Resources/coleman-vectors.json")
+            ]
         )
     ]
 )
