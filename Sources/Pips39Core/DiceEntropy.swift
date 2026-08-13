@@ -43,8 +43,40 @@ public struct DiceEntropy {
         }
     }
 
-    /// **Vorläufig.** Task 6 ersetzt das durch die verfahrensabhängige Regel.
-    /// `append` braucht die Abfrage schon jetzt, damit die Signatur später gleich
-    /// bleibt.
-    public var isComplete: Bool { false }
+    /// Wie viele Rohbits die bisherigen Würfe unter Verfahren A ergeben.
+    /// Unter Verfahren B ohne Bedeutung.
+    public var rawBitCount: Int {
+        ColemanEncoding.rawBits(for: rolls).count
+    }
+
+    /// Der Fortschritt, in der Einheit, die zum Verfahren passt.
+    public var progress: DiceProgress {
+        switch method {
+        case .sha256:
+            return .rolls(done: rolls.count, needed: Self.rollsForHashedMethod)
+        case .coleman:
+            return .bits(done: rawBitCount, needed: Self.targetEntropyBits)
+        }
+    }
+
+    /// Ob genug gewürfelt wurde. Weitere Würfe werden danach abgelehnt — unter
+    /// Verfahren A würden sie die Nachrechenbarkeit bei Coleman zerstören, weil er
+    /// die längere Folge anders kürzt.
+    public var isComplete: Bool {
+        switch method {
+        case .sha256:
+            return rolls.count >= Self.rollsForHashedMethod
+        case .coleman:
+            return rawBitCount >= Self.targetEntropyBits
+        }
+    }
+}
+
+/// Fortschritt beim Würfeln. Die Einheit hängt am Verfahren: Verfahren B hat eine
+/// feste Wurfzahl, Verfahren A nicht — dort liefert jeder Wurf ein oder zwei Bit.
+public enum DiceProgress: Equatable {
+    /// Verfahren B: „37 von 99 Würfen".
+    case rolls(done: Int, needed: Int)
+    /// Verfahren A: „164 von 256 Bit". Es gibt keine verlässliche Restdauer.
+    case bits(done: Int, needed: Int)
 }
