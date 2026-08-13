@@ -70,6 +70,20 @@ public struct DiceEntropy {
             return rawBitCount >= Self.targetEntropyBits
         }
     }
+
+    /// Die fertige Entropie, oder `nil` solange nicht genug gewürfelt wurde.
+    ///
+    /// Immer 32 Byte. Unter Verfahren A werden dazu die vordersten überzähligen
+    /// Rohbits verworfen, genau wie bei Coleman.
+    public func entropy() -> SecretBytes? {
+        guard isComplete else { return nil }
+        switch method {
+        case .sha256:
+            return SecretBytes(HashedEncoding.entropy(from: rolls))
+        case .coleman:
+            return SecretBytes(ColemanEncoding.entropy(from: rolls))
+        }
+    }
 }
 
 /// Fortschritt beim Würfeln. Die Einheit hängt am Verfahren: Verfahren B hat eine
