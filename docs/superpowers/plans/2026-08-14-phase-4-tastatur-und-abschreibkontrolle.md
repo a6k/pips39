@@ -104,8 +104,11 @@ final class WordEntryTests: XCTestCase {
         XCTAssertEqual(entry.uniqueMatch, "zone")
     }
 
+    /// Gilt für alle Wörter ab vier Buchstaben. Die 49 Präfix-Wörter sind
+    /// ausgenommen — sie sind alle dreibuchstabig und lassen sich per Definition
+    /// nicht durch Tippen auflösen, siehe den Test weiter unten.
     func testFourLettersAlwaysResolveToOneWord() {
-        for word in WordList.english {
+        for word in WordList.english where word.count >= 4 {
             let typed = entry(String(word.prefix(4)))
             XCTAssertEqual(typed.uniqueMatch, word, "Präfix von \(word) nicht eindeutig")
         }
@@ -164,6 +167,23 @@ final class WordEntryTests: XCTestCase {
     func testShortWordIsStillOfferedAsCandidate() {
         XCTAssertTrue(entry("add").candidates.contains("add"))
         XCTAssertTrue(entry("age").candidates.contains("age"))
+    }
+
+    /// Die Gegenprobe: Alle 49 Präfix-Wörter bleiben nach dem Tippen mehrdeutig
+    /// und müssen ausgewählt werden. Wären es plötzlich weniger, hätte eine
+    /// Automatik sich eingeschlichen.
+    func testEveryPrefixWordStaysAmbiguous() {
+        let all = Set(WordList.english)
+        let prefixWords = WordList.english.filter { word in
+            all.contains { $0 != word && $0.hasPrefix(word) }
+        }
+        XCTAssertEqual(prefixWords.count, 49)
+        for word in prefixWords {
+            XCTAssertNil(entry(word).uniqueMatch,
+                         "\(word) darf nicht automatisch übernommen werden")
+            XCTAssertTrue(entry(word).candidates.contains(word),
+                          "\(word) muss trotzdem als Kandidat angeboten werden")
+        }
     }
 
     /// Es gibt genau 49 solcher Fälle. Ändert sich die Zahl, hat sich die
