@@ -1,19 +1,13 @@
-//
-//  ContentView.swift
-//  Pips39
-//
-//  Created by develop on 13.08.26.
-//
-
 import SwiftUI
+import Pips39Core
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        VStack(spacing: 12) {
+            Text("Pips39")
+                .font(.largeTitle.bold())
+            Text("\(WordList.english.count) BIP39 words loaded")
+                .foregroundStyle(.secondary)
         }
         .padding()
     }
