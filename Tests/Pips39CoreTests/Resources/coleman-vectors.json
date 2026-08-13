@@ -1,0 +1,115 @@
+{
+  "quelle": "https://github.com/iancoleman/bip39 — Entropy-Typ 'Dice' / Base 6",
+  "quelltext_stand": "master de71c22328b2 (2023-08-01); src/js/entropy.js sha256 10277942f7ce12507bf102e947fa8157602be88c9eab0f7a0b2c8d3610e38163, src/js/index.js sha256 3dd950f5d2f32cfe32963c1b3d4adea06e787ec7adb66daaaf19812e55a6f370. Beide Codestellen sind in der ausgelieferten Seite https://iancoleman.io/bip39/ zeichengleich enthalten (Stand 2026-08-13).",
+  "erhoben_am": "2026-08-13",
+  "methode": "ausgeführt mit node — Colemans unveränderte Dateien entropy.js, jsbip39.js, sjcl-bip39.js und wordlist_english.js in einem vm-Kontext geladen, setMnemonicFromEntropy() aus index.js zeilengetreu nachgebildet (einzige Abweichung: libs.BigInteger durch natives BigInt ersetzt, nur im Hash-Pfad benutzt).",
+  "einstellung": "Entropy-Typ ausdrücklich 'Dice' (kein Auto-Erkennen), Mnemonic Length 'Use Raw Entropy' — die Werkseinstellung des Werkzeugs. entropie_hex und mnemonic gehören zu dieser Einstellung; die Felder variante_hash_* zeigen, was bei fest gewählter Wortzahl herauskäme (dann zählt nur SHA-256 über die gefilterte Ziffernfolge).",
+  "hinweis": "Ausschließlich Wegwerf-Folgen. Keine dieser Eingaben wurde je für einen echten Seed verwendet.",
+  "vektoren": [
+    {
+      "name": "Ein einzelner Wurf — Grenzfall",
+      "wuerfe": "1",
+      "entropie_hex": "",
+      "mnemonic": "",
+      "gefilterte_folge": "1",
+      "roh_binaer": "01",
+      "roh_bits": 2,
+      "genutzte_bits": 0,
+      "woerter": 0,
+      "autoerkannter_typ_ohne_radio": "binary",
+      "variante_hash_12_woerter": {
+        "entropie_hex": "6b86b273ff34fce19d6b804eff5a3f57",
+        "mnemonic": "high culture ostrich wrist exist ignore interest hybrid exclude width more puppy"
+      },
+      "variante_hash_24_woerter": {
+        "entropie_hex": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+        "mnemonic": "high culture ostrich wrist exist ignore interest hybrid exclude width more purse kiss sponsor pride echo bubble evoke always pizza swarm senior honey inform"
+      },
+      "hinweis": "Zu wenig Entropie: 2 Rohbits ergeben 0 volle 32-Bit-Blöcke, im Raw-Modus bleibt die Wortliste leer. Ohne gesetzten Radio-Button erkennt Coleman diese Eingabe ausserdem als \"binary\", nicht als Würfel."
+    },
+    {
+      "name": "Alle sechs Augenzahlen einmal",
+      "wuerfe": "123456",
+      "entropie_hex": "",
+      "mnemonic": "",
+      "gefilterte_folge": "123450",
+      "roh_binaer": "0110110100",
+      "roh_bits": 10,
+      "genutzte_bits": 0,
+      "woerter": 0,
+      "autoerkannter_typ_ohne_radio": "base 6 (dice)",
+      "variante_hash_12_woerter": {
+        "entropie_hex": "eb76e2254ff1cb43115299491e1906fb",
+        "mnemonic": "twin require matter paper bronze pave earn farm empower valid double voyage"
+      },
+      "variante_hash_24_woerter": {
+        "entropie_hex": "eb76e2254ff1cb43115299491e1906fbf39921b384b983cf529ebe674d9915c1",
+        "mnemonic": "twin require matter paper bronze pave earn farm empower valid double wave define move sock now long kind police lamp inquiry smart finish danger"
+      },
+      "hinweis": "Zu wenig Entropie: 10 Rohbits ergeben 0 volle 32-Bit-Blöcke, im Raw-Modus bleibt die Wortliste leer."
+    },
+    {
+      "name": "99-mal die 1",
+      "wuerfe": "111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111",
+      "entropie_hex": "555555555555555555555555555555555555555555555555",
+      "mnemonic": "fetch primary fetch primary fetch primary fetch primary fetch primary fetch primary fetch primary fetch primary fetch program",
+      "gefilterte_folge": "111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111",
+      "roh_binaer": "010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101",
+      "roh_bits": 198,
+      "genutzte_bits": 192,
+      "woerter": 18,
+      "autoerkannter_typ_ohne_radio": "binary",
+      "variante_hash_12_woerter": {
+        "entropie_hex": "fa098eb852b2660348b21bb00ad03a49",
+        "mnemonic": "wheel erase puppy pistol chapter accuse carpet drop quote final attend neck"
+      },
+      "variante_hash_24_woerter": {
+        "entropie_hex": "fa098eb852b2660348b21bb00ad03a49cc177ea07ebe34f46b40baa85313525e",
+        "mnemonic": "wheel erase puppy pistol chapter accuse carpet drop quote final attend near scrap satisfy limit style crunch person south inspire lunch meadow enact tattoo"
+      },
+      "hinweis": "Ohne gesetzten Radio-Button erkennt Coleman diese Eingabe als \"binary\" (99 Bit -> 96 Bit -> 9 Wörter: \"zoo zoo zoo zoo zoo zoo zoo zoo zebra\"). Nur mit ausdrücklich gewähltem Typ \"Dice\" gilt der hier notierte Wert."
+    },
+    {
+      "name": "99-mal die 6",
+      "wuerfe": "666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666",
+      "entropie_hex": "000000000000000000000000000000000000000000000000",
+      "mnemonic": "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon agent",
+      "gefilterte_folge": "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "roh_binaer": "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "roh_bits": 198,
+      "genutzte_bits": 192,
+      "woerter": 18,
+      "autoerkannter_typ_ohne_radio": "base 6 (dice)",
+      "variante_hash_12_woerter": {
+        "entropie_hex": "37b322ffb509a620e955be4b8f252fcb",
+        "mnemonic": "dash october say head omit away pipe result entire junior episode normal"
+      },
+      "variante_hash_24_woerter": {
+        "entropie_hex": "37b322ffb509a620e955be4b8f252fcb089b78ffd592537399253579f82e7b13",
+        "mnemonic": "dash october say head omit away pipe result entire junior episode noodle meadow round young rather fat orphan enable helmet panel blame unable joy"
+      },
+      "hinweis": "Die 6 wird vor der Umrechnung zur 0; die gefilterte Anzeige zeigt daher lauter Nullen."
+    },
+    {
+      "name": "99 Würfe, „142536\" wiederholt",
+      "wuerfe": "142536142536142536142536142536142536142536142536142536142536142536142536142536142536142536142536142",
+      "entropie_hex": "e2b8ae2b8ae2b8ae2b8ae2b8ae2b8ae2b8ae2b8a",
+      "mnemonic": "tired shell memory beyond clog finish purchase fox reward image tired shell memory beyond clever",
+      "gefilterte_folge": "142530142530142530142530142530142530142530142530142530142530142530142530142530142530142530142530142",
+      "roh_binaer": "010101110001010111000101011100010101110001010111000101011100010101110001010111000101011100010101110001010111000101011100010101110001010111000101011100010101110001010",
+      "roh_bits": 165,
+      "genutzte_bits": 160,
+      "woerter": 15,
+      "autoerkannter_typ_ohne_radio": "base 6 (dice)",
+      "variante_hash_12_woerter": {
+        "entropie_hex": "c29be548ee3f922fdde9a1d0662bf3f7",
+        "mnemonic": "secret tennis fall symbol weird blood jeans crouch spare course woman uphold"
+      },
+      "variante_hash_24_woerter": {
+        "entropie_hex": "c29be548ee3f922fdde9a1d0662bf3f75d6b8f7c4008430a8374823fc24da92e",
+        "mnemonic": "secret tennis fall symbol weird blood jeans crouch spare course woman upgrade stove sibling valve absurd drink favorite tag afford wire chat pigeon swim"
+      },
+      "hinweis": "99 Würfe ergeben hier nur 165 Rohbits — deutlich unter 256. Das Verfahren liefert je nach Augenzahl 1 oder 2 Bit pro Wurf."
+    }
+  ]
+}
