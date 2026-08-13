@@ -6,6 +6,7 @@ struct WordsView: View {
 
     @ObservedObject var session: DiceSession
     let onDiscard: () -> Void
+    let onCheck: () -> Void
 
     private let columns = [GridItem(.flexible()), GridItem(.flexible())]
 
@@ -34,14 +35,23 @@ struct WordsView: View {
                     }
                 }
 
-                Button(role: .destructive) {
-                    session.discard()
-                    onDiscard()
-                } label: {
-                    Text("Discard and start over")
-                        .frame(maxWidth: .infinity)
+                VStack(spacing: 10) {
+                    Button {
+                        onCheck()
+                    } label: {
+                        Text("I wrote them down")
+                            .frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(.borderedProminent)
+
+                    Button(role: .destructive) {
+                        onDiscard()
+                    } label: {
+                        Text("Discard and start over")
+                            .frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(.bordered)
                 }
-                .buttonStyle(.borderedProminent)
                 .padding(.top)
             }
             .padding()
@@ -60,5 +70,5 @@ private func previewSession() -> DiceSession {
 }
 
 #Preview {
-    WordsView(session: previewSession()) { }
+    WordsView(session: previewSession(), onDiscard: { }, onCheck: { })
 }

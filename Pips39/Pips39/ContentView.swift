@@ -1,29 +1,50 @@
 import SwiftUI
 import Pips39Core
 
-/// Der Ablauf: Verfahren wählen → würfeln → Wörter → verwerfen.
+/// Der Ablauf: Verfahren wählen → würfeln → Wörter → abschreiben prüfen → verwerfen.
 struct ContentView: View {
 
+    private enum Step {
+        case rolling
+        case words
+        case checking(TranscriptionCheck)
+    }
+
     @State private var session: DiceSession?
-    @State private var showsWords = false
+    @State private var step: Step = .rolling
 
     var body: some View {
         if let session {
-            if showsWords {
-                WordsView(session: session) {
-                    self.session = nil
-                    showsWords = false
-                }
-            } else {
+            switch step {
+            case .rolling:
                 RollingView(session: session) {
-                    showsWords = true
+                    step = .words
+                }
+            case .words:
+                WordsView(session: session) {
+                    startOver()
+                } onCheck: {
+                    step = .checking(TranscriptionCheck(expected: session.words))
+                }
+            case let .checking(check):
+                TranscriptionView(check: check) {
+                    startOver()
+                } onShowWordsAgain: {
+                    step = .words
                 }
             }
         } else {
             MethodChoiceView { method in
                 session = DiceSession(method: method)
+                step = .rolling
             }
         }
+    }
+
+    private func startOver() {
+        session?.discard()
+        session = nil
+        step = .rolling
     }
 }
 
