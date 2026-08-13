@@ -201,13 +201,13 @@
 			);
 			mainGroup = D76D6B4E302E6C0800EFAECE;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				AA33333333333333333333AA /* XCLocalSwiftPackageReference ".." */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D76D6B58302E6C0800EFAECE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
-			packageReferences = (
-				AA33333333333333333333AA /* XCLocalSwiftPackageReference ".." */,
-			);
 			targets = (
 				D76D6B56302E6C0800EFAECE /* Pips39 */,
 				D76D6B63302E6C0900EFAECE /* Pips39Tests */,
