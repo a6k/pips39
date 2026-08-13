@@ -40,6 +40,10 @@ final class OfficialVectorTests: XCTestCase {
     }
 
     func testAllOfficialVectorsRoundTripThroughValidation() throws {
-        throw XCTSkip("BIP39.isValid entsteht in Task 6")
+        for vector in try loadVectors() {
+            let words = vector.mnemonic.split(separator: " ").map(String.init)
+            XCTAssertTrue(BIP39.isValid(mnemonic: words),
+                          "Offizieller Vektor \(vector.entropyHex) gilt als ungültig")
+        }
     }
 }
