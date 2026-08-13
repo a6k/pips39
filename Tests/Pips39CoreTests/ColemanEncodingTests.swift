@@ -39,6 +39,38 @@ final class ColemanEncodingTests: XCTestCase {
         }
     }
 
+    // MARK: Kürzung auf ein Vielfaches von 32
+
+    func testTruncationKeepsMultipleOf32AndDropsLeadingBits() {
+        // 34 Bits: die ersten beiden fallen weg, 32 bleiben.
+        var bits = Array(repeating: false, count: 34)
+        bits[0] = true   // fällt weg
+        bits[1] = true   // fällt weg
+        bits[2] = true   // bleibt, wird zum höchstwertigen Bit
+        let entropy = ColemanEncoding.entropy(fromRawBits: bits)
+        XCTAssertEqual(entropy.count, 4)
+        XCTAssertEqual(entropy[0], 0b1000_0000)
+    }
+
+    func testTruncationYieldsNothingBelow32Bits() {
+        XCTAssertEqual(ColemanEncoding.entropy(fromRawBits: Array(repeating: true, count: 31)), [])
+        XCTAssertEqual(ColemanEncoding.entropy(fromRawBits: []), [])
+    }
+
+    func testEntropyMatchesColemanVectors() throws {
+        for vector in try ColemanVectors.load() {
+            let entropy = ColemanEncoding.entropy(from: vector.rollDigits)
+            XCTAssertEqual(hexString(entropy), vector.entropieHex,
+                           "Entropie weicht ab bei: \(vector.name)")
+            XCTAssertEqual(entropy.count * 8, vector.genutzteBits,
+                           "Genutzte Bits weichen ab bei: \(vector.name)")
+        }
+    }
+
+    private func hexString(_ bytes: [UInt8]) -> String {
+        bytes.map { String(format: "%02x", $0) }.joined()
+    }
+
     private func bitString(_ bits: [Bool]) -> String {
         String(bits.map { $0 ? "1" : "0" })
     }
