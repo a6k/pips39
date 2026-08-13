@@ -225,8 +225,9 @@ wird die *niedrigste* passende Basis, und das trifft Würfelfolgen:
 
 - **`1`** (ein einzelner Wurf) wird als **binär** gelesen (`entropy.js:252`: gleich viele
   Binär- wie Hex-Treffer) — nicht als Würfel.
-- **99-mal die `1`** ebenso: 99 Bit → 96 Bit → 9 Wörter `zoo zoo … zebra`. Auch eine
-  Folge aus lauter 1en und 2en fällt in diese Falle.
+- **99-mal die `1`** ebenso: 99 Bit → 96 Bit → 9 Wörter `zoo zoo … zebra`. Betroffen ist
+  genau der Fall „die Folge besteht nur aus 1en" — gemessen: `12` und `1111111112` werden
+  als Würfel erkannt, `11` und `111111111` als binär.
 
 Auf der ausgelieferten Seite ist zudem **„Hex" vorausgewählt** (`src/index.html:173`:
 `value="hexadecimal" checked`), die Auto-Erkennung überschreibt das aber, bis der Nutzer
