@@ -14,4 +14,34 @@ public enum DiceMethod: String, CaseIterable, Equatable {
     /// Colemans Bit-Tabelle, bitgenau nachgebaut. Keine feste Wurfzahl.
     /// Nachprüfbar durch direkte Eingabe der Wurffolge bei iancoleman.io/bip39.
     case coleman
+
+    /// Das voreingestellte Verfahren.
+    public static let standard: DiceMethod = .sha256
+
+    /// Kurzer Name für die Oberfläche. Englisch — die Zielgruppe ist international.
+    public var title: String {
+        switch self {
+        case .sha256:  return "SHA-256"
+        case .coleman: return "Coleman"
+        }
+    }
+
+    /// Ein Satz dazu, was das Verfahren tut.
+    public var summary: String {
+        switch self {
+        case .sha256:
+            return "Your dice sequence is hashed with SHA-256. Verify with shasum and any BIP39 tool."
+        case .coleman:
+            return "Bit-for-bit identical to iancoleman.io/bip39. Verify by entering the same rolls there."
+        }
+    }
+
+    /// Was den Nutzer an Würfelarbeit erwartet. Verfahren A darf keine feste Zahl
+    /// nennen — dort liefert jeder Wurf ein oder zwei Bit.
+    public var rollCountHint: String {
+        switch self {
+        case .sha256:  return "Exactly 99 rolls."
+        case .coleman: return "Around 154 rolls, but the exact number varies."
+        }
+    }
 }
