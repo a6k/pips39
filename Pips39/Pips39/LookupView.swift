@@ -164,8 +164,11 @@ struct LookupView: View {
             HStack(spacing: 6) {
                 Text(" ").frame(width: 46)
                 ForEach(1...4, id: \.self) { fourth in
+                    // Linksbündig wie die Wörter darunter. Zentriert stand der
+                    // Würfel über der Spaltenmitte statt über dem Wortanfang, und
+                    // bei kurzen Wörtern zeigte er ins Leere daneben.
                     Image(systemName: "die.face.\(fourth).fill")
-                        .frame(maxWidth: .infinity)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                 }
             }
             .font(.footnote)
