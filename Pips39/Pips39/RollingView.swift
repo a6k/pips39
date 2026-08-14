@@ -115,7 +115,7 @@ struct RollingView: View {
             // übersetzt, ein eigener Schlüssel dafür wäre eine Fehlerquelle mehr.
             Text(session.method.title + " " + session.length.title())
                 .font(.caption.weight(.semibold))
-                .foregroundStyle(.secondary)
+                .foregroundStyle(Brand.secondaryText)
             Text(progressText)
                 .font(.title2.weight(.semibold))
                 .monospacedDigit()

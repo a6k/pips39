@@ -17,7 +17,7 @@ struct EnvironmentNotice: View {
                     .font(.footnote)
                 Spacer(minLength: 0)
             }
-            .foregroundStyle(.secondary)
+            .foregroundStyle(Brand.secondaryText)
             .padding(.horizontal, 12)
             .padding(.vertical, 8)
             .background(Brand.surface)

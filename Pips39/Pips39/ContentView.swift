@@ -21,9 +21,6 @@ struct ContentView: View {
 
     var body: some View {
         content
-            // Hinter allem und über den sicheren Bereich hinaus, damit der Verlauf
-            // auch hinter Statusleiste und Home-Indikator steht.
-            .background { Brand.background.ignoresSafeArea() }
             .environment(\.showHelp) { showsHelp = true }
             .sheet(isPresented: $showsHelp) {
                 HelpView(onClose: { showsHelp = false }, probe: probe)
@@ -38,17 +35,21 @@ struct ContentView: View {
                 if destination == .lookupTable { tab = .lookupTable }
                 hasStarted = true
             }
+            .brandBackground()
         } else {
             TabView(selection: $tab) {
                 RollingFlow(method: .sha256, probe: probe)
+                    .brandBackground()
                     .tabItem { Label("SHA-256", systemImage: "number") }
                     .tag(Tab.sha256)
 
                 RollingFlow(method: .coleman, probe: probe)
+                    .brandBackground()
                     .tabItem { Label("Coleman", systemImage: "list.number") }
                     .tag(Tab.coleman)
 
                 LookupView()
+                    .brandBackground()
                     .tabItem { Label("Word table", systemImage: "tablecells") }
                     .tag(Tab.lookupTable)
             }

@@ -37,7 +37,7 @@ struct LookupOnboardingPages: View {
 
             Text("Take this device offline too. It sees less on this path, but less is not nothing.")
                 .font(.footnote)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(Brand.secondaryText)
         }
     }
 
@@ -63,7 +63,7 @@ struct LookupOnboardingPages: View {
                     .font(.headline)
                 Text("With 12 words too little would stay hidden: 62 bits, which is within reach of an attacker who got hold of what you typed. There is no length switch on this path for that reason.")
                     .font(.footnote)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(Brand.secondaryText)
             }
 
             VStack(alignment: .leading, spacing: 8) {
@@ -71,12 +71,12 @@ struct LookupOnboardingPages: View {
                     .font(.headline)
                 Text("It carries a checksum over the other 23, so working it out needs all of them. Your wallet offers eight valid options. Pick between them with three coin flips, not by feel.")
                     .font(.footnote)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(Brand.secondaryText)
             }
 
             Text("Method from the BitBox02 dice guide by Shift Crypto, CC BY-SA 4.0.")
                 .font(.caption)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(Brand.secondaryText)
         }
     }
 }

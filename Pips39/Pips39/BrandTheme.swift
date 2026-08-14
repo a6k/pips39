@@ -15,6 +15,13 @@ enum Brand {
     /// das auf Violett schlammig wird.
     static let surface = Color.white.opacity(0.12)
 
+    /// Nebentext statt `Color.secondary`.
+    ///
+    /// Das systemeigene Sekundärgrau ist Weiß bei 60 Prozent und kommt auf dem oberen
+    /// Verlaufston nur auf 4,23:1. Das reißt das Mindestmaß von 4,5, und zwar bei
+    /// genau den Zeilen, die klein gesetzt sind. Bei 78 Prozent sind es 5,84:1.
+    static let secondaryText = Color.white.opacity(0.78)
+
     /// Die Fläche unter Warnungen und Hinweisen. **Es gibt keine Warnfarbe.**
     ///
     /// Auf diesem Violett kommt Systemrot auf 2,15:1 und ist unlesbar. Bernstein trüge
@@ -73,4 +80,13 @@ struct NoticePanel: ViewModifier {
 
 extension View {
     func noticePanel() -> some View { modifier(NoticePanel()) }
+
+    /// Der Verlauf hinter einer Ansicht, bis in Statusleiste und Home-Indikator.
+    ///
+    /// Muss an **jeden** Reiterinhalt einzeln, nicht nur an die Wurzel: `TabView`
+    /// legt unter jeden Reiter einen eigenen deckenden Grund und verdeckt damit
+    /// alles, was dahinter liegt.
+    func brandBackground() -> some View {
+        background { Brand.background.ignoresSafeArea() }
+    }
 }

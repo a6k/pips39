@@ -67,7 +67,7 @@ struct LookupView: View {
                 .monospacedDigit()
             Text("Throw five dice and the coin. Re-throw any die showing 5 or 6. Then enter the first three dice.")
                 .font(.footnote)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(Brand.secondaryText)
         }
     }
 
@@ -111,7 +111,7 @@ struct LookupView: View {
     private var hint: some View {
         Text("A die showing 5 or 6 carries no value here. Throw it again until it shows 1 to 4.")
             .font(.footnote)
-            .foregroundStyle(.secondary)
+            .foregroundStyle(Brand.secondaryText)
     }
 
     // MARK: Das Raster
@@ -126,7 +126,7 @@ struct LookupView: View {
                 }
             }
             .font(.footnote)
-            .foregroundStyle(.secondary)
+            .foregroundStyle(Brand.secondaryText)
 
             ForEach(rowKeys, id: \.offset) { row in
                 HStack(spacing: 6) {
@@ -136,7 +136,7 @@ struct LookupView: View {
                             .font(.caption2.weight(.bold))
                     }
                     .frame(width: 46, alignment: .leading)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(Brand.secondaryText)
 
                     ForEach(1...4, id: \.self) { fourth in
                         Text(word(in: block, fourth: fourth, row: row))
@@ -150,7 +150,7 @@ struct LookupView: View {
 
             Text("H = heads (or a die showing 1 to 3), T = tails (4 to 6).")
                 .font(.caption2)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(Brand.secondaryText)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.top, 4)
         }
@@ -218,7 +218,7 @@ struct LookupView: View {
 
             Text("Method from the BitBox02 dice guide by Shift Crypto, CC BY-SA 4.0.")
                 .font(.caption)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(Brand.secondaryText)
                 .padding(.top, 4)
         }
     }

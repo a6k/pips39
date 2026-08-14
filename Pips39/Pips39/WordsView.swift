@@ -23,7 +23,7 @@ struct WordsView: View {
                         .font(.title2.bold())
                     Text("Method: \(session.method.title). Note this down too. The same rolls give different words under the other method.")
                         .font(.footnote)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(Brand.secondaryText)
                 }
 
                 // Oben, damit es gelesen wird, *bevor* jemand abschreibt. Eine
@@ -44,7 +44,7 @@ struct WordsView: View {
                         HStack(spacing: 8) {
                             Text("\(index + 1)")
                                 .font(.caption.monospacedDigit())
-                                .foregroundStyle(.secondary)
+                                .foregroundStyle(Brand.secondaryText)
                                 .frame(width: 24, alignment: .trailing)
                             Text(word)
                                 .font(.body.weight(.medium))
@@ -86,7 +86,9 @@ struct WordsView: View {
                 Label("Discard", systemImage: "trash")
                     .font(.body)
             }
-            .tint(.white)
+            // `.tint` reicht hier nicht: Die destruktive Rolle setzt die Schriftfarbe
+            // selbst und schlägt den Tint. Nur `.foregroundStyle` kommt dagegen an.
+            .foregroundStyle(.white)
         }
         .confirmationDialog(
             "Discard these words?",

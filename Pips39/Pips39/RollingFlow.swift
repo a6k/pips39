@@ -75,7 +75,7 @@ struct RollingFlow: View {
                         .font(.footnote)
                     Text(method.rollCountHint(for: length))
                         .font(.footnote.weight(.medium))
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(Brand.secondaryText)
                 }
 
                 VStack(alignment: .leading, spacing: 8) {
@@ -100,7 +100,7 @@ struct RollingFlow: View {
 
                 Text("The method travels with the result. Write it down together with your words.")
                     .font(.caption)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(Brand.secondaryText)
             }
             .padding()
         }

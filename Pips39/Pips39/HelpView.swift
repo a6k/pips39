@@ -21,11 +21,12 @@ struct HelpView: View {
                 NavigationLink("How safe is this really") { HelpStrengthTopic() }
                 NavigationLink("Take it offline") { HelpOfflineTopic(probe: probe) }
             }
-            // Die Liste bringt einen eigenen, systemgrauen Grund mit. Ohne diese
-            // beiden Zeilen stünde die Hilfe als graue Insel in einer sonst
+            // Die Liste bringt zwei eigene Gründe mit, einen für die Rolle und einen
+            // je Zeile. Beide sind systemgrau und stünden als Insel in einer sonst
             // violetten App.
+            .listRowBackground(Brand.panel)
             .scrollContentBackground(.hidden)
-            .background { Brand.background.ignoresSafeArea() }
+            .brandBackground()
             .navigationTitle("Help")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {

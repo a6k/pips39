@@ -37,7 +37,7 @@ struct ScreenProtection: ViewModifier {
                         .multilineTextAlignment(.center)
                         .font(.footnote)
                 }
-                .foregroundStyle(.secondary)
+                .foregroundStyle(Brand.secondaryText)
                 .padding()
             }
         }

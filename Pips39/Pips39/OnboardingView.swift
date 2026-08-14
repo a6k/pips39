@@ -76,9 +76,12 @@ struct OnboardingView: View {
                 // Als Beschriftung der Titel des Artikels und nicht die nackte
                 // Adresse: Der Satz nennt die Seite bereits, und ein Slug über zwei
                 // Zeilen sagt niemandem, was ihn erwartet.
+                // Unterstrichen, weil der Akzent jetzt Weiß ist: Ohne Unterstrich
+                // sähe der Link genauso aus wie der Satz darüber.
                 Link("Würfle deine eigene Bitcoin-Wallet",
                      destination: URL(string: ExternalLinks.bitboxGuide)!)
                     .font(.body.weight(.medium))
+                    .underline()
             }
         }
     }
@@ -110,7 +113,7 @@ struct OnboardingView: View {
         OnboardingPage(title: "Two ways to roll") {
             Text("What differs: what you tap in, and who turns it into words.")
                 .font(.footnote)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(Brand.secondaryText)
 
             ForEach(OnboardingPath.allCases) { option in
                 Button {
@@ -128,7 +131,7 @@ struct OnboardingView: View {
                         // beim Überfliegen übersehen.
                         Text(option.exposure())
                             .font(.footnote.weight(option.appSeesEverything ? .semibold : .medium))
-                            .foregroundStyle(option.appSeesEverything ? Color.primary : Color.secondary)
+                            .foregroundStyle(option.appSeesEverything ? Color.primary : Brand.secondaryText)
                             .modifier(ExposureBackground(highlighted: option.appSeesEverything))
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -141,7 +144,7 @@ struct OnboardingView: View {
 
             Text("You can change your mind afterwards. Both stay on the start screen.")
                 .font(.caption)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(Brand.secondaryText)
         }
     }
 

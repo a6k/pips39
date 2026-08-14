@@ -58,7 +58,7 @@ struct TranscriptionView: View {
         let current = index == check.position
         return Text("\(index + 1)")
             .font(.footnote.monospacedDigit())
-            .foregroundStyle(done || current ? Color.primary : Color.secondary)
+            .foregroundStyle(done || current ? Color.primary : Brand.secondaryText)
             .frame(maxWidth: .infinity, minHeight: 42)
             .background(done ? Color.accentColor.opacity(0.2)
                              : Color.white.opacity(0.08))

@@ -26,7 +26,7 @@ struct RollingOnboardingPages: View {
         OnboardingPage(title: "First: check the app") {
             Text("Do this now, while this device is still online. Make up a dice sequence for it. Never use the rolls behind a seed you intend to keep.")
                 .font(.footnote)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(Brand.secondaryText)
 
             ForEach(DiceMethod.allCases, id: \.rawValue) { method in
                 VStack(alignment: .leading, spacing: 6) {
@@ -36,7 +36,7 @@ struct RollingOnboardingPages: View {
                         HStack(alignment: .top, spacing: 8) {
                             Text("\(index + 1).")
                                 .font(.footnote.monospacedDigit())
-                                .foregroundStyle(.secondary)
+                                .foregroundStyle(Brand.secondaryText)
                             Text(step).font(.footnote)
                         }
                     }
@@ -44,14 +44,18 @@ struct RollingOnboardingPages: View {
             }
 
             VStack(alignment: .leading, spacing: 8) {
+                // Unterstrichen: Der Akzent ist Weiß, ein Link ohne Unterstrich wäre
+                // vom Fließtext daneben nicht zu unterscheiden.
                 Link("iancoleman.io/bip39", destination: URL(string: ExternalLinks.colemanTool)!)
+                    .underline()
                 Link("Source code on GitHub", destination: URL(string: ExternalLinks.sourceCode)!)
+                    .underline()
             }
             .font(.footnote.weight(.medium))
 
             Text("Tapping a link opens Safari. That is fine now and not later, so do it before you take the device offline.")
                 .font(.caption)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(Brand.secondaryText)
         }
     }
 
@@ -75,7 +79,7 @@ struct RollingOnboardingPages: View {
                     .font(.headline)
                 Text("Bluetooth state is not readable by apps since iOS 13, and no network connection does not mean the device is isolated. This app reports what it can see and never claims you are safe. That judgement stays with you.")
                     .font(.footnote)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(Brand.secondaryText)
             }
 
             VStack(alignment: .leading, spacing: 8) {
@@ -83,7 +87,7 @@ struct RollingOnboardingPages: View {
                     .font(.headline)
                 Text("Nothing is stored. Write the words on paper, note the method next to them, and check your copy with the app before you leave the screen.")
                     .font(.footnote)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(Brand.secondaryText)
             }
         }
     }

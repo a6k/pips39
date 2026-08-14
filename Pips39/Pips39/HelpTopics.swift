@@ -20,7 +20,7 @@ private struct HelpPage<Content: View>: View {
             .padding()
             .padding(.bottom, 24)
         }
-        .background { Brand.background.ignoresSafeArea() }
+        .brandBackground()
         .navigationTitle(title)
         .navigationBarTitleDisplayMode(.inline)
     }
@@ -119,7 +119,7 @@ struct HelpStrengthTopic: View {
             HelpRow(label: "100 million GPUs", value: "10¹⁴ years")
 
             Text("For comparison, the universe is about 10¹⁰ years old.")
-                .foregroundStyle(.secondary)
+                .foregroundStyle(Brand.secondaryText)
 
             HelpHeading(text: "12 words, 62 bits hidden")
             Text("This is why the word table has no length switch. With 12 words only 62 bits would stay hidden, and that is a different world:")
@@ -170,7 +170,7 @@ struct HelpOfflineTopic: View {
             }
 
             Text("Bluetooth state is not readable by apps since iOS 13, and no network connection does not mean the device is isolated. This app reports what it can see and never claims you are safe. That judgement stays with you.")
-                .foregroundStyle(.secondary)
+                .foregroundStyle(Brand.secondaryText)
         }
         .font(.footnote)
     }
