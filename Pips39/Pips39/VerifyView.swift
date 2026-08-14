@@ -54,7 +54,7 @@ struct VerifyView: View {
         .clipShape(RoundedRectangle(cornerRadius: 10))
     }
 
-    private func field(title: String, value: String, monospaced: Bool) -> some View {
+    private func field(title: LocalizedStringKey, value: String, monospaced: Bool) -> some View {
         VStack(alignment: .leading, spacing: 4) {
             Text(title)
                 .font(.caption.weight(.semibold))

@@ -105,9 +105,11 @@ struct RollingView: View {
     private var progressText: String {
         switch session.progress {
         case let .rolls(done, needed):
-            return "\(done) of \(needed) rolls"
+            return String(format: NSLocalizedString("%lld of %lld rolls", comment: ""),
+                          done, needed)
         case let .bits(done, needed):
-            return "\(min(done, needed)) of \(needed) bits"
+            return String(format: NSLocalizedString("%lld of %lld bits", comment: ""),
+                          min(done, needed), needed)
         }
     }
 

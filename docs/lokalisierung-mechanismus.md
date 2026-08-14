@@ -78,6 +78,47 @@ func localized(_ key: String, _ locale: Locale) -> String {
 Gegengeprüft: Damit liefert `en` „Probe" und `de` „Sonde", unabhängig von der
 Systemsprache.
 
+## 4. `Text(einString)` lokalisiert **nicht** — nur Literale und `LocalizedStringKey`
+
+Der Fehler, der in dieser Phase viermal auftrat, jedes Mal an anderer Stelle, und der
+sich nur im Bild zeigt: Der Build ist grün, der Text erscheint — nur eben englisch.
+
+SwiftUI lokalisiert `Text("…")` mit einem **Literal**, weil daraus ein
+`LocalizedStringKey` wird. Kommt der Text dagegen aus einer `String`-Variablen, greift
+die andere Überladung, und die geht an der Tabelle vorbei.
+
+Betroffen waren:
+
+| Stelle | Warum |
+|---|---|
+| `OnboardingView.page(title:)` | Parameter war `String` |
+| `OnboardingView.checklist` | Array war `[String]` |
+| `VerifyView.field(title:)` | Parameter war `String` |
+| `RollingView.progressText` | berechneter `String` mit Interpolation |
+
+Die ersten drei sind mit `LocalizedStringKey` statt `String` erledigt. Der vierte ging
+so nicht, weil dort Zahlen eingesetzt werden — dafür ein echter Formatstring:
+
+```swift
+String(format: NSLocalizedString("%lld of %lld rolls", comment: ""), done, needed)
+```
+
+**Faustregel:** Sobald ein Text durch eine Variable, einen Parameter oder ein Array
+läuft, muss der Typ `LocalizedStringKey` sein — oder es braucht ein ausdrückliches
+`NSLocalizedString`. Ein `String` an dieser Stelle ist immer ein Übersetzungsloch.
+
+## 5. `.strings`-Werte vertragen keine geraden Anführungszeichen
+
+Zwei deutsche Zeilen enthielten ein `"` mitten im Wert und rissen die Datei auf.
+Der Build meldet dann nur:
+
+```
+validation failed: Couldn't parse property list because the input data was in an invalid format
+```
+
+— ohne Zeilennummer. Prüfen lässt sich das mit: jede Eintragszeile muss **genau vier**
+gerade Anführungszeichen haben.
+
 ## Was das für die App bedeutet
 
 Das **App-Target** ist davon nicht betroffen — dort baut Xcode, und String Catalogs

@@ -70,6 +70,21 @@ final class LocalizationRuleTests: XCTestCase {
         }
     }
 
+    /// Im Bild aufgefallen: In der .strings-Tabelle war `%s` als `%%s` maskiert,
+    /// obwohl dieser Zugang kein `String(format:)` durchlaeuft — der Befehl erschien
+    /// mit doppeltem Prozentzeichen. Ein `contains("shasum")` haette das durchgelassen.
+    func testShellCommandHasNoDoubledPercent() {
+        for locale in locales {
+            let joined = DiceMethod.sha256
+                .verificationSteps(for: .twentyFour, locale: locale)
+                .joined(separator: " ")
+            XCTAssertTrue(joined.contains("'%s'"),
+                          "printf-Platzhalter fehlt in \(locale.identifier): \(joined)")
+            XCTAssertFalse(joined.contains("%%"),
+                           "Doppeltes Prozentzeichen in \(locale.identifier): \(joined)")
+        }
+    }
+
     func testMethodTitlesAreNotTranslated() {
         XCTAssertEqual(DiceMethod.sha256.title, "SHA-256")
         XCTAssertEqual(DiceMethod.coleman.title, "Coleman")

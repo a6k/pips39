@@ -16,7 +16,7 @@
 "verify.warning" = "Zum Ausprobieren eine Wegwerf-Folge verwenden. Die echten Würfe niemals in einen Browser tippen.";
 
 /* Nachrechnen: SHA-256. Der shasum-Befehl bleibt unübersetzt. */
-"verify.sha256.step.hash" = "Ausführen: printf '%%s' \"<Wurffolge>\" | shasum -a 256";
+"verify.sha256.step.hash" = "Ausführen: printf '%s' \"<Wurffolge>\" | shasum -a 256";
 "verify.sha256.step.truncate" = "Nur die ersten 32 Hex-Zeichen nehmen — 12 Wörter nutzen 128 der 256 Bit.";
 "verify.sha256.step.paste" = "iancoleman.io/bip39 öffnen und den Hex-Wert in das Feld Entropy einfügen.";
 "verify.sha256.step.compare" = "Entropy type auf Hex stellen, dann die Wörter vergleichen.";

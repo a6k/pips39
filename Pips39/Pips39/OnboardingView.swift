@@ -85,7 +85,7 @@ struct OnboardingView: View {
         }
     }
 
-    private let checklist = [
+    private let checklist: [LocalizedStringKey] = [
         "Turn off Wi-Fi, cellular, Bluetooth and AirDrop in Settings — not in Control Center.",
         "Turn off iCloud completely: no backup, no keychain sync.",
         "Block USB accessories under Face ID & Passcode.",
@@ -119,7 +119,10 @@ struct OnboardingView: View {
 
     // MARK: Gerüst
 
-    private func page<Content: View>(title: String,
+    /// `title` ist bewusst ein `LocalizedStringKey` und kein `String`:
+    /// `Text(einString)` lokalisiert **nicht** — nur ein Literal oder ein
+    /// `LocalizedStringKey` geht durch die Übersetzungstabelle.
+    private func page<Content: View>(title: LocalizedStringKey,
                                      @ViewBuilder content: () -> Content) -> some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {

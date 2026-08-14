@@ -16,7 +16,7 @@
 "verify.warning" = "Use a throwaway sequence to try this out. Never type your real rolls into a browser.";
 
 /* Nachrechnen: SHA-256. Der shasum-Befehl bleibt unübersetzt. */
-"verify.sha256.step.hash" = "Run: printf '%%s' \"<your rolls>\" | shasum -a 256";
+"verify.sha256.step.hash" = "Run: printf '%s' \"<your rolls>\" | shasum -a 256";
 "verify.sha256.step.truncate" = "Take only the first 32 hex characters — 12 words use 128 of the 256 bits.";
 "verify.sha256.step.paste" = "Open iancoleman.io/bip39 and paste the hex into the Entropy field.";
 "verify.sha256.step.compare" = "Set Entropy type to Hex, then compare the words.";

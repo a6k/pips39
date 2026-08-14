@@ -1,0 +1,71 @@
+/* ===== Verfahrenswahl ===== */
+"Roll dice, get a BIP39 seed phrase. Nothing is stored." = "Würfeln, BIP39-Seed erhalten. Nichts wird gespeichert.";
+"Seed length" = "Seed-Länge";
+"Choose a method" = "Verfahren wählen";
+"DEFAULT" = "STANDARD";
+"The method travels with the result. Write it down together with your words." = "Das Verfahren gehört zum Ergebnis. Zusammen mit den Wörtern notieren.";
+
+/* ===== Onboarding ===== */
+"First: check the app" = "Zuerst: die App prüfen";
+"Do this now, while this device is still online. Make up a dice sequence for it — never use the rolls behind a seed you intend to keep." = "Jetzt erledigen, solange dieses Gerät noch am Netz ist. Dafür eine Wurffolge ausdenken — niemals die Würfe eines Seeds verwenden, der behalten werden soll.";
+"Source code on GitHub" = "Quelltext auf GitHub";
+"Tapping a link opens Safari. That is fine now and not later — do it before you take the device offline." = "Ein Tipp auf einen Link öffnet Safari. Das ist jetzt in Ordnung und später nicht mehr — also vor dem Abschotten erledigen.";
+
+"Then: take it offline" = "Danach: abschotten";
+"Turn off Wi-Fi, cellular, Bluetooth and AirDrop in Settings — not in Control Center." = "WLAN, Mobilfunk, Bluetooth und AirDrop in den Einstellungen abschalten — nicht im Kontrollzentrum.";
+"Turn off iCloud completely: no backup, no keychain sync." = "iCloud vollständig abschalten: kein Backup, kein Schlüsselbund-Abgleich.";
+"Block USB accessories under Face ID & Passcode." = "USB-Zubehör unter Face ID und Code sperren.";
+"Turn on Lockdown Mode." = "Blockierungsmodus einschalten.";
+"Turn off Settings, App Store, Offload Unused Apps — otherwise iOS may delete this app and need the network to restore it." = "Einstellungen, App Store, Nicht benutzte Apps auslagern abschalten — sonst löscht iOS diese App und braucht zum Wiederherstellen das Netz.";
+"The notice above disappears once there is no connection left. That is a statement, not an all-clear — see the last page." = "Der Hinweis oben verschwindet, sobald keine Verbindung mehr besteht. Das ist eine Feststellung, keine Entwarnung — siehe letzte Seite.";
+
+"Ready" = "Bereit";
+"What this app cannot tell you" = "Was diese App nicht wissen kann";
+"Bluetooth state is not readable by apps since iOS 13, and no network connection does not mean the device is isolated. This app reports what it can see and never claims you are safe. That judgement stays with you." = "Der Bluetooth-Zustand ist für Apps seit iOS 13 nicht abfragbar, und keine Netzverbindung bedeutet nicht, dass das Gerät abgeschottet ist. Diese App benennt, was sie sieht, und behauptet nie, dass alles in Ordnung sei. Diese Einschätzung bleibt bei Ihnen.";
+"How this ends" = "Wie es ausgeht";
+"Nothing is stored. Write the words on paper, note the method next to them, and check your copy with the app before you leave the screen." = "Nichts wird gespeichert. Die Wörter auf Papier schreiben, das Verfahren daneben notieren und die Abschrift prüfen, bevor dieser Bildschirm verlassen wird.";
+
+"Skip" = "Überspringen";
+"Next" = "Weiter";
+"Start" = "Los";
+
+/* ===== Würfeln ===== */
+"Back" = "Zurück";
+"Help" = "Hilfe";
+"Undo" = "Rückgängig";
+"Show words" = "Wörter zeigen";
+"Discard and go back" = "Verwerfen und zurück";
+"Keep rolling" = "Weiterwürfeln";
+"Going back means choosing the method and seed length again. Your rolls so far cannot be carried over." = "Zurückgehen heißt, Verfahren und Seed-Länge neu zu wählen. Die bisherigen Würfe lassen sich nicht mitnehmen.";
+
+/* ===== Wortanzeige ===== */
+"Write these down" = "Diese notieren";
+"I wrote them down" = "Notiert";
+"Show rolls and entropy" = "Würfe und Entropie zeigen";
+"Discard and start over" = "Verwerfen und neu beginnen";
+
+/* ===== Abschreibkontrolle ===== */
+"Show the words again" = "Wörter nochmal zeigen";
+"Done" = "Fertig";
+
+/* ===== Aufzeichnung ===== */
+"Your rolls and entropy" = "Ihre Würfe und Entropie";
+"Method" = "Verfahren";
+"Dice rolls" = "Würfe";
+"Entropy (hex)" = "Entropie (hex)";
+"These are seed-equivalent. Anyone who sees them can recreate your wallet. Never type them into another device." = "Diese Angaben sind dem Seed gleichwertig. Wer sie sieht, kann die Wallet nachbauen. Niemals in ein anderes Gerät tippen.";
+"Keep these exactly as private as the words themselves, or do not keep them at all. If you write the rolls down, write the method down with them — the same rolls give different words under the other method." = "Genauso vertraulich behandeln wie die Wörter selbst — oder gar nicht aufheben. Wer die Würfe notiert, notiert das Verfahren dazu: dieselben Würfe ergeben unter dem anderen Verfahren andere Wörter.";
+
+/* ===== Bildschirmschutz ===== */
+"Hidden" = "Verdeckt";
+"Hidden while the screen is being recorded or mirrored." = "Verdeckt, solange der Bildschirm aufgezeichnet oder gespiegelt wird.";
+"A screenshot was taken. That image is now in your photo library, and iCloud may sync it." = "Es wurde ein Screenshot gemacht. Das Bild liegt jetzt in der Fotomediathek, und iCloud kann es synchronisieren.";
+
+/* ===== Zahlen im Text. %lld ist eine Zahl, %@ ein Text. ===== */
+"%lld of %lld rolls" = "%lld von %lld Würfen";
+"%lld of %lld bits" = "%lld von %lld Bit";
+"Word %lld of %lld" = "Wort %lld von %lld";
+"All %lld match" = "Alle %lld stimmen";
+"%@ does not match position %lld. Check your paper." = "%1$@ passt nicht zu Position %2$lld. Zettel prüfen.";
+"Your paper matches all %lld words." = "Der Zettel stimmt in allen %lld Wörtern.";
+"Method: %@ — note this down too. The same rolls give different words under the other method." = "Verfahren: %@ — ebenfalls notieren. Dieselben Würfe ergeben unter dem anderen Verfahren andere Wörter.";
