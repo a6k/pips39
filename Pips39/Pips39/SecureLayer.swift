@@ -15,6 +15,18 @@ import UIKit
 ///
 /// Findet sich die Zeichenebene nicht, wird der Inhalt **ungeschützt, aber sichtbar**
 /// angezeigt. Ein leerer Bildschirm wäre der schlechtere Ausfall.
+///
+/// > [!note] Sichtbarer Nebeneffekt: die Reiterleiste wird dunkler
+/// > Die Leiste ist durchscheinend und nimmt auf, was hinter ihr liegt. Durch diese
+/// > UIKit-Ebene sieht sie nicht hindurch, und deshalb trägt sie auf jedem Bildschirm
+/// > mit Schutz einen anderen Ton als auf einem ohne: gemessen `451A73` gegen
+/// > `741FCE`.
+/// >
+/// > Das ist **kein Fehler und bleibt so** (Entscheidung vom 2026-08-15). Der
+/// > Unterschied fällt mit dem Schutz zusammen, ist also eher ehrlich als störend.
+/// > Wer ihn doch angleichen will: `.toolbarBackground(_:for: .tabBar)` wirkt unter
+/// > iOS 26 nicht mehr, weder am `TabView` noch am Reiterinhalt. Bliebe
+/// > `UITabBar.appearance()`, und das kostet den Glaseffekt.
 struct SecureLayer<Content: View>: UIViewRepresentable {
 
     let content: Content
