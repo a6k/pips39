@@ -33,6 +33,35 @@ final class DiceSessionPatternTests: XCTestCase {
         XCTAssertNil(session.rollPattern)
     }
 
+    // MARK: Der Hinweis während des Würfelns
+
+    /// Unter zwanzig Würfen schweigt die Prüfung — dort wären drei oder fünf gleiche
+    /// Würfe hintereinander noch gewöhnlich.
+    func testLivePatternStaysSilentBelowTwenty() {
+        XCTAssertNil(session(face: 1, times: 19).livePattern)
+    }
+
+    func testLivePatternAppearsAtTwenty() {
+        XCTAssertEqual(session(face: 1, times: 20).livePattern, .singleFace)
+    }
+
+    /// Der Hinweis ist eine Feststellung über den aktuellen Stand, kein Urteil, das
+    /// stehen bleibt: Sobald die Folge nicht mehr auffällig ist, verschwindet er.
+    func testLivePatternDisappearsWhenTheSequenceRecovers() {
+        let session = session(face: 1, times: 20)
+        session.roll(2)
+        XCTAssertEqual(session.livePattern, .twoFacesOnly)
+        session.roll(3)
+        XCTAssertNil(session.livePattern)
+    }
+
+    /// Die Wortanzeige zeigt weiterhin erst zum Ergebnis.
+    func testRollPatternStillWaitsForCompletion() {
+        let session = session(face: 1, times: 20)
+        XCTAssertNotNil(session.livePattern)
+        XCTAssertNil(session.rollPattern)
+    }
+
     /// Auch unter Verfahren A, wo die Wurfzahl nicht feststeht.
     func testColemanSingleFaceIsFound() {
         let session = DiceSession(method: .coleman, length: .twelve)

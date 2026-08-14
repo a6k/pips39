@@ -47,14 +47,24 @@ public final class DiceSession: ObservableObject {
 
     // MARK: Ergebnis
 
-    /// Eine Feststellung zur Wurffolge, oder `nil` wenn nichts auffällt.
+    /// Die Feststellung zum bisherigen Stand, unabhängig vom Fortschritt.
     ///
-    /// Bewusst erst nach Abschluss: Während des Würfelns wären fünf gleiche Würfe
-    /// hintereinander noch völlig gewöhnlich, und eine Meldung dazu wäre genau der
-    /// Fehlalarm, den `RollPattern` vermeidet.
+    /// Darf schon während des Würfelns gezeigt werden: `RollPattern` schweigt unter
+    /// zwanzig Würfen von sich aus, und dort liegt das *häufigste* der erkannten
+    /// Muster bereits bei etwa 10⁻⁹. Wer aus Langeweile durchtippt, erfährt es damit
+    /// nach dem zwanzigsten Wurf statt nach dem fünfzigsten — solange Korrigieren
+    /// noch billig ist.
+    ///
+    /// Eine Feststellung über den *aktuellen* Stand, kein Urteil, das stehen bleibt:
+    /// Fällt eine dritte Augenzahl, verschwindet sie wieder.
+    public var livePattern: RollPattern.Finding? {
+        RollPattern.finding(for: buffer.rolls)
+    }
+
+    /// Dieselbe Feststellung, aber erst zum Ergebnis — für die Wortanzeige, wo sie
+    /// über den Wörtern steht und sich auf die fertige Folge bezieht.
     public var rollPattern: RollPattern.Finding? {
-        guard isComplete else { return nil }
-        return RollPattern.finding(for: buffer.rolls)
+        isComplete ? livePattern : nil
     }
 
     /// Berechnet die Wörter, sobald genug gewürfelt wurde. Vorher wirkungslos.

@@ -49,9 +49,35 @@ struct RollingView: View {
                 .disabled(!session.isComplete)
             }
 
+            patternNotice
+
             Spacer()
         }
         .padding()
+        .animation(.default, value: session.livePattern)
+    }
+
+    /// Ab dem zwanzigsten Wurf, solange die Folge auffällig ist. Steht hier statt
+    /// erst bei den Wörtern, weil Korrigieren jetzt noch billig ist — dreißig weitere
+    /// Würfe zu tippen und danach zu verwerfen wäre umsonst.
+    ///
+    /// Dieselbe orange Feststellung wie in der Wortanzeige: nichts ist kaputt, wer
+    /// tatsächlich so gewürfelt hat, würfelt weiter.
+    @ViewBuilder
+    private var patternNotice: some View {
+        if let finding = session.livePattern {
+            HStack(alignment: .top, spacing: 8) {
+                Image(systemName: "exclamationmark.triangle.fill")
+                Text(RollPattern.notice(for: finding))
+                    .font(.footnote.weight(.medium))
+                Spacer(minLength: 0)
+            }
+            .foregroundStyle(.orange)
+            .padding(12)
+            .background(Color.orange.opacity(0.12))
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+            .transition(.opacity)
+        }
     }
 
     /// Zurück zur Verfahrenswahl.
