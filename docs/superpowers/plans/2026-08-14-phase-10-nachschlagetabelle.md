@@ -86,7 +86,7 @@ acht Optionen exakt ab.
 - Create: `Sources/Pips39Core/LookupTable.swift`
 - Create: `Tests/Pips39CoreTests/LookupTableTests.swift`
 
-- [ ] **Step 1: Den fehlschlagenden Test schreiben**
+- [x] **Step 1: Den fehlschlagenden Test schreiben**
 
 `Tests/Pips39CoreTests/LookupTableTests.swift`:
 
@@ -218,7 +218,7 @@ final class LookupTableTests: XCTestCase {
 }
 ```
 
-- [ ] **Step 2: Test laufen lassen, Fehlschlag bestätigen**
+- [x] **Step 2: Test laufen lassen, Fehlschlag bestätigen**
 
 ```bash
 cd "$REPO" && swift test 2>&1 | grep -E "error:" | head -3
@@ -230,7 +230,7 @@ Expected: `cannot find 'LookupTable' in scope`.
 > Heißt die Eigenschaft anders oder ist sie intern, in den Tests den vorhandenen
 > Namen benutzen und **nicht** die Wortliste ein zweites Mal einbetten.
 
-- [ ] **Step 3: `LookupTable` schreiben**
+- [x] **Step 3: `LookupTable` schreiben**
 
 `Sources/Pips39Core/LookupTable.swift`:
 
@@ -327,14 +327,14 @@ public enum LookupTable {
 }
 ```
 
-- [ ] **Step 4: Test laufen lassen**
+- [x] **Step 4: Test laufen lassen**
 
 ```bash
 cd "$REPO" && swift test 2>&1 | grep -E "error:|Executed [0-9]+ tests, with" | tail -2
 ```
 Expected: PASS.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 cd "$REPO"
@@ -350,7 +350,7 @@ git push
 **Files:**
 - Create: `Pips39/Pips39/LookupView.swift`
 
-- [ ] **Step 1: Die Ansicht schreiben**
+- [x] **Step 1: Die Ansicht schreiben**
 
 Drei Würfel werden eingegeben, dann erscheint das Raster: vier Spalten (Würfel 4),
 acht Zeilen (Würfel 5 und Münze).
@@ -579,7 +579,7 @@ struct LookupView: View {
 > `offsetInBlock` bekommt ausschließlich Werte aus `1...4` und `Coin.allCases`. Wer die
 > Schleifengrenzen ändert, muss das `!` mit ändern.
 
-- [ ] **Step 2: Bauen**
+- [x] **Step 2: Bauen**
 
 ```bash
 cd "$REPO/Pips39"
@@ -588,7 +588,7 @@ xcodebuild -project Pips39.xcodeproj -scheme Pips39 \
 ```
 Expected: `** BUILD SUCCEEDED **`
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 cd "$REPO"
@@ -603,7 +603,7 @@ git commit -m "feat: Ableseansicht für die Nachschlagetabelle"
 **Files:**
 - Modify: `Pips39/Pips39/MethodChoiceView.swift`
 
-- [ ] **Step 1: Signatur erweitern und scrollbar machen**
+- [x] **Step 1: Signatur erweitern und scrollbar machen**
 
 Der Eintrag ist **kein** drittes Verfahren: Die beiden Karten beantworten dieselbe
 Frage und führen in denselben Ablauf, dieser Eintrag nicht. Ihn danebenzustellen würde
@@ -678,7 +678,7 @@ Die Vorschau nachziehen:
 }
 ```
 
-- [ ] **Step 2: Bauen**
+- [x] **Step 2: Bauen**
 
 Der Build **muss** jetzt an `ContentView` scheitern (fehlendes Argument). Das ist der
 erwartete Zwischenstand; Task 4 schließt ihn.
@@ -690,7 +690,7 @@ erwartete Zwischenstand; Task 4 schließt ihn.
 **Files:**
 - Modify: `Pips39/Pips39/ContentView.swift`
 
-- [ ] **Step 1: Zustand und Verzweigung ergänzen**
+- [x] **Step 1: Zustand und Verzweigung ergänzen**
 
 ```swift
     @State private var showsLookupTable = false
@@ -719,7 +719,7 @@ Würfelablauf lebt:
         }
 ```
 
-- [ ] **Step 2: Bauen**
+- [x] **Step 2: Bauen**
 
 ```bash
 cd "$REPO/Pips39"
@@ -728,7 +728,7 @@ xcodebuild -project Pips39.xcodeproj -scheme Pips39 \
 ```
 Expected: `** BUILD SUCCEEDED **`
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 cd "$REPO"
@@ -743,7 +743,7 @@ git commit -m "feat: Nachschlagetabelle als eigener Block auf der Einstiegsseite
 **Files:**
 - Modify: `Pips39/Pips39/de.lproj/Localizable.strings`
 
-- [ ] **Step 1: Eintragen**
+- [x] **Step 1: Eintragen**
 
 Die englische Tabelle bleibt leer — dort sind die Schlüssel selbst der Text.
 
@@ -776,7 +776,7 @@ Die englische Tabelle bleibt leer — dort sind die Schlüssel selbst der Text.
 >    identisch ist er hier ohnehin. Vorher `grep -c` prüfen und die Zeile nur ergänzen,
 >    wenn sie fehlt.
 
-- [ ] **Step 2: Bauen und committen**
+- [x] **Step 2: Bauen und committen**
 
 ```bash
 cd "$REPO/Pips39"
@@ -792,13 +792,13 @@ git push
 
 ### Task 6: Sichtprüfung
 
-- [ ] **Step 1: Der Weg hinein**
+- [x] **Step 1: Der Weg hinein**
 
 Onboarding überspringen. Auf der Einstiegsseite muss unter einer Trennlinie der Block
 „Ohne Ausdruck würfeln" stehen — **nicht** als dritte Karte neben SHA-256 und Coleman.
 Der Seed-Längen-Schalter darf sichtbar zum oberen Block gehören.
 
-- [ ] **Step 2: Ein Wort nachschlagen und gegen die Formel prüfen**
+- [x] **Step 2: Ein Wort nachschlagen und gegen die Formel prüfen**
 
 Würfel 1, 1, 1 eingeben. Die **erste Zeile** muss dann lauten:
 `abandon · absurd · acoustic · adapt`, die **erste Spalte** von oben nach unten
@@ -817,12 +817,12 @@ for f4 in range(1,5):
 Die vier ausgegebenen Listen sind die vier **Spalten** des Rasters, jede von oben nach
 unten. Bildschirm damit vergleichen.
 
-- [ ] **Step 3: Zähler und Löschung**
+- [x] **Step 3: Zähler und Löschung**
 
 „Nächstes Wort" tippen. Die Würfeleingabe muss leer sein, das Raster verschwunden, der
 Zähler auf 2 von 23.
 
-- [ ] **Step 4: Der Abschluss**
+- [x] **Step 4: Der Abschluss**
 
 Bis 23 durchzählen ist zu mühsam für die Sichtprüfung. Stattdessen `totalWords` in
 `LookupView` vorübergehend auf 2 setzen, bauen, den Abschlusstext ansehen — und den
@@ -832,13 +832,13 @@ Wert **zurücksetzen**, bevor irgendetwas committet wird.
 
 ## Abschluss der Phase
 
-- [ ] **Spec nachziehen:** In `~/Documents/Doku/02 Projekte/Ideen und Tests/Pips39/würfel-tool-spec.md`
+- [x] **Spec nachziehen:** In `~/Documents/Doku/02 Projekte/Ideen und Tests/Pips39/würfel-tool-spec.md`
       einen Abschnitt 2.8 „Nachschlagetabelle" anlegen: die Formel, die Bit-Bilanz
       (118 gegen 62), warum es kein drittes Verfahren ist, und dass das 24. Wort
       bewusst außerhalb bleibt. In Abschnitt 10 „Verworfen" den Satz ergänzen, dass
       eine Zwölf-Wort-Variante an den 62 bit scheitert.
 
-- [ ] **Quelle vermerken:** Die BitBox-Anleitung liegt unter `BitBox-Anleitung/` im
+- [x] **Quelle vermerken:** Die BitBox-Anleitung liegt unter `BitBox-Anleitung/` im
       Repo und steht unter CC BY-SA 4.0. Im README und in der Spec nennen, woher das
       Verfahren stammt — das ist keine Höflichkeit, sondern die Lizenzbedingung.
 
