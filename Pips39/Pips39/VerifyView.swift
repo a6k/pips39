@@ -23,6 +23,7 @@ struct VerifyView: View {
                 warning
 
                 field(title: "Method", value: session.method.title, monospaced: false)
+                field(title: "Seed length", value: session.length.title, monospaced: false)
                 field(title: "Dice rolls", value: session.rollSequence, monospaced: true)
                 field(title: "Entropy (hex)", value: session.entropyHex ?? "—", monospaced: true)
 

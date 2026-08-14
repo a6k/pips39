@@ -48,8 +48,8 @@ struct ContentView: View {
         } else {
             VStack(spacing: 12) {
                 EnvironmentNotice(probe: probe)
-                MethodChoiceView { method in
-                    session = DiceSession(method: method)
+                MethodChoiceView { method, length in
+                    session = DiceSession(method: method, length: length)
                     step = .rolling
                 }
             }

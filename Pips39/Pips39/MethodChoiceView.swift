@@ -8,7 +8,9 @@ import Pips39Core
 /// still umspringt, lässt den Nutzer sein Backup für kaputt halten.
 struct MethodChoiceView: View {
 
-    let onChoose: (DiceMethod) -> Void
+    let onChoose: (DiceMethod, SeedLength) -> Void
+
+    @State private var length: SeedLength = .standard
 
     var body: some View {
         VStack(alignment: .leading, spacing: 24) {
@@ -19,12 +21,23 @@ struct MethodChoiceView: View {
                     .foregroundStyle(.secondary)
             }
 
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Seed length")
+                    .font(.headline)
+                Picker("Seed length", selection: $length) {
+                    ForEach(SeedLength.allCases) { option in
+                        Text(option.title).tag(option)
+                    }
+                }
+                .pickerStyle(.segmented)
+            }
+
             Text("Choose a method")
                 .font(.headline)
 
             ForEach(DiceMethod.allCases, id: \.rawValue) { method in
                 Button {
-                    onChoose(method)
+                    onChoose(method, length)
                 } label: {
                     VStack(alignment: .leading, spacing: 4) {
                         HStack {
@@ -39,7 +52,7 @@ struct MethodChoiceView: View {
                             }
                         }
                         Text(method.summary).font(.footnote)
-                        Text(method.rollCountHint(for: .standard))
+                        Text(method.rollCountHint(for: length))
                             .font(.footnote.weight(.medium))
                             .foregroundStyle(.secondary)
                     }
@@ -62,5 +75,5 @@ struct MethodChoiceView: View {
 }
 
 #Preview {
-    MethodChoiceView { _ in }
+    MethodChoiceView { _, _ in }
 }
