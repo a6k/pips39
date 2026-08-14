@@ -20,9 +20,10 @@
 
 "What this app cannot tell you" = "Was diese App nicht wissen kann";
 "Bluetooth state is not readable by apps since iOS 13, and no network connection does not mean the device is isolated. This app reports what it can see and never claims you are safe. That judgement stays with you." = "Der Bluetooth-Zustand ist für Apps seit iOS 13 nicht abfragbar, und keine Netzverbindung bedeutet nicht, dass das Gerät abgeschottet ist. Diese App benennt, was sie sieht, und behauptet nie, dass alles in Ordnung sei. Diese Einschätzung bleibt bei dir.";
-"About the dice" = "Zu den Würfeln";
-"While you roll, the app watches for sequences that cannot come from dice: all the same value, a repeated block, only two or three of the six values, or long blocks of one value. Each of those is rarer than one in a billion, so the notice never appears on a real run." = "Während des Würfelns achtet die App auf Folgen, die von keinem Würfel stammen können: alle Würfe gleich, ein wiederholter Block, nur zwei oder drei der sechs Zahlen, oder lange Blöcke derselben Zahl. Jedes davon ist seltener als eins zu einer Milliarde. Bei einem echten Durchlauf erscheint der Hinweis also nie.";
-"What it cannot see is the dice themselves. A loaded die, or one that leans a little because it is worn, produces sequences that look ordinary. Testing for that would mean a distribution test, and such a test flags correct runs often enough that people learn to ignore it. So there is none. Use dice you trust, and roll them properly." = "Was sie nicht sieht, sind die Würfel selbst. Ein gezinkter Würfel, oder einer, der durch Abnutzung leicht schief liegt, liefert Folgen, die gewöhnlich aussehen. Das zu prüfen hieße, die Verteilung zu testen, und ein solcher Test schlägt bei korrekten Durchläufen oft genug an, dass man sich angewöhnt, ihn zu übergehen. Deshalb gibt es ihn nicht. Wer würfelt, nimmt Würfel, denen er traut, und würfelt sie richtig.";
+"What this app is for" = "Wofür diese App gedacht ist";
+"For an old iPhone that you take offline and never connect to a network again." = "Für ein altes iPhone, das du offline nimmst und nie wieder ans Netz lässt.";
+"Mainly to try out and understand how rolling your own seed works." = "Vor allem zum Ausprobieren und Verstehen, wie man seinen Seed würfelt.";
+"Never put real money on a seed that came out of this app." = "Bring niemals echtes Geld auf einen Seed, der aus dieser App kommt.";
 "How this ends" = "Wie es ausgeht";
 "Nothing is stored. Write the words on paper, note the method next to them, and check your copy with the app before you leave the screen." = "Nichts wird gespeichert. Die Wörter auf Papier schreiben, das Verfahren daneben notieren und die Abschrift prüfen, bevor dieser Bildschirm verlassen wird.";
 
@@ -96,11 +97,6 @@
 "Do not use this app to create a seed for a wallet that will hold real money." = "Erzeuge mit dieser App keinen Seed für eine Wallet, in die echtes Geld soll.";
 "Use dice, a printed table and paper for that, in a room without electronics." = "Nimm dafür Würfel, eine gedruckte Tabelle und Papier in einem Raum ohne Elektronik.";
 "There is a very good guide for it on the bitbox.swiss site:" = "Eine sehr gute Anleitung findest du auf der Seite von bitbox.swiss:";
-"What a seed is" = "Was ein Seed ist";
-"Your wallet is one very large number. Every key and every address is worked out from it. That number is the seed." = "Deine Wallet ist eine einzige sehr große Zahl. Jeder Schlüssel und jede Adresse wird daraus berechnet. Diese Zahl ist der Seed.";
-"It is written as words only so you can copy it by hand without mistakes. The words are not the secret. The number is." = "Geschrieben wird sie als Wörter, damit man sie ohne Fehler abschreiben kann. Nicht die Wörter sind das Geheimnis, sondern die Zahl.";
-"Nothing else protects it. No password, no device, no company. It is safe exactly as long as nobody can guess the number." = "Sonst schützt sie nichts. Kein Passwort, kein Gerät, keine Firma. Wer die Zahl errät, hat die Wallet.";
-"Dice make a number nobody can guess, not even you afterwards. A wallet can make one too, and then you are trusting it to have done it well, which you cannot check. That is the whole reason to roll it yourself." = "Würfel erzeugen eine Zahl, die niemand erraten kann, auch du selbst hinterher nicht. Eine Wallet kann das auch, dann vertraust du darauf, dass sie es ordentlich gemacht hat, und nachprüfen kannst du es nicht. Genau deshalb würfelt man selbst.";
 "Two ways to roll" = "Zwei Arten zu würfeln";
 "What differs: what you tap in, and who turns it into words." = "Der Unterschied: was du eintippst, und wer daraus die Wörter macht.";
 "You can change your mind afterwards. Both stay on the start screen." = "Du kannst dich später umentscheiden. Beide Wege bleiben auf der Startseite.";

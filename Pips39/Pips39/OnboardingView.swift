@@ -93,27 +93,23 @@ struct OnboardingView: View {
 
     // MARK: Seite 2 — die Grundlagen
 
+    /// Wofür die App da ist, in drei Sätzen.
+    ///
+    /// Hier stand vorher eine Einführung in BIP39 und die Grenzen der
+    /// Wurffolgen-Prüfung. Beides gehört in eine Hilfe, nicht an die zweite Stelle
+    /// eines Onboardings: Wer die App öffnet, will wissen, wofür sie gedacht ist, und
+    /// nicht als Erstes einen Aufsatz lesen.
     private var basicsPage: some View {
-        OnboardingPage(title: "What a seed is") {
-            Text("Your wallet is one very large number. Every key and every address is worked out from it. That number is the seed.")
-                .font(.footnote)
-            Text("It is written as words only so you can copy it by hand without mistakes. The words are not the secret. The number is.")
-                .font(.footnote)
-            Text("Nothing else protects it. No password, no device, no company. It is safe exactly as long as nobody can guess the number.")
-                .font(.footnote)
-            Text("Dice make a number nobody can guess, not even you afterwards. A wallet can make one too, and then you are trusting it to have done it well, which you cannot check. That is the whole reason to roll it yourself.")
-                .font(.footnote)
+        OnboardingPage(title: "What this app is for") {
+            Text("For an old iPhone that you take offline and never connect to a network again.")
+                .font(.body)
 
-            VStack(alignment: .leading, spacing: 8) {
-                Text("About the dice")
-                    .font(.headline)
-                Text("While you roll, the app watches for sequences that cannot come from dice: all the same value, a repeated block, only two or three of the six values, or long blocks of one value. Each of those is rarer than one in a billion, so the notice never appears on a real run.")
-                    .font(.footnote)
-                    .foregroundStyle(.secondary)
-                Text("What it cannot see is the dice themselves. A loaded die, or one that leans a little because it is worn, produces sequences that look ordinary. Testing for that would mean a distribution test, and such a test flags correct runs often enough that people learn to ignore it. So there is none. Use dice you trust, and roll them properly.")
-                    .font(.footnote)
-                    .foregroundStyle(.secondary)
-            }
+            Text("Mainly to try out and understand how rolling your own seed works.")
+                .font(.body)
+
+            Text("Never put real money on a seed that came out of this app.")
+                .font(.body.weight(.semibold))
+                .foregroundStyle(.red)
         }
     }
 

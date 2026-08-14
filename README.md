@@ -34,7 +34,7 @@ Three shared pages, then a branch, then two pages for whichever way you chose:
 | | Page | Content |
 |---|---|---|
 | **shared** | 1 · Not for real money | The warning, in two sentences, and the BitBox link |
-| | 2 · What a seed is | A number, not words; why randomness is everything; loaded dice |
+| | 2 · What this app is for | Air-gapped iPhone, for learning, never for real money |
 | | 3 · Two ways from here | The two cards — **this is where it branches** |
 | **A** | A1 · Check the app | `shasum`, iancoleman, source — while still online |
 | | A2 · Take it offline | The device checklist and what the app cannot tell you |
