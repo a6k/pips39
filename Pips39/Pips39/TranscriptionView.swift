@@ -27,7 +27,10 @@ struct TranscriptionView: View {
                 WordKeyboardView(
                     allowed: entry.allowedNextLetters,
                     canDelete: !entry.isEmpty,
-                    onLetter: { entry.append($0) },
+                    // Der erste Buchstabe räumt die Fehlmeldung weg. Sonst stünde
+                    // sie über einer neuen Eingabe und nennte ein Wort, das gar
+                    // nicht mehr auf dem Schirm steht.
+                    onLetter: { check.clearMismatch(); entry.append($0) },
                     onDelete: { entry.deleteLast() }
                 )
             }
@@ -87,8 +90,12 @@ struct TranscriptionView: View {
                     Text("\(typed) does not match position \(check.position + 1). Check your paper.")
                         .font(.footnote.weight(.semibold))
                         .multilineTextAlignment(.center)
+                    // Unterstrichen wie die Links: Der Akzent ist Weiß, ohne
+                    // Unterstrich wäre der Knopf von dem Satz darüber nicht zu
+                    // unterscheiden.
                     Button("Show the words again", action: onShowWordsAgain)
                         .font(.footnote)
+                        .underline()
                 }
             }
         }
@@ -119,9 +126,10 @@ struct TranscriptionView: View {
 
     private var success: some View {
         VStack(spacing: 16) {
+            // Weiß, nicht grün: Grün kommt auf dem Verlauf nur auf 4:1, Weiß auf
+            // 7,3 bis 8,4. Das Siegel sagt ohnehin von sich aus, dass etwas stimmt.
             Image(systemName: "checkmark.seal.fill")
                 .font(.system(size: 56))
-                .foregroundStyle(.green)
             Text("Your paper matches all \(check.total) words.")
                 .multilineTextAlignment(.center)
             Button("Done") { onFinished() }

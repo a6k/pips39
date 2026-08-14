@@ -37,6 +37,15 @@ public final class TranscriptionCheck: ObservableObject {
         }
     }
 
+    /// Räumt die Fehlmeldung weg, sobald der Nutzer wieder tippt.
+    ///
+    /// Ohne das bliebe sie bis zur nächsten Abgabe stehen und nennte dabei ein Wort,
+    /// das längst nicht mehr auf dem Schirm steht. Sie liest sich dann wie ein
+    /// hängengebliebener Zustand statt wie eine Antwort auf die letzte Eingabe.
+    public func clearMismatch() {
+        mismatch = nil
+    }
+
     /// Geht eine Position zurück, etwa weil der Nutzer sich vertan hat.
     public func undo() {
         mismatch = nil

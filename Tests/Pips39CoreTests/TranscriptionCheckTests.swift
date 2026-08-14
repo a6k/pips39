@@ -82,6 +82,19 @@ final class TranscriptionCheckTests: XCTestCase {
         XCTAssertEqual(check.position, 0)
     }
 
+    /// Die Ansicht ruft das beim ersten Buchstaben der nächsten Eingabe auf, damit die
+    /// Meldung nicht neben einem Wort stehen bleibt, auf das sie sich nicht bezieht.
+    func testClearMismatchLeavesThePositionAlone() {
+        let check = TranscriptionCheck(expected: words)
+        check.submit("abandon")
+        check.submit("zoo")
+        XCTAssertEqual(check.mismatch, "zoo")
+
+        check.clearMismatch()
+        XCTAssertNil(check.mismatch)
+        XCTAssertEqual(check.position, 1, "Nur die Meldung geht weg, nicht der Fortschritt")
+    }
+
     func testResetStartsOver() {
         let check = TranscriptionCheck(expected: words)
         check.submit("abandon")
