@@ -116,6 +116,7 @@
 "A die showing 5 or 6 counts for nothing here. Throw it again until it shows 1 to 4." = "Ein Würfel mit 5 oder 6 zählt hier nicht. Neu werfen, bis er 1 bis 4 zeigt.";
 "Take this device offline too. It sees less on this path, but less is not nothing." = "Dieses Gerät ebenfalls abschotten. Es sieht auf diesem Weg weniger, aber weniger ist nicht nichts.";
 "What the app sees" = "Was die App sieht";
+"The app gets to see three of the five dice. Which of the 32 words you took from them, it never learns. That leaves 118 of the 256 bits hidden from it." = "Die App bekommt drei der fünf Würfel zu sehen. Welches der 32 Wörter Sie daraus genommen haben, erfährt sie nie. Damit bleiben ihr 118 der 256 Bit verborgen.";
 "Why it is 24 words only" = "Warum nur 24 Wörter";
 "With 12 words too little would stay hidden: 62 bits, which is within reach of an attacker who got hold of what you typed. There is no length switch on this path for that reason." = "Bei 12 Wörtern bliebe zu wenig verborgen: 62 Bit, und die sind für jemanden, der Ihre Eingaben hat, in Reichweite. Deshalb gibt es auf diesem Weg keine Längenwahl.";
 "It carries a checksum over the other 23, so working it out needs all of them. Your wallet offers eight valid options. Pick between them with three coin flips, not by feel." = "Es trägt eine Prüfsumme über die anderen 23, zum Ausrechnen braucht man also alle. Ihre Wallet bietet acht gültige Möglichkeiten an. Zwischen ihnen mit drei Münzwürfen wählen, nicht nach Gefühl.";

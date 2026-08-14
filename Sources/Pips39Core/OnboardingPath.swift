@@ -37,7 +37,12 @@ public enum OnboardingPath: String, CaseIterable, Equatable, Identifiable {
         Localized.string("onboarding.path.\(rawValue).summary", locale)
     }
 
-    /// Was die App dabei erfährt. Der einzige Satz, der die Wahl wirklich trägt.
+    /// Die Folgerung, und **nur** sie: wie viel vom Seed die App am Ende hat.
+    ///
+    /// Bewusst ein einziger Satz. Er steht auf der Karte unter `summary(locale:)`, und
+    /// alles, was dort schon erklärt ist, darf hier nicht noch einmal auftauchen. Eine
+    /// Wiederholung in Rot liest sich nicht als Nachdruck, sondern als zweite,
+    /// womöglich abweichende Aussage.
     public func exposure(locale: Locale = .current) -> String {
         switch self {
         case .rollAndCompute:

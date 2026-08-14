@@ -53,7 +53,9 @@ struct LookupOnboardingPages: View {
 
     private var exposurePage: some View {
         OnboardingPage(title: "What the app sees") {
-            Text(OnboardingPath.lookupTable.exposure())
+            // Eigener Text statt `OnboardingPath.exposure`: Auf der Karte muss dort
+            // die kurze Folgerung stehen, hier ist Platz für die Begründung.
+            Text("The app gets to see three of the five dice. Which of the 32 words you took from them, it never learns. That leaves 118 of the 256 bits hidden from it.")
                 .font(.footnote)
 
             VStack(alignment: .leading, spacing: 8) {
