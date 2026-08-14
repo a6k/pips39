@@ -111,6 +111,10 @@ struct WordsView: View {
         .controlSize(.large)
         .padding(.horizontal)
         .padding(.top, 12)
+        // Unten ebenfalls Abstand: Vor der Reiterleiste lag hier der sichere Bereich
+        // um den Home-Indikator und gab den Abstand von selbst. Jetzt sitzt dort die
+        // Leiste, und der Knopf stieße ohne diese Zeile direkt dagegen.
+        .padding(.bottom, 12)
         .background(Color(.systemBackground))
     }
 }
