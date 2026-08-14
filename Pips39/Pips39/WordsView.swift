@@ -97,8 +97,12 @@ struct WordsView: View {
     }
 
     /// Bleibt stehen, während die Wörter darunter durchlaufen — der nächste Schritt
-    /// ist immer erreichbar, ohne ans Listenende zu scrollen. Gleiche Leiste wie im
-    /// Onboarding, damit die App ein Muster hat und nicht zwei.
+    /// ist immer erreichbar, ohne ans Listenende zu scrollen.
+    ///
+    /// Bewusst **kein** `.bar`-Material wie im Onboarding: dort grenzt die Leiste an
+    /// den Seitenindikator und hat etwas abzugrenzen. Hier endet der Inhalt meist weit
+    /// darüber, und das Material wird zum grauen Streifen zwischen zwei weißen Flächen.
+    /// Deckende Seitenfarbe verdeckt durchlaufende Wörter genauso, ohne sichtbare Naht.
     private var footer: some View {
         Button(action: onCheck) {
             Text("I wrote them down")
@@ -107,8 +111,8 @@ struct WordsView: View {
         .buttonStyle(.borderedProminent)
         .controlSize(.large)
         .padding(.horizontal)
-        .padding(.vertical, 12)
-        .background(.bar)
+        .padding(.top, 12)
+        .background(Color(.systemBackground))
     }
 }
 
