@@ -68,7 +68,7 @@ struct RollingView: View {
         if let finding = session.livePattern {
             HStack(alignment: .top, spacing: 8) {
                 Image(systemName: "exclamationmark.triangle.fill")
-                Text(RollPattern.notice(for: finding))
+                Text(RollPattern.notice(for: finding, advice: .whileRolling))
                     .font(.footnote.weight(.medium))
                 Spacer(minLength: 0)
             }

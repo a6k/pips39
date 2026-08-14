@@ -29,6 +29,8 @@
 "verify.coleman.step.enter" = "Genau die hier gezeigten Würfe eingeben, nicht mehr, und die Wörter vergleichen.";
 
 /* Auffaellige Wurffolgen. Feststellung, kein Alarm — siehe RollPatternTests. */
-"pattern.singleFace" = "Alle Würfe dieser Folge zeigen dieselbe Zahl. Falls nicht wirklich gewürfelt wurde: verwerfen und neu beginnen.";
-"pattern.repeating" = "Diese Folge wiederholt ein kurzes Muster. Falls nicht wirklich gewürfelt wurde: verwerfen und neu beginnen.";
-"pattern.twoFaces" = "In dieser Folge kommen nur zwei der sechs Zahlen vor. Falls nicht wirklich gewürfelt wurde: verwerfen und neu beginnen.";
+"pattern.singleFace" = "Alle Würfe dieser Folge zeigen dieselbe Zahl.";
+"pattern.repeating" = "Diese Folge wiederholt ein kurzes Muster.";
+"pattern.twoFaces" = "In dieser Folge kommen nur zwei der sechs Zahlen vor.";
+"pattern.advice.rolling" = "Falls nicht wirklich gewürfelt wurde: über Zurück neu beginnen.";
+"pattern.advice.result" = "Falls nicht wirklich gewürfelt wurde: verwerfen und neu beginnen.";

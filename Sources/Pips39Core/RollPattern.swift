@@ -57,14 +57,35 @@ public enum RollPattern {
         return nil
     }
 
-    /// Der Text zur Feststellung. Nennt, was zu sehen ist, und was zu tun wäre —
-    /// ohne zu behaupten, dass etwas kaputt sei. Die Wörter sind gültig; wer
-    /// tatsächlich so gewürfelt hat, darf sie behalten.
-    public static func notice(for finding: Finding, locale: Locale = .current) -> String {
+    /// Wo der Hinweis steht — und damit, welcher Weg hinaus genannt wird.
+    ///
+    /// Der Schlusssatz gehört zum Bildschirm, nicht zum Befund: Die Würfelansicht hat
+    /// keinen Knopf „Verwerfen", dort führt der Weg über Zurück. Ein gemeinsamer Text
+    /// würde auf einem der beiden Bildschirme eine Handlung nennen, die es dort nicht
+    /// gibt — und wer eine Anweisung nicht befolgen kann, glaubt beim nächsten Mal
+    /// auch der Feststellung nicht mehr.
+    public enum Advice: String, CaseIterable {
+        /// Würfelansicht: zurück zur Verfahrenswahl.
+        case whileRolling = "pattern.advice.rolling"
+        /// Wortanzeige: der Verwerfen-Knopf steht oben rechts.
+        case atResult = "pattern.advice.result"
+    }
+
+    /// Was zu sehen ist. Eine Feststellung über die Folge, ohne zu behaupten, dass
+    /// etwas kaputt sei — die Wörter sind gültig, wer tatsächlich so gewürfelt hat,
+    /// darf sie behalten.
+    public static func statement(for finding: Finding, locale: Locale = .current) -> String {
         switch finding {
         case .singleFace:      return Localized.string("pattern.singleFace", locale)
         case .repeatingBlock:  return Localized.string("pattern.repeating", locale)
         case .twoFacesOnly:    return Localized.string("pattern.twoFaces", locale)
         }
+    }
+
+    /// Die Feststellung mit dem Weg hinaus, der auf diesem Bildschirm auch existiert.
+    public static func notice(for finding: Finding,
+                              advice: Advice,
+                              locale: Locale = .current) -> String {
+        statement(for: finding, locale: locale) + " " + Localized.string(advice.rawValue, locale)
     }
 }

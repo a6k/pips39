@@ -72,33 +72,65 @@ final class RollPatternTests: XCTestCase {
 
     // MARK: Texte
 
+    private let findings: [RollPattern.Finding] = [.singleFace, .repeatingBlock(3), .twoFacesOnly]
+
     func testEveryFindingHasANotice() {
-        let findings: [RollPattern.Finding] = [.singleFace, .repeatingBlock(3), .twoFacesOnly]
         for finding in findings {
-            XCTAssertFalse(RollPattern.notice(for: finding, locale: en).isEmpty)
+            for advice in RollPattern.Advice.allCases {
+                XCTAssertFalse(RollPattern.notice(for: finding, advice: advice, locale: en).isEmpty)
+            }
         }
     }
 
-    /// Feststellung, kein Alarm — wie überall in dieser App.
+    /// Feststellung, kein Alarm — wie überall in dieser App. Prüft auch den
+    /// angehängten Schlusssatz, sonst rutscht die Wortwahl dort unbemerkt durch.
     func testNoticesAreStatementsNotAlarms() {
-        let findings: [RollPattern.Finding] = [.singleFace, .repeatingBlock(3), .twoFacesOnly]
         for finding in findings {
-            let text = RollPattern.notice(for: finding, locale: en)
-            XCTAssertFalse(text.contains("!"))
-            XCTAssertFalse(text.lowercased().contains("error"))
-            XCTAssertFalse(text.lowercased().contains("invalid"))
+            for advice in RollPattern.Advice.allCases {
+                let text = RollPattern.notice(for: finding, advice: advice, locale: en)
+                XCTAssertFalse(text.contains("!"), text)
+                XCTAssertFalse(text.lowercased().contains("error"), text)
+                XCTAssertFalse(text.lowercased().contains("invalid"), text)
+                XCTAssertFalse(text.lowercased().contains("wrong"), text)
+            }
         }
     }
 
     func testNoticesExistInBothLanguages() {
         let de = Locale(identifier: "de")
-        let findings: [RollPattern.Finding] = [.singleFace, .repeatingBlock(3), .twoFacesOnly]
         for finding in findings {
-            XCTAssertNotEqual(RollPattern.notice(for: finding, locale: de),
-                              RollPattern.notice(for: finding, locale: en),
-                              "Nicht übersetzt: \(finding)")
-            XCTAssertFalse(RollPattern.notice(for: finding, locale: de).contains("pattern."),
-                           "Unübersetzter Schlüssel: \(finding)")
+            for advice in RollPattern.Advice.allCases {
+                let german = RollPattern.notice(for: finding, advice: advice, locale: de)
+                XCTAssertNotEqual(german,
+                                  RollPattern.notice(for: finding, advice: advice, locale: en),
+                                  "Nicht übersetzt: \(finding) / \(advice)")
+                XCTAssertFalse(german.contains("pattern."),
+                               "Unübersetzter Schlüssel: \(german)")
+            }
+        }
+    }
+
+    // MARK: Der Schlusssatz gehört zum Bildschirm, nicht zum Befund
+
+    /// Die Würfelansicht hat keinen Knopf „Verwerfen" — dort führt der Weg über
+    /// Zurück. Ein gemeinsamer Text würde auf einem der beiden Bildschirme eine
+    /// Handlung nennen, die es dort nicht gibt.
+    func testAdviceDiffersByPlace() {
+        for finding in findings {
+            XCTAssertNotEqual(RollPattern.notice(for: finding, advice: .whileRolling, locale: en),
+                              RollPattern.notice(for: finding, advice: .atResult, locale: en))
+        }
+    }
+
+    /// Beide Ansichten sagen dasselbe *über die Folge* — nur der Weg hinaus
+    /// unterscheidet sich.
+    func testTheStatementItselfIsTheSameEverywhere() {
+        for finding in findings {
+            let rolling = RollPattern.notice(for: finding, advice: .whileRolling, locale: en)
+            let result = RollPattern.notice(for: finding, advice: .atResult, locale: en)
+            let statement = RollPattern.statement(for: finding, locale: en)
+            XCTAssertTrue(rolling.hasPrefix(statement), rolling)
+            XCTAssertTrue(result.hasPrefix(statement), result)
         }
     }
 }

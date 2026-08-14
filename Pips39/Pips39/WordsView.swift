@@ -32,7 +32,7 @@ struct WordsView: View {
                 if let finding = session.rollPattern {
                     HStack(alignment: .top, spacing: 8) {
                         Image(systemName: "exclamationmark.triangle.fill")
-                        Text(RollPattern.notice(for: finding))
+                        Text(RollPattern.notice(for: finding, advice: .atResult))
                             .font(.footnote.weight(.medium))
                         Spacer(minLength: 0)
                     }
