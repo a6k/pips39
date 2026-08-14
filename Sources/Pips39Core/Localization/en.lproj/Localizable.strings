@@ -27,3 +27,8 @@
 "verify.coleman.step.dice" = "Select the Dice entropy type first — otherwise a sequence of only 1s is read as binary.";
 "verify.coleman.step.raw" = "Leave Mnemonic Length on Use Raw Entropy — a fixed word count hashes instead and truncates the other way.";
 "verify.coleman.step.enter" = "Enter exactly the rolls shown here, no more, and compare the words.";
+
+/* Auffaellige Wurffolgen. Feststellung, kein Alarm — siehe RollPatternTests. */
+"pattern.singleFace" = "Every roll in this sequence is the same value. If you did not actually roll dice, discard and start over.";
+"pattern.repeating" = "This sequence repeats a short pattern. If you did not actually roll dice, discard and start over.";
+"pattern.twoFaces" = "This sequence uses only two of the six values. If you did not actually roll dice, discard and start over.";

@@ -47,6 +47,16 @@ public final class DiceSession: ObservableObject {
 
     // MARK: Ergebnis
 
+    /// Eine Feststellung zur Wurffolge, oder `nil` wenn nichts auffällt.
+    ///
+    /// Bewusst erst nach Abschluss: Während des Würfelns wären fünf gleiche Würfe
+    /// hintereinander noch völlig gewöhnlich, und eine Meldung dazu wäre genau der
+    /// Fehlalarm, den `RollPattern` vermeidet.
+    public var rollPattern: RollPattern.Finding? {
+        guard isComplete else { return nil }
+        return RollPattern.finding(for: buffer.rolls)
+    }
+
     /// Berechnet die Wörter, sobald genug gewürfelt wurde. Vorher wirkungslos.
     public func reveal() {
         guard var entropy = buffer.entropy() else { return }
