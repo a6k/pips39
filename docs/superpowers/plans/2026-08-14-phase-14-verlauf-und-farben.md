@@ -38,50 +38,36 @@ Seed-Wörter.
 
 7:1 ist die komfortable Stufe, nicht nur das Mindestmaß.
 
-## Rot fällt aus, und das ist die eigentliche Arbeit
+## Rot fällt aus, und ersetzt wird es nicht durch eine Farbe
 
 Auf dem Verlauf kommt Systemrot auf **2,15:1**. Selbst ein aufgehelltes Rot bleibt bei
-2,64. Damit sind die beiden wichtigsten Sätze der App unlesbar: die Warnung auf
+2,64. Damit sind die wichtigsten Sätze der App unlesbar: die Warnung auf
 Onboarding-Seite 1 und „Die App sieht den Seed vollständig" auf der Verzweigungsseite.
 
-Gemessen auf dem neuen Verlauf:
+Der naheliegende Ersatz wäre eine hellere Warnfarbe. Bernstein `FFC64D` trüge 4,69:1.
+**Gemessen ist eine dunkle durchscheinende Fläche aber besser**, weil sie den Text nicht
+schwächt, sondern stärkt:
 
-| Kandidat | | oben | unten |
-|---|---|---|---|
-| Systemrot | `FF453A` | 2,15:1 | 2,46:1 |
-| Lachs | `FF8A80` | 3,21:1 | 3,67:1 |
-| Rosé | `FFB4AB` | 4,32:1 | 4,93:1 |
-| **Bernstein** | `FFC64D` | **4,69:1** | **5,36:1** |
+| Fläche über dem Verlauf | sichtbar gegen Grund | weißer Text darauf |
+|---|---|---|
+| Schwarz 35 % | 1,54 bis 1,62:1 | **11,9 bis 12,9:1** |
+| Bernstein 25 % | 1,47:1 | 5,69:1 |
+| Weiß 25 % | 1,79:1 | 4,35:1 |
+| blanker Verlauf | | 7,33 bis 8,37:1 |
 
-> [!important] Warnfarbe wird Bernstein, nicht Rot
-> `FFB4AB` läge knapp über der Grenze, sieht auf Violett aber wie ein blasses Rosa aus
-> und liest sich nicht mehr als Warnung. Bernstein trägt sowohl den Kontrast als auch
-> die Bedeutung.
+Eine helle Fläche kauft Sichtbarkeit mit Lesbarkeit, eine dunkle bekommt beides. Damit
+braucht die App **überhaupt keine zweite Farbe**: zwei Violetttöne, Weiß, Transparenz.
+
+> [!important] Was das Signal trägt, wenn keine Farbe mehr da ist
+> | Stelle | Mittel |
+> |---|---|
+> | Onboarding 1 und 2 | weiß fett, ohne Fläche. Der Satz ist der Inhalt der Seite. |
+> | „Die App sieht den Seed vollständig" | weiß fett auf dunkler Fläche, weil er sich vom Fließtext darüber abheben muss |
+> | Musterhinweis beim Würfeln | dunkle Fläche, weißer fetter Text, das vorhandene Warndreieck |
+> | Verwerfen-Knopf | weiß mit `trash`-Symbol. Unterscheidung zu „Hilfe" über die Form, nicht die Farbe. |
 >
-> **Damit fällt der Unterschied zwischen der roten Warnung und dem orangen
-> Musterhinweis weg.** Das ist hinnehmbar: Beide sagen dasselbe, nämlich „hier stimmt
-> etwas nicht, lies genau". Zwei Warntöne, die sich auf Violett kaum unterscheiden
-> lassen, wären schlechter als einer, der sitzt.
-
-## Die Akzentfarbe zieht in zwei Richtungen
-
-Ein Akzent muss zwei Dinge zugleich können, und die widersprechen sich:
-
-- Als getönter Text auf dem Verlauf braucht er Kontrast **gegen Violett**
-- Als Füllung eines `borderedProminent`-Knopfes trägt er eine weiße Beschriftung und
-  braucht Kontrast **gegen Weiß**
-
-Gelb schafft das Erste (5,19:1) und scheitert am Zweiten, weiße Schrift auf Gelb ist
-unlesbar. Systemblau scheitert schon am Ersten mit 2,01:1.
-
-**Lösung: der Akzent ist Weiß, und prominente Knöpfe drehen den Kontrast um.** Weiße
-Fläche mit violetter Schrift:
-
-- weiße Fläche auf dem Verlauf: 7,33:1 bis 8,37:1
-- Schrift `6826B2` auf der weißen Fläche: 8,37:1
-
-Damit sind Knopf und Beschriftung beide komfortabel, und der Knopf hebt sich als Form
-vom Hintergrund ab, statt sich über die Farbe behaupten zu müssen.
+> Fett allein reicht dort nicht, wo der Satz zwischen anderem weißen Text steht. Dieselbe
+> Strichstärke in derselben Farbe übersieht man beim Überfliegen.
 
 ## Der Farbsatz
 
@@ -91,8 +77,11 @@ vom Hintergrund ab, statt sich über die Farbe behaupten zu müssen.
 | `gradientBottom` | `6826B2` | unten |
 | Akzent | `.white` | Links, Auswahl, Reiterleiste |
 | prominenter Knopf | weiße Fläche, Schrift `6826B2` | Loswürfeln, Notiert, Weiter |
-| Warnung | `FFC64D` | Warnsätze und Musterhinweis |
-| Flächen | `Color.white.opacity(0.12)` | Würfelflächen, Karten, Hinweisleisten |
+| `surface` | `Color.white.opacity(0.12)` | Würfelflächen, Karten |
+| `panel` | `Color.black.opacity(0.35)` | Warnungen, Hinweise |
+
+**Keine Warnfarbe.** Warnungen tragen weiße fette Schrift, eine dunkle Fläche und, wo
+vorhanden, ihr Symbol.
 
 ## Dateien
 
@@ -100,7 +89,7 @@ vom Hintergrund ab, statt sich über die Farbe behaupten zu müssen.
 - Modify `Pips39/Pips39/Pips39App.swift` — Farbschema und Akzent
 - Modify `Pips39/Pips39/ContentView.swift` — Verlauf als Hintergrund
 - Modify die neun Ansichten, die heute Systemfarben benutzen
-- Modify `Pips39/Pips39/ScreenProtection.swift` — der Schutz blendet auf `Color.red.opacity(0.1)` ab
+- Modify `Pips39/Pips39/ScreenProtection.swift` — der Schnappschuss-Hinweis ist heute rot
 
 ---
 
@@ -125,14 +114,20 @@ enum Brand {
     static let gradientTop = Color(red: 0x8E/255, green: 0x22/255, blue: 0x9D/255)
     static let gradientBottom = Color(red: 0x68/255, green: 0x26/255, blue: 0xB2/255)
 
-    /// Warnungen und Hinweise. **Nicht Rot**: Auf diesem Violett kommt Systemrot auf
-    /// 2,15:1 und ist damit unlesbar. Bernstein trägt 4,69:1 und liest sich weiterhin
-    /// als Warnung.
-    static let warning = Color(red: 0xFF/255, green: 0xC6/255, blue: 0x4D/255)
-
-    /// Flächen für Würfel, Karten und Hinweisleisten. Durchscheinendes Weiß statt
-    /// `Color.secondary`, das auf Violett schlammig wird.
+    /// Flächen für Würfel und Karten. Durchscheinendes Weiß statt `Color.secondary`,
+    /// das auf Violett schlammig wird.
     static let surface = Color.white.opacity(0.12)
+
+    /// Die Fläche unter Warnungen und Hinweisen. **Es gibt keine Warnfarbe.**
+    ///
+    /// Auf diesem Violett kommt Systemrot auf 2,15:1 und ist unlesbar. Bernstein trüge
+    /// 4,69:1, kostet aber Textkontrast. Eine dunkle durchscheinende Fläche gewinnt
+    /// beides: Sie hebt sich mit 1,54 bis 1,62:1 vom Grund ab und trägt weißen Text
+    /// mit 11,9 bis 12,9:1, also besser als der blanke Verlauf mit 7,3:1.
+    ///
+    /// Das Signal „Achtung" trägt danach das Symbol und die Strichstärke, nicht die
+    /// Farbe. Die Palette bleibt bei zwei Violetttönen, Weiß und Transparenz.
+    static let panel = Color.black.opacity(0.35)
 
     static var background: LinearGradient {
         LinearGradient(colors: [gradientTop, gradientBottom],
@@ -300,42 +295,83 @@ git commit -m "feat: Verlauf ueber den ganzen Schirm, Flaechen auf durchscheinen
 - Modify: `OnboardingView.swift`, `WordsView.swift`, `RollingView.swift`,
   `HelpTopics.swift`, `ScreenProtection.swift`
 
-- [ ] **Step 1: Rot ersetzen**
+- [ ] **Step 1: Die vier Stellen finden**
 
 ```bash
 cd "$REPO/Pips39/Pips39"
 grep -n "Color.red\|foregroundStyle(.red)\|\.orange\|Color.orange" *.swift
 ```
 
-- Die beiden Warnsätze im Onboarding (`introPage`, `basicsPage`): `.foregroundStyle(Brand.warning)`
-- Der Satz auf der Verzweigungsseite (`appSeesEverything`): `.foregroundStyle(Brand.warning)`
-- Der Musterhinweis in `RollingView` und `WordsView`: `Brand.warning`, Fläche
-  `Brand.warning.opacity(0.15)`
-- `ScreenProtection.swift:73`, `Color.red.opacity(0.1)`: `Brand.warning.opacity(0.15)`
+- [ ] **Step 2: Freistehende Warnungen — weiß und fett, keine Fläche**
 
-- [ ] **Step 2: „Verwerfen" bleibt unterscheidbar**
-
-Der destruktive Knopf oben links in `WordsView` benutzt heute `role: .destructive`, was
-ihn systemrot färbt. Auf Violett ist das unlesbar. Rolle behalten, Farbe überschreiben:
+Die beiden Warnsätze im Onboarding (`introPage`, `basicsPage`) sind der Inhalt ihrer
+Seite und stehen für sich. Statt `.foregroundStyle(.red)`:
 
 ```swift
-            Button("Discard", role: .destructive) {
-                showsDiscardConfirmation = true
-            }
-            .font(.body)
-            .foregroundStyle(Brand.warning)
+                .fontWeight(.semibold)
 ```
+
+- [ ] **Step 3: Eingebettete Warnungen — weiß fett auf `Brand.panel`**
+
+Der Satz auf der Verzweigungsseite steht mitten im Fließtext und braucht die Fläche,
+weil dieselbe Strichstärke in derselben Farbe beim Überfliegen untergeht. In
+`OnboardingView`, wo heute `.foregroundStyle(.red)` steht:
+
+```swift
+                        Text(option.exposure())
+                            .font(.footnote.weight(.semibold))
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(10)
+                            .background(Brand.panel)
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
+```
+
+Genauso die drei Hinweisleisten, die heute orange oder rot sind. In `RollingView`
+(`patternNotice`), `WordsView` (Musterhinweis) und `ScreenProtection`
+(`screenshotNotice`) die zwei Farbzeilen austauschen:
+
+```swift
+            .padding(12)
+            .background(Brand.panel)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+```
+
+Die Zeile `.foregroundStyle(.orange)` beziehungsweise `.foregroundStyle(.red)` fällt
+ersatzlos weg. Das Symbol daneben (`exclamationmark.triangle.fill`, `camera.fill`)
+bleibt und trägt jetzt die Bedeutung allein.
+
+`ScreenProtection.swift:74` braucht zusätzlich die `clipShape`-Zeile, die dort heute
+fehlt, sonst läuft die Fläche über die volle Breite.
+
+- [ ] **Step 4: „Verwerfen" wird ein Papierkorb**
+
+Der destruktive Knopf oben links in `WordsView` benutzt `role: .destructive` und ist
+damit systemrot, auf Violett unlesbar. Weiße Schrift allein wäre von „Hilfe" rechts
+daneben nicht zu unterscheiden. Deshalb trägt hier die **Form** den Unterschied:
+
+```swift
+            Button(role: .destructive) {
+                showsDiscardConfirmation = true
+            } label: {
+                Label("Discard", systemImage: "trash")
+                    .font(.body)
+            }
+            .tint(.white)
+```
+
+`role: .destructive` bleibt stehen: Es bestimmt nicht nur die Farbe, sondern auch, wie
+VoiceOver den Knopf ansagt.
 
 > [!warning] Der Rückfragedialog bleibt systemrot, und das ist richtig so
 > `confirmationDialog` zeichnet iOS selbst, auf eigenem Grund. Dort ist Rot lesbar und
 > bedeutet dasselbe wie überall im System. Nur die Knöpfe **in** der App wechseln.
 
-- [ ] **Step 3: Bauen und committen**
+- [ ] **Step 5: Bauen und committen**
 
 ```bash
 cd "$REPO"
 git add -A Pips39/Pips39
-git commit -m "feat: Warnfarbe Bernstein statt Rot, auf Violett unlesbar"
+git commit -m "feat: Warnungen tragen Flaeche und Symbol statt Farbe"
 ```
 
 ---
@@ -386,13 +422,14 @@ an dem diese Phase gemessen wird. Ebenso die Aufzeichnung mit Wurffolge und Hex.
 
 - [ ] **Step 3: Die Warnsätze**
 
-Onboarding-Seite 1 und 2, Verzweigungsseite. Bernstein muss sich vom weißen Fließtext
-abheben, ohne wie ein Hinweis auf einen Fehler auszusehen.
+Onboarding-Seite 1 und 2 tragen weiße fette Sätze ohne Fläche, die Verzweigungsseite
+den Satz auf dunkler Fläche. Prüfen, dass die Fläche sich vom Grund abhebt, ohne wie ein
+Loch im Verlauf zu wirken. Fällt sie zu schwach aus, `Brand.panel` auf 0,45 anheben.
 
 - [ ] **Step 4: Der Musterhinweis**
 
-50 gleiche Würfe. Die Meldung erscheint in Bernstein auf durchscheinendem Bernstein.
-Prüfen, dass sie sich vom Warnsatz-Bernstein unterscheidet, nämlich durch die Fläche.
+50 gleiche Würfe. Die Meldung steht weiß auf dunkler Fläche, mit dem Warndreieck.
+Prüfen, dass sie als Hinweis erkennbar ist, obwohl keine Farbe mehr mitspielt.
 
 - [ ] **Step 5: Die Reiterleiste**
 
