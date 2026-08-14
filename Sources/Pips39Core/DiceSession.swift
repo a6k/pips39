@@ -10,13 +10,15 @@ import Combine
 public final class DiceSession: ObservableObject {
 
     public let method: DiceMethod
+    public let length: SeedLength
 
     @Published private var buffer: DiceEntropy
     @Published public private(set) var words: [String] = []
 
-    public init(method: DiceMethod) {
+    public init(method: DiceMethod, length: SeedLength = .standard) {
         self.method = method
-        self.buffer = DiceEntropy(method: method)
+        self.length = length
+        self.buffer = DiceEntropy(method: method, length: length)
     }
 
     // MARK: Würfeln
@@ -55,7 +57,7 @@ public final class DiceSession: ObservableObject {
     /// Wirft alles weg und beginnt von vorn — gleiches Verfahren, leerer Puffer.
     public func discard() {
         words = []
-        buffer = DiceEntropy(method: method)
+        buffer = DiceEntropy(method: method, length: length)
     }
 
     /// Die erzeugte Entropie als Hex, oder `nil` solange nicht genug gewürfelt wurde.

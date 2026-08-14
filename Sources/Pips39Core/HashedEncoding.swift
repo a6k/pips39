@@ -15,4 +15,13 @@ enum HashedEncoding {
         let ascii = rolls.map { UInt8(ascii: "0") + $0 }
         return Array(SHA256.hash(data: Data(ascii)))
     }
+
+    /// Die ersten `byteCount` Byte des Hashes.
+    ///
+    /// Für 12 Wörter werden nur 16 der 32 Byte gebraucht. Das schlägt auf die
+    /// Nachrechen-Anleitung durch: In Colemans Entropy-Feld gehören dann nur die
+    /// ersten 32 Hex-Zeichen, sonst kommen 24 Wörter heraus.
+    static func entropy(from rolls: [UInt8], byteCount: Int) -> [UInt8] {
+        Array(entropy(from: rolls).prefix(byteCount))
+    }
 }

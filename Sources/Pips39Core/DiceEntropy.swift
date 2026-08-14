@@ -15,18 +15,20 @@ public enum DiceError: Error, Equatable {
 /// Durchlauf würde aus derselben Wurffolge stillschweigend andere Wörter machen.
 public struct DiceEntropy {
 
-    /// Zielgröße der Entropie in Bit. 256 Bit ergeben 24 Wörter.
-    public static let targetEntropyBits = 256
-
-    /// Feste Wurfzahl für Verfahren B.
-    public static let rollsForHashedMethod = 99
-
     public let method: DiceMethod
+    public let length: SeedLength
     public private(set) var rolls: [UInt8] = []
 
-    public init(method: DiceMethod) {
+    public init(method: DiceMethod, length: SeedLength = .standard) {
         self.method = method
+        self.length = length
     }
+
+    /// Zielgröße der Entropie in Bit.
+    public var targetEntropyBits: Int { length.entropyBits }
+
+    /// Feste Wurfzahl für Verfahren B.
+    public var rollsForHashedMethod: Int { length.rollsForHashedMethod }
 
     /// Nimmt einen Wurf entgegen. Wirft, wenn der Wert ungültig oder bereits genug
     /// gewürfelt ist.
@@ -53,9 +55,9 @@ public struct DiceEntropy {
     public var progress: DiceProgress {
         switch method {
         case .sha256:
-            return .rolls(done: rolls.count, needed: Self.rollsForHashedMethod)
+            return .rolls(done: rolls.count, needed: rollsForHashedMethod)
         case .coleman:
-            return .bits(done: rawBitCount, needed: Self.targetEntropyBits)
+            return .bits(done: rawBitCount, needed: targetEntropyBits)
         }
     }
 
@@ -65,21 +67,22 @@ public struct DiceEntropy {
     public var isComplete: Bool {
         switch method {
         case .sha256:
-            return rolls.count >= Self.rollsForHashedMethod
+            return rolls.count >= rollsForHashedMethod
         case .coleman:
-            return rawBitCount >= Self.targetEntropyBits
+            return rawBitCount >= targetEntropyBits
         }
     }
 
     /// Die fertige Entropie, oder `nil` solange nicht genug gewürfelt wurde.
     ///
-    /// Immer 32 Byte. Unter Verfahren A werden dazu die vordersten überzähligen
-    /// Rohbits verworfen, genau wie bei Coleman.
+    /// Immer `targetEntropyBits / 8` Byte. Unter Verfahren A werden dazu die
+    /// vordersten überzähligen Rohbits verworfen, genau wie bei Coleman.
     public func entropy() -> SecretBytes? {
         guard isComplete else { return nil }
         switch method {
         case .sha256:
-            return SecretBytes(HashedEncoding.entropy(from: rolls))
+            return SecretBytes(HashedEncoding.entropy(from: rolls,
+                                                      byteCount: targetEntropyBits / 8))
         case .coleman:
             return SecretBytes(ColemanEncoding.entropy(from: rolls))
         }
