@@ -7,6 +7,7 @@ struct RollingView: View {
     @ObservedObject var session: DiceSession
     let onFinished: () -> Void
     let onBack: () -> Void
+    let onHelp: () -> Void
 
     @State private var showsDiscardConfirmation = false
 
@@ -71,6 +72,11 @@ struct RollingView: View {
                     .font(.body)
             }
             Spacer()
+            Button(action: onHelp) {
+                Image(systemName: "questionmark.circle")
+                    .font(.title3)
+            }
+            .accessibilityLabel("Help")
         }
         .confirmationDialog(
             "Discard \(session.rollCount) rolls?",
@@ -114,5 +120,6 @@ struct RollingView: View {
 }
 
 #Preview {
-    RollingView(session: DiceSession(method: .sha256), onFinished: { }, onBack: { })
+    RollingView(session: DiceSession(method: .sha256),
+                onFinished: { }, onBack: { }, onHelp: { })
 }

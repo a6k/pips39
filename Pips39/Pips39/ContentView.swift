@@ -19,7 +19,7 @@ struct ContentView: View {
 
     var body: some View {
         if !hasStarted {
-            IntroView(probe: probe) { hasStarted = true }
+            OnboardingView(probe: probe) { hasStarted = true }
         } else if let session {
             switch step {
             case .rolling:
@@ -27,6 +27,8 @@ struct ContentView: View {
                     step = .words
                 } onBack: {
                     startOver()
+                } onHelp: {
+                    hasStarted = false
                 }
             case .words:
                 WordsView(session: session) {
