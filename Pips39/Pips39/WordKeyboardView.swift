@@ -42,8 +42,8 @@ struct WordKeyboardView: View {
             Text(String(letter).uppercased())
                 .font(.title3.weight(.medium))
                 .frame(maxWidth: .infinity, minHeight: 44)
-                .background(Color.secondary.opacity(enabled ? 0.18 : 0.05))
-                .foregroundStyle(enabled ? Color.primary : Color.secondary.opacity(0.4))
+                .background(Color.white.opacity(enabled ? 0.18 : 0.05))
+                .foregroundStyle(enabled ? Color.primary : Color.white.opacity(0.4))
                 .clipShape(RoundedRectangle(cornerRadius: 7))
         }
         .buttonStyle(.plain)
@@ -54,8 +54,8 @@ struct WordKeyboardView: View {
         Button(action: onDelete) {
             Image(systemName: "delete.left")
                 .frame(maxWidth: .infinity, minHeight: 44)
-                .background(Color.secondary.opacity(canDelete ? 0.18 : 0.05))
-                .foregroundStyle(canDelete ? Color.primary : Color.secondary.opacity(0.4))
+                .background(Color.white.opacity(canDelete ? 0.18 : 0.05))
+                .foregroundStyle(canDelete ? Color.primary : Color.white.opacity(0.4))
                 .clipShape(RoundedRectangle(cornerRadius: 7))
         }
         .buttonStyle(.plain)

@@ -62,9 +62,10 @@ struct OnboardingView: View {
     /// Einzelheiten auf den folgenden Seiten und nicht hier.
     private var introPage: some View {
         OnboardingPage(title: "Not for real money") {
+            // Weiß und fett, ohne Fläche: Der Satz steht für sich, er *ist* die
+            // Seite. Rot war hier nie eine Wahl mehr, seit der Grund violett ist.
             Text("Do not use this app to create a seed for a wallet that will hold real money.")
                 .font(.body.weight(.semibold))
-                .foregroundStyle(.red)
 
             Text("Use dice, a printed table and paper for that, in a room without electronics.")
                 .font(.body)
@@ -100,7 +101,6 @@ struct OnboardingView: View {
 
             Text("Never put real money on a seed that came out of this app.")
                 .font(.body.weight(.semibold))
-                .foregroundStyle(.red)
         }
     }
 
@@ -122,15 +122,18 @@ struct OnboardingView: View {
                             .font(.title3.weight(.semibold))
                         Text(option.summary())
                             .font(.footnote)
-                        // Rot nur auf dem Weg, der den Seed offenlegt. Das ist der
-                        // wichtigste Satz der Seite, und in Grau wird er überlesen.
+                        // Eine dunkle Fläche nur auf dem Weg, der den Seed offenlegt.
+                        // Das ist der wichtigste Satz der Seite; ohne Fläche steht er
+                        // in derselben Farbe und Strichstärke wie der Rest und wird
+                        // beim Überfliegen übersehen.
                         Text(option.exposure())
                             .font(.footnote.weight(option.appSeesEverything ? .semibold : .medium))
-                            .foregroundStyle(option.appSeesEverything ? Color.red : Color.secondary)
+                            .foregroundStyle(option.appSeesEverything ? Color.primary : Color.secondary)
+                            .modifier(ExposureBackground(highlighted: option.appSeesEverything))
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding()
-                    .background(Color.secondary.opacity(0.1))
+                    .background(Brand.surface)
                     .clipShape(RoundedRectangle(cornerRadius: 12))
                 }
                 .buttonStyle(.plain)
@@ -158,12 +161,15 @@ struct OnboardingView: View {
                 Button("Next") {
                     withAnimation { sharedPage += 1 }
                 }
-                .buttonStyle(.borderedProminent)
+                .buttonStyle(.brandProminent)
             }
         }
         .padding(.horizontal)
         .padding(.vertical, 12)
-        .background(.bar)
+        // Kein `.bar`-Material: Es bringt auf dem Verlauf einen grauen Ton mit,
+        // der zu keiner der beiden Verlaufsfarben passt. Durchscheinendes Weiß
+        // hellt nur auf und lässt den Verlauf durch.
+        .background(Color.white.opacity(0.08))
     }
 
     /// Zurück statt Überspringen: Wer sich für den falschen Weg entschieden hat, muss
@@ -188,11 +194,33 @@ struct OnboardingView: View {
                     withAnimation { pathPage += 1 }
                 }
             }
-            .buttonStyle(.borderedProminent)
+            .buttonStyle(.brandProminent)
         }
         .padding(.horizontal)
         .padding(.vertical, 12)
-        .background(.bar)
+        // Kein `.bar`-Material: Es bringt auf dem Verlauf einen grauen Ton mit,
+        // der zu keiner der beiden Verlaufsfarben passt. Durchscheinendes Weiß
+        // hellt nur auf und lässt den Verlauf durch.
+        .background(Color.white.opacity(0.08))
+    }
+}
+
+/// Die Fläche unter dem Offenlegungssatz, und nur dort.
+///
+/// Als eigener Modifikator, weil `if` im Ansichtsbaum an dieser Stelle den Knopf-Inhalt
+/// zerlegen würde und die Karte dann bei jedem Wechsel neu aufbaut.
+private struct ExposureBackground: ViewModifier {
+    let highlighted: Bool
+    func body(content: Content) -> some View {
+        if highlighted {
+            content
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(8)
+                .background(Brand.panel)
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+        } else {
+            content
+        }
     }
 }
 

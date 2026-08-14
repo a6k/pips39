@@ -30,7 +30,7 @@ struct RollingView: View {
                             .aspectRatio(1, contentMode: .fit)
                     }
                     .buttonStyle(.plain)
-                    .background(Color.secondary.opacity(0.12))
+                    .background(Brand.surface)
                     .clipShape(RoundedRectangle(cornerRadius: 14))
                     .disabled(session.isComplete)
                 }
@@ -60,8 +60,9 @@ struct RollingView: View {
     /// erst bei den Wörtern, weil Korrigieren jetzt noch billig ist — dreißig weitere
     /// Würfe zu tippen und danach zu verwerfen wäre umsonst.
     ///
-    /// Dieselbe orange Feststellung wie in der Wortanzeige: nichts ist kaputt, wer
-    /// tatsächlich so gewürfelt hat, würfelt weiter.
+    /// Dieselbe Feststellung wie in der Wortanzeige: nichts ist kaputt, wer tatsächlich
+    /// so gewürfelt hat, würfelt weiter. Das Warndreieck trägt den Ton, nicht die
+    /// Farbe — auf dem Verlauf gäbe es keine, die lesbar wäre.
     @ViewBuilder
     private var patternNotice: some View {
         if let finding = session.livePattern {
@@ -71,10 +72,7 @@ struct RollingView: View {
                     .font(.footnote.weight(.medium))
                 Spacer(minLength: 0)
             }
-            .foregroundStyle(.orange)
-            .padding(12)
-            .background(Color.orange.opacity(0.12))
-            .clipShape(RoundedRectangle(cornerRadius: 10))
+            .noticePanel()
             .transition(.opacity)
         }
     }

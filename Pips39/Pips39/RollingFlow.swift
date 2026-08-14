@@ -96,8 +96,7 @@ struct RollingFlow: View {
                     Text("Start rolling")
                         .frame(maxWidth: .infinity)
                 }
-                .buttonStyle(.borderedProminent)
-                .controlSize(.large)
+                .buttonStyle(.brandProminent)
 
                 Text("The method travels with the result. Write it down together with your words.")
                     .font(.caption)

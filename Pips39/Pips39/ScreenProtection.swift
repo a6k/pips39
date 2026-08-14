@@ -68,9 +68,7 @@ struct ScreenProtection: ViewModifier {
                 .font(.footnote.weight(.medium))
             Spacer(minLength: 0)
         }
-        .foregroundStyle(.red)
-        .padding(12)
-        .background(Color.red.opacity(0.1))
+        .noticePanel()
     }
 }
 

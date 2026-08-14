@@ -61,7 +61,7 @@ struct TranscriptionView: View {
             .foregroundStyle(done || current ? Color.primary : Color.secondary)
             .frame(maxWidth: .infinity, minHeight: 42)
             .background(done ? Color.accentColor.opacity(0.2)
-                             : Color.secondary.opacity(0.08))
+                             : Color.white.opacity(0.08))
             .clipShape(RoundedRectangle(cornerRadius: 6))
             .overlay(
                 RoundedRectangle(cornerRadius: 6)
@@ -82,9 +82,10 @@ struct TranscriptionView: View {
 
             if let typed = check.mismatch {
                 VStack(spacing: 6) {
+                    // Fett statt rot: Der Satz steht allein zwischen zwei Knöpfen,
+                    // eine Fläche wäre hier zu schwer.
                     Text("\(typed) does not match position \(check.position + 1). Check your paper.")
-                        .font(.footnote)
-                        .foregroundStyle(.red)
+                        .font(.footnote.weight(.semibold))
                         .multilineTextAlignment(.center)
                     Button("Show the words again", action: onShowWordsAgain)
                         .font(.footnote)
@@ -124,7 +125,7 @@ struct TranscriptionView: View {
             Text("Your paper matches all \(check.total) words.")
                 .multilineTextAlignment(.center)
             Button("Done") { onFinished() }
-                .buttonStyle(.borderedProminent)
+                .buttonStyle(.brandProminent)
             Spacer()
         }
     }

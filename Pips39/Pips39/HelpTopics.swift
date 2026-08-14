@@ -20,6 +20,7 @@ private struct HelpPage<Content: View>: View {
             .padding()
             .padding(.bottom, 24)
         }
+        .background { Brand.background.ignoresSafeArea() }
         .navigationTitle(title)
         .navigationBarTitleDisplayMode(.inline)
     }

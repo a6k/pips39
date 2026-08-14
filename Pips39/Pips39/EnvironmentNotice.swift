@@ -20,7 +20,7 @@ struct EnvironmentNotice: View {
             .foregroundStyle(.secondary)
             .padding(.horizontal, 12)
             .padding(.vertical, 8)
-            .background(Color.secondary.opacity(0.12))
+            .background(Brand.surface)
             .clipShape(RoundedRectangle(cornerRadius: 8))
         }
     }

@@ -88,7 +88,7 @@ struct LookupView: View {
                             .aspectRatio(1, contentMode: .fit)
                     }
                     .buttonStyle(.plain)
-                    .background(Color.secondary.opacity(0.12))
+                    .background(Brand.surface)
                     .clipShape(RoundedRectangle(cornerRadius: 12))
                     .disabled(dice.count == 3)
                 }
@@ -193,8 +193,7 @@ struct LookupView: View {
             Text(wordNumber == totalWords ? "Done" : "Next word")
                 .frame(maxWidth: .infinity)
         }
-        .buttonStyle(.borderedProminent)
-        .controlSize(.large)
+        .buttonStyle(.brandProminent)
         .padding(.top, 4)
     }
 
@@ -213,8 +212,7 @@ struct LookupView: View {
                 dice = []
                 isFinished = false
             }
-                .buttonStyle(.borderedProminent)
-                .controlSize(.large)
+                .buttonStyle(.brandProminent)
                 .frame(maxWidth: .infinity)
                 .padding(.top, 8)
 

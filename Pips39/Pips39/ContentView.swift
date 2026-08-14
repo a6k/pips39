@@ -21,6 +21,9 @@ struct ContentView: View {
 
     var body: some View {
         content
+            // Hinter allem und über den sicheren Bereich hinaus, damit der Verlauf
+            // auch hinter Statusleiste und Home-Indikator steht.
+            .background { Brand.background.ignoresSafeArea() }
             .environment(\.showHelp) { showsHelp = true }
             .sheet(isPresented: $showsHelp) {
                 HelpView(onClose: { showsHelp = false }, probe: probe)

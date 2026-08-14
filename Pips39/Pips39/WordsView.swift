@@ -26,9 +26,9 @@ struct WordsView: View {
                         .foregroundStyle(.secondary)
                 }
 
-                // Oben, damit es gelesen wird, *bevor* jemand abschreibt. Orange und
-                // nicht rot: die Wörter sind gültig, wer tatsächlich so gewürfelt hat,
-                // darf sie behalten. Die App stellt fest und blockiert nicht.
+                // Oben, damit es gelesen wird, *bevor* jemand abschreibt. Eine
+                // Feststellung, keine Sperre: Die Wörter sind gültig, wer tatsächlich
+                // so gewürfelt hat, darf sie behalten.
                 if let finding = session.rollPattern {
                     HStack(alignment: .top, spacing: 8) {
                         Image(systemName: "exclamationmark.triangle.fill")
@@ -36,10 +36,7 @@ struct WordsView: View {
                             .font(.footnote.weight(.medium))
                         Spacer(minLength: 0)
                     }
-                    .foregroundStyle(.orange)
-                    .padding(12)
-                    .background(Color.orange.opacity(0.12))
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .noticePanel()
                 }
 
                 LazyVGrid(columns: columns, alignment: .leading, spacing: 10) {
@@ -70,18 +67,26 @@ struct WordsView: View {
         .hiddenFromScreenCapture()
     }
 
-    /// Der Weg hinaus, der nichts abschließt — deshalb oben rechts und rot, getrennt
-    /// von der Fußleiste, in der nur die Schritte nach vorn stehen.
+    /// Der Weg hinaus, der nichts abschließt. Deshalb steht er oben und getrennt von
+    /// der Fußleiste, in der nur die Schritte nach vorn stehen.
+    ///
+    /// Als Papierkorb statt als Wort: Systemrot ist auf dem Verlauf mit 2,15:1
+    /// unlesbar, und weiße Schrift wäre von „Hilfe" rechts daneben nicht zu
+    /// unterscheiden. Den Unterschied trägt hier die Form. `role: .destructive` bleibt
+    /// trotzdem stehen, es bestimmt auch, wie VoiceOver den Knopf ansagt.
     ///
     /// Hier wird **immer** nachgefragt, anders als beim Zurück in der Würfelansicht:
     /// dort kann der Puffer leer sein, hier stehen die Wörter bereits auf dem Schirm
     /// und es gibt keinen Weg, sie wiederzubekommen.
     private var discardBar: some View {
         TopBar {
-            Button("Discard", role: .destructive) {
+            Button(role: .destructive) {
                 showsDiscardConfirmation = true
+            } label: {
+                Label("Discard", systemImage: "trash")
+                    .font(.body)
             }
-            .font(.body)
+            .tint(.white)
         }
         .confirmationDialog(
             "Discard these words?",
@@ -98,24 +103,23 @@ struct WordsView: View {
     /// Bleibt stehen, während die Wörter darunter durchlaufen — der nächste Schritt
     /// ist immer erreichbar, ohne ans Listenende zu scrollen.
     ///
-    /// Bewusst **kein** `.bar`-Material wie im Onboarding: dort grenzt die Leiste an
-    /// den Seitenindikator und hat etwas abzugrenzen. Hier endet der Inhalt meist weit
-    /// darüber, und das Material wird zum grauen Streifen zwischen zwei weißen Flächen.
-    /// Deckende Seitenfarbe verdeckt durchlaufende Wörter genauso, ohne sichtbare Naht.
+    /// Sie muss **deckend** sein, sonst laufen die Wörter sichtbar dahinter durch.
+    /// Deshalb nicht durchscheinendes Weiß wie im Onboarding, sondern der untere
+    /// Verlaufston: Am unteren Rand des Schirms steht der ohnehin, die Leiste fällt
+    /// dort nicht als eigene Fläche auf.
     private var footer: some View {
         Button(action: onCheck) {
             Text("I wrote them down")
                 .frame(maxWidth: .infinity)
         }
-        .buttonStyle(.borderedProminent)
-        .controlSize(.large)
+        .buttonStyle(.brandProminent)
         .padding(.horizontal)
         .padding(.top, 12)
         // Unten ebenfalls Abstand: Vor der Reiterleiste lag hier der sichere Bereich
         // um den Home-Indikator und gab den Abstand von selbst. Jetzt sitzt dort die
         // Leiste, und der Knopf stieße ohne diese Zeile direkt dagegen.
         .padding(.bottom, 12)
-        .background(Color(.systemBackground))
+        .background(Brand.gradientBottom)
     }
 }
 

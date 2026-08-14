@@ -51,11 +51,7 @@ struct VerifyView: View {
             Text("These are seed-equivalent. Anyone who sees them can recreate your wallet. Never type them into another device.")
                 .font(.footnote.weight(.medium))
         }
-        .foregroundStyle(.red)
-        .padding(12)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(Color.red.opacity(0.1))
-        .clipShape(RoundedRectangle(cornerRadius: 10))
+        .noticePanel()
     }
 
     private func field(title: LocalizedStringKey, value: String, monospaced: Bool) -> some View {
