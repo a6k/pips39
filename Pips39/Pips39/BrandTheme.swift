@@ -62,14 +62,21 @@ enum Brand {
 /// Kontrast gegen das violette Umfeld und gegen die eigene weiße Beschriftung tragen,
 /// und das schließt sich aus.
 struct BrandProminentButtonStyle: ButtonStyle {
+
+    /// Die Maße stehen hier, weil `BrandSecondaryButtonStyle` sie mitbenutzt. Mit 14
+    /// Punkt oben und unten kommt der Knopf auf 44 Punkt, also genau auf Apples
+    /// Mindestmaß für eine Trefferfläche. Weniger geht nicht.
+    static let verticalPadding: CGFloat = 14
+    static let horizontalPadding: CGFloat = 24
+
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(.body.weight(.semibold))
             .foregroundStyle(Brand.gradientBottom)
-            .padding(.vertical, 14)
+            .padding(.vertical, Self.verticalPadding)
             // Etwas mehr als bei einem eckigen Knopf: An den Enden einer Kapsel
             // nimmt die Rundung Platz weg, den die Beschriftung sonst berührt.
-            .padding(.horizontal, 24)
+            .padding(.horizontal, Self.horizontalPadding)
             // **Keine** Breitenvorgabe im Stil: In den Fußleisten steht der Knopf
             // neben „Überspringen" und dürfte dort nicht die ganze Zeile nehmen.
             // Wer volle Breite will, setzt sie auf die Beschriftung, so wie es die
@@ -84,6 +91,34 @@ struct BrandProminentButtonStyle: ButtonStyle {
 
 extension ButtonStyle where Self == BrandProminentButtonStyle {
     static var brandProminent: BrandProminentButtonStyle { BrandProminentButtonStyle() }
+}
+
+/// Der zweite Knopf in einer Fußleiste: „Überspringen", „Zurück".
+///
+/// Er ersetzt `.bordered`, und zwar aus einem messbaren Grund. Ein `.bordered`-Knopf
+/// ohne `.controlSize` ist in iOS 26 rund **24 Punkt** hoch. Apple selbst nennt in den
+/// Human Interface Guidelines **44 × 44 Punkt** als Mindestmaß für eine Trefferfläche,
+/// die Vorgabe wird also fast um die Hälfte gerissen. Daneben stand ein prominenter
+/// Knopf mit 44 Punkt, und der Unterschied war deutlich zu sehen.
+///
+/// Beide Stile rechnen jetzt mit denselben Zahlen. Wer die Polsterung oben ändert,
+/// ändert sie hier mit, sonst laufen die Höhen wieder auseinander.
+struct BrandSecondaryButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .font(.body)
+            .foregroundStyle(.white)
+            .padding(.vertical, BrandProminentButtonStyle.verticalPadding)
+            .padding(.horizontal, BrandProminentButtonStyle.horizontalPadding)
+            // Durchscheinend statt deckend: Der Knopf ist der zweite Weg, nicht der
+            // erste, und soll nicht mit dem weißen daneben um Aufmerksamkeit ringen.
+            .background(Color.white.opacity(configuration.isPressed ? 0.28 : 0.18))
+            .clipShape(Capsule())
+    }
+}
+
+extension ButtonStyle where Self == BrandSecondaryButtonStyle {
+    static var brandSecondary: BrandSecondaryButtonStyle { BrandSecondaryButtonStyle() }
 }
 
 /// Die Fläche unter einem Hinweis: dunkel, durchscheinend, mit runden Ecken.

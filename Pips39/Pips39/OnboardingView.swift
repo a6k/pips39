@@ -159,7 +159,7 @@ struct OnboardingView: View {
     private var sharedFooter: some View {
         HStack {
             Button("Skip") { onDone(nil) }
-                .buttonStyle(.bordered)
+                .buttonStyle(.brandSecondary)
 
             Spacer()
 
@@ -189,7 +189,7 @@ struct OnboardingView: View {
                     withAnimation { self.path = nil }
                 }
             }
-            .buttonStyle(.bordered)
+            .buttonStyle(.brandSecondary)
 
             Spacer()
 
