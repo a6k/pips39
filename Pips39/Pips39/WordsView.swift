@@ -56,6 +56,12 @@ struct WordsView: View {
                     }
                 }
 
+                // Steht bei den Wörtern, auf die es sich bezieht, und nicht in der
+                // Fußleiste — dort bliebe nur der eine Schritt nach vorn.
+                Button("Show rolls and entropy", action: onVerify)
+                    .font(.footnote)
+                    .frame(maxWidth: .infinity)
+                    .padding(.top, 4)
             }
             .padding()
         }
@@ -94,17 +100,12 @@ struct WordsView: View {
     /// ist immer erreichbar, ohne ans Listenende zu scrollen. Gleiche Leiste wie im
     /// Onboarding, damit die App ein Muster hat und nicht zwei.
     private var footer: some View {
-        VStack(spacing: 12) {
-            Button("Show rolls and entropy", action: onVerify)
-                .font(.footnote)
-
-            Button(action: onCheck) {
-                Text("I wrote them down")
-                    .frame(maxWidth: .infinity)
-            }
-            .buttonStyle(.borderedProminent)
-            .controlSize(.large)
+        Button(action: onCheck) {
+            Text("I wrote them down")
+                .frame(maxWidth: .infinity)
         }
+        .buttonStyle(.borderedProminent)
+        .controlSize(.large)
         .padding(.horizontal)
         .padding(.vertical, 12)
         .background(.bar)
