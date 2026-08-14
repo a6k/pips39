@@ -452,8 +452,9 @@ greifen und darf nicht durchsichtig auf dem Verlauf stehen.
 ## Abschluss der Phase
 
 - [ ] **Spec ergänzen:** Ein Abschnitt 2.9 „Farben" mit den beiden Verlaufsfarben, der
-      Begründung für die Abdunklung und der für Bernstein statt Rot. Die gemessenen
-      Kontraste mit aufnehmen, sonst wird beim nächsten Umlackieren wieder Rot genommen.
+      Begründung für die Abdunklung und der dafür, dass Warnungen eine dunkle Fläche
+      tragen statt einer Farbe. Die gemessenen Kontraste mit aufnehmen, sonst wird beim
+      nächsten Umlackieren wieder Rot genommen.
 
 - [ ] **README:** Der Abschnitt zu den Design-Entscheidungen bekommt einen Satz dazu.
 
