@@ -38,22 +38,28 @@ public enum DiceMethod: String, CaseIterable, Equatable {
 
     /// Was den Nutzer an Würfelarbeit erwartet. Verfahren A darf keine feste Zahl
     /// nennen — dort liefert jeder Wurf ein oder zwei Bit.
-    public var rollCountHint: String {
+    public func rollCountHint(for length: SeedLength) -> String {
         switch self {
-        case .sha256:  return "Exactly 99 rolls."
-        case .coleman: return "Around 154 rolls, but the exact number varies."
+        case .sha256:
+            return "Exactly \(length.rollsForHashedMethod) rolls."
+        case .coleman:
+            return "Around \(length.approximateColemanRolls) rolls, but the exact number varies."
         }
     }
 
     /// Die Schritte, mit denen der Nutzer das Ergebnis unabhängig nachrechnet.
-    public var verificationSteps: [String] {
+    public func verificationSteps(for length: SeedLength) -> [String] {
         switch self {
         case .sha256:
-            return [
-                "Run: printf '%s' \"<your rolls>\" | shasum -a 256",
-                "Open iancoleman.io/bip39 and paste the hex into the Entropy field.",
-                "Set Entropy type to Hex, then compare the words."
+            var steps = [
+                "Run: printf '%s' \"<your rolls>\" | shasum -a 256"
             ]
+            if length == .twelve {
+                steps.append("Take only the first 32 hex characters — 12 words use 128 of the 256 bits.")
+            }
+            steps.append("Open iancoleman.io/bip39 and paste the hex into the Entropy field.")
+            steps.append("Set Entropy type to Hex, then compare the words.")
+            return steps
         case .coleman:
             return [
                 "Open iancoleman.io/bip39.",

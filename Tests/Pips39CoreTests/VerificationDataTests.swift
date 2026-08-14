@@ -34,15 +34,15 @@ final class VerificationDataTests: XCTestCase {
 
     func testEveryMethodHasVerificationSteps() {
         for method in DiceMethod.allCases {
-            XCTAssertFalse(method.verificationSteps.isEmpty, "Keine Schritte für \(method)")
-            for step in method.verificationSteps {
+            XCTAssertFalse(method.verificationSteps(for: .standard).isEmpty, "Keine Schritte für \(method)")
+            for step in method.verificationSteps(for: .standard) {
                 XCTAssertFalse(step.isEmpty)
             }
         }
     }
 
     func testHashedStepsMentionShasum() {
-        let joined = DiceMethod.sha256.verificationSteps.joined(separator: " ")
+        let joined = DiceMethod.sha256.verificationSteps(for: .standard).joined(separator: " ")
         XCTAssertTrue(joined.contains("shasum"))
     }
 
@@ -50,7 +50,7 @@ final class VerificationDataTests: XCTestCase {
     /// sonst produziert der Verifikationsweg Fehlalarme — und ein Fehlalarm bei
     /// korrektem Seed ist genau das, was Vertrauen zerstört.
     func testColemanStepsWarnAboutBothPitfalls() {
-        let joined = DiceMethod.coleman.verificationSteps.joined(separator: " ")
+        let joined = DiceMethod.coleman.verificationSteps(for: .standard).joined(separator: " ")
         XCTAssertTrue(joined.contains("Dice"), "Hinweis auf den Radio-Button Dice fehlt")
         XCTAssertTrue(joined.contains("Raw Entropy"), "Hinweis auf Use Raw Entropy fehlt")
     }

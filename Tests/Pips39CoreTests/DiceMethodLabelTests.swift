@@ -7,7 +7,8 @@ final class DiceMethodLabelTests: XCTestCase {
         for method in DiceMethod.allCases {
             XCTAssertFalse(method.title.isEmpty, "Titel fehlt für \(method)")
             XCTAssertFalse(method.summary.isEmpty, "Kurzbeschreibung fehlt für \(method)")
-            XCTAssertFalse(method.rollCountHint.isEmpty, "Wurfzahl-Hinweis fehlt für \(method)")
+            XCTAssertFalse(method.rollCountHint(for: .standard).isEmpty,
+                           "Wurfzahl-Hinweis fehlt für \(method)")
         }
     }
 
@@ -22,7 +23,7 @@ final class DiceMethodLabelTests: XCTestCase {
 
     /// Verfahren B nennt eine feste Wurfzahl, Verfahren A darf das nicht.
     func testOnlyHashedPromisesAFixedRollCount() {
-        XCTAssertTrue(DiceMethod.sha256.rollCountHint.contains("99"))
-        XCTAssertFalse(DiceMethod.coleman.rollCountHint.contains("99"))
+        XCTAssertTrue(DiceMethod.sha256.rollCountHint(for: .twentyFour).contains("99"))
+        XCTAssertFalse(DiceMethod.coleman.rollCountHint(for: .twentyFour).contains("99"))
     }
 }

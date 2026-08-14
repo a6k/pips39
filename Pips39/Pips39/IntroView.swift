@@ -81,7 +81,7 @@ struct IntroView: View {
                     VStack(alignment: .leading, spacing: 6) {
                         Text(method.title)
                             .font(.subheadline.weight(.semibold))
-                        ForEach(Array(method.verificationSteps.enumerated()), id: \.offset) { index, step in
+                        ForEach(Array(method.verificationSteps(for: .standard).enumerated()), id: \.offset) { index, step in
                             HStack(alignment: .top, spacing: 8) {
                                 Text("\(index + 1).")
                                     .font(.footnote.monospacedDigit())

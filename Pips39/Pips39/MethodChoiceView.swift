@@ -39,7 +39,7 @@ struct MethodChoiceView: View {
                             }
                         }
                         Text(method.summary).font(.footnote)
-                        Text(method.rollCountHint)
+                        Text(method.rollCountHint(for: .standard))
                             .font(.footnote.weight(.medium))
                             .foregroundStyle(.secondary)
                     }
