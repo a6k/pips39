@@ -1,29 +1,26 @@
 import SwiftUI
 import Pips39Core
 
-/// Der Ablauf: Onboarding → Verfahren wählen → würfeln → Wörter →
-/// Abschreibkontrolle → verwerfen. Der Nachrechnen-Bereich hängt an der Wortanzeige.
+/// Onboarding, danach drei Reiter, die nebeneinander stehen bleiben.
 ///
-/// Die Hilfe liegt über allem: Ein Sheet, das jede Ansicht über `\.showHelp` aus der
-/// Umgebung öffnen kann, ohne dass eine Closure durch sieben Ebenen gereicht wird.
+/// Vorher führte eine Verfahrenswahl in genau einen Weg, und der Rückweg verwarf alles.
+/// Die App ist aber zum Ausprobieren da: Alle drei Wege bleiben erreichbar, und der
+/// Wechsel kostet nichts, weil jeder Reiter seinen eigenen Zustand hält.
 struct ContentView: View {
 
-    private enum Step {
-        case rolling
-        case words
-        case verifying
-        case checking(TranscriptionCheck)
+    enum Tab: Hashable {
+        case sha256
+        case coleman
+        case lookupTable
     }
 
     @StateObject private var probe = EnvironmentProbe()
     @State private var hasStarted = false
-    @State private var showsLookupTable = false
     @State private var showsHelp = false
-    @State private var session: DiceSession?
-    @State private var step: Step = .rolling
+    @State private var tab: Tab = .sha256
 
     var body: some View {
-        flow
+        content
             .environment(\.showHelp) { showsHelp = true }
             .sheet(isPresented: $showsHelp) {
                 HelpView(onClose: { showsHelp = false }, probe: probe)
@@ -31,60 +28,28 @@ struct ContentView: View {
     }
 
     @ViewBuilder
-    private var flow: some View {
+    private var content: some View {
         if !hasStarted {
             OnboardingView(probe: probe) { destination in
-                showsLookupTable = destination == .lookupTable
+                // Die Wahl auf Seite 3 stellt den Reiter ein, sperrt aber keinen.
+                if destination == .lookupTable { tab = .lookupTable }
                 hasStarted = true
             }
-        } else if showsLookupTable {
-            // Steht vor der Sitzungsprüfung, weil dieser Modus keine Sitzung hat und
-            // keinen Seed erzeugt. Er ist ein Ausdruck, kein Ablauf.
-            LookupView { showsLookupTable = false }
-        } else if let session {
-            switch step {
-            case .rolling:
-                RollingView(session: session) {
-                    step = .words
-                } onBack: {
-                    startOver()
-                }
-            case .words:
-                WordsView(session: session) {
-                    startOver()
-                } onCheck: {
-                    step = .checking(TranscriptionCheck(expected: session.words))
-                } onVerify: {
-                    step = .verifying
-                }
-            case .verifying:
-                VerifyView(session: session) {
-                    step = .words
-                }
-            case let .checking(check):
-                TranscriptionView(check: check) {
-                    startOver()
-                } onShowWordsAgain: {
-                    step = .words
-                }
-            }
         } else {
-            VStack(spacing: 12) {
-                EnvironmentNotice(probe: probe)
-                MethodChoiceView { method, length in
-                    session = DiceSession(method: method, length: length)
-                    step = .rolling
-                } onChooseLookupTable: {
-                    showsLookupTable = true
-                }
+            TabView(selection: $tab) {
+                RollingFlow(method: .sha256, probe: probe)
+                    .tabItem { Label("SHA-256", systemImage: "number") }
+                    .tag(Tab.sha256)
+
+                RollingFlow(method: .coleman, probe: probe)
+                    .tabItem { Label("Coleman", systemImage: "list.number") }
+                    .tag(Tab.coleman)
+
+                LookupView()
+                    .tabItem { Label("Word table", systemImage: "tablecells") }
+                    .tag(Tab.lookupTable)
             }
         }
-    }
-
-    private func startOver() {
-        session?.discard()
-        session = nil
-        step = .rolling
     }
 }
 

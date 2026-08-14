@@ -105,7 +105,7 @@ struct RollingView: View {
             Button("Discard and go back", role: .destructive, action: onBack)
             Button("Keep rolling", role: .cancel) { }
         } message: {
-            Text("Going back means choosing the method and seed length again. Your rolls so far cannot be carried over.")
+            Text("Going back means choosing the seed length again. Your rolls so far cannot be carried over.")
         }
     }
 

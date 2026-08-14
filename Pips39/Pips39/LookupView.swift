@@ -18,8 +18,6 @@ import Pips39Core
 /// 32 Wörter in derselben Reihenfolge.
 struct LookupView: View {
 
-    let onExit: () -> Void
-
     private let totalWords = LookupTable.rolledWords(for: .twentyFour)
 
     @State private var dice: [Int] = []
@@ -57,12 +55,9 @@ struct LookupView: View {
 
     // MARK: Kopf
 
+    /// Nur die Hilfe. Ein Reiter hat kein Zurück, der Weg hinaus ist der Reiterwechsel.
     private var bar: some View {
-        TopBar {
-            Button(action: onExit) {
-                Label("Back", systemImage: "chevron.left")
-            }
-        }
+        TopBar()
     }
 
     private var header: some View {
@@ -213,7 +208,11 @@ struct LookupView: View {
                 .font(.footnote)
             Text("Enter your 23 words into your wallet. It will offer eight valid options for the last one. Pick between them with three coin flips, not by feel. Eight options are exactly three bits.")
                 .font(.footnote)
-            Button("Done", action: onExit)
+            Button("Start again") {
+                wordNumber = 1
+                dice = []
+                isFinished = false
+            }
                 .buttonStyle(.borderedProminent)
                 .controlSize(.large)
                 .frame(maxWidth: .infinity)
@@ -228,5 +227,5 @@ struct LookupView: View {
 }
 
 #Preview {
-    LookupView(onExit: { })
+    LookupView()
 }

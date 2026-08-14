@@ -1,8 +1,5 @@
 /* ===== Verfahrenswahl ===== */
-"Roll dice, get a BIP39 seed phrase. Nothing is stored." = "Würfeln, BIP39-Seed erhalten. Nichts wird gespeichert.";
 "Seed length" = "Seed-Länge";
-"Choose a method" = "Verfahren wählen";
-"DEFAULT" = "STANDARD";
 "The method travels with the result. Write it down together with your words." = "Das Verfahren gehört zum Ergebnis. Zusammen mit den Wörtern notieren.";
 
 /* ===== Onboarding ===== */
@@ -37,7 +34,7 @@
 "Show words" = "Wörter zeigen";
 "Discard and go back" = "Verwerfen und zurück";
 "Keep rolling" = "Weiterwürfeln";
-"Going back means choosing the method and seed length again. Your rolls so far cannot be carried over." = "Zurückgehen heißt, Verfahren und Seed-Länge neu zu wählen. Die bisherigen Würfe lassen sich nicht mitnehmen.";
+"Going back means choosing the seed length again. Your rolls so far cannot be carried over." = "Zurückgehen heißt, die Seed-Länge neu zu wählen. Die bisherigen Würfe lassen sich nicht mitnehmen.";
 
 /* ===== Wortanzeige ===== */
 "Write these down" = "Diese notieren";
@@ -76,10 +73,6 @@
 "Method: %@. Note this down too. The same rolls give different words under the other method." = "Verfahren: %@. Ebenfalls notieren. Dieselben Würfe ergeben unter dem anderen Verfahren andere Wörter.";
 
 /* ===== Nachschlagetabelle. 'Word %lld of %lld' steht schon oben. ===== */
-"Roll without a printout" = "Ohne Ausdruck würfeln";
-"Lookup table" = "Nachschlagetabelle";
-"For dice and a hardware wallet. The seed is made on paper. This app only shows the words to read off, and never learns it." = "Für Würfel und eine Hardware-Wallet. Der Seed entsteht auf Papier. Diese App zeigt nur die Wörter zum Ablesen und erfährt ihn nie.";
-"Always 24 words." = "Immer 24 Wörter.";
 "Method from the BitBox02 dice guide by Shift Crypto, CC BY-SA 4.0." = "Verfahren aus der BitBox02-Würfelanleitung von Shift Crypto, CC BY-SA 4.0.";
 "Throw five dice and the coin. Re-throw any die showing 5 or 6. Then enter the first three dice." = "Fünf Würfel und die Münze werfen. Jeden Würfel, der 5 oder 6 zeigt, neu werfen. Dann die ersten drei Würfel eingeben.";
 "A die showing 5 or 6 carries no value here. Throw it again until it shows 1 to 4." = "Eine 5 oder 6 trägt hier keinen Wert. Den Würfel neu werfen, bis er 1 bis 4 zeigt.";
@@ -125,3 +118,6 @@
 "While you roll, the app watches for sequences that cannot come from dice: all the same value, a repeated block, only two or three of the six values, or long blocks of one value. Each of those is rarer than one in a billion, so the notice never appears on a real run." = "Während des Würfelns achtet die App auf Folgen, die von keinem Würfel stammen können: alle Würfe gleich, ein wiederholter Block, nur zwei oder drei der sechs Zahlen, oder lange Blöcke derselben Zahl. Jedes davon ist seltener als eins zu einer Milliarde. Bei einem echten Durchlauf erscheint der Hinweis also nie.";
 "What it cannot see is the dice themselves. A loaded die, or one that leans a little because it is worn, produces sequences that look ordinary. Testing for that would mean a distribution test, and such a test flags correct runs often enough that people learn to ignore it. So there is none. Use dice you trust, and roll them properly." = "Was sie nicht sieht, sind die Würfel selbst. Ein gezinkter Würfel, oder einer, der durch Abnutzung leicht schief liegt, liefert Folgen, die gewöhnlich aussehen. Das zu prüfen hieße, die Verteilung zu testen, und ein solcher Test schlägt bei korrekten Durchläufen oft genug an, dass man sich angewöhnt, ihn zu übergehen. Deshalb gibt es ihn nicht. Wer würfelt, nimmt Würfel, denen er traut, und würfelt sie richtig.";
 "Take it offline" = "Gerät abschotten";
+"Start rolling" = "Loswürfeln";
+"Start again" = "Von vorn";
+"Word table" = "Worttabelle";
