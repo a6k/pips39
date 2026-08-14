@@ -18,8 +18,10 @@ struct TranscriptionView: View {
             if check.isComplete {
                 success
             } else {
-                candidates
                 Spacer(minLength: 0)
+                positionGrid
+                Spacer(minLength: 0)
+                candidates
                 WordKeyboardView(
                     allowed: entry.allowedNextLetters,
                     canDelete: !entry.isEmpty,
@@ -30,6 +32,39 @@ struct TranscriptionView: View {
         }
         .padding()
         .screenProtected()
+    }
+
+    /// Füllt den Raum zwischen Kandidaten und Tastatur mit dem Fortschritt.
+    ///
+    /// Bewusst nur **Positionen**, keine bereits bestätigten Wörter. Der Nutzer hat
+    /// sie zwar eben gesehen, aber je weniger Seed-Material und je kürzer es auf dem
+    /// Schirm steht, desto besser — und für den Zweck der Kontrolle trägt die Position
+    /// genauso viel.
+    ///
+    /// Die Tastatur bleibt unten, wo der Daumen sie erwartet.
+    private var positionGrid: some View {
+        LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 8), count: 6),
+                  spacing: 8) {
+            ForEach(0..<check.total, id: \.self) { index in
+                marker(for: index)
+            }
+        }
+    }
+
+    private func marker(for index: Int) -> some View {
+        let done = index < check.position
+        let current = index == check.position
+        return Text("\(index + 1)")
+            .font(.footnote.monospacedDigit())
+            .foregroundStyle(done || current ? Color.primary : Color.secondary)
+            .frame(maxWidth: .infinity, minHeight: 42)
+            .background(done ? Color.accentColor.opacity(0.2)
+                             : Color.secondary.opacity(0.08))
+            .clipShape(RoundedRectangle(cornerRadius: 6))
+            .overlay(
+                RoundedRectangle(cornerRadius: 6)
+                    .strokeBorder(Color.accentColor, lineWidth: current ? 2 : 0)
+            )
     }
 
     private var header: some View {
