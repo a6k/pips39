@@ -3,15 +3,19 @@ import XCTest
 
 final class EnvironmentProbeTests: XCTestCase {
 
+    /// Ohne erzwungene Sprache pruefte dieser Test die Systemsprache der
+    /// Testmaschine — auf einem deutschen Mac also die deutsche Fassung.
+    private let en = Locale(identifier: "en")
+
     func testConnectedDeviceProducesAStatement() {
-        let notice = EnvironmentProbe.notice(isNetworkAvailable: true)
+        let notice = EnvironmentProbe.notice(isNetworkAvailable: true, locale: en)
         XCTAssertNotNil(notice)
         XCTAssertTrue(notice!.contains("network"))
     }
 
     /// Ohne Verbindung sagt die App nichts. Sie gibt keine Entwarnung.
     func testDisconnectedDeviceProducesNoNotice() {
-        XCTAssertNil(EnvironmentProbe.notice(isNetworkAvailable: false))
+        XCTAssertNil(EnvironmentProbe.notice(isNetworkAvailable: false, locale: en))
     }
 
     /// Der Kern von Spec 2.5, als Test festgehalten: Die App darf Sicherheit
@@ -20,7 +24,7 @@ final class EnvironmentProbeTests: XCTestCase {
     func testNoNoticeEverClaimsSafety() {
         let forbidden = ["safe", "secure", "protected", "offline", "air-gap", "airgap"]
         for available in [true, false] {
-            let text = (EnvironmentProbe.notice(isNetworkAvailable: available) ?? "").lowercased()
+            let text = (EnvironmentProbe.notice(isNetworkAvailable: available, locale: en) ?? "").lowercased()
             for word in forbidden {
                 XCTAssertFalse(text.contains(word),
                                "Verbotenes Wort \(word) im Hinweis: \(text)")
@@ -29,7 +33,7 @@ final class EnvironmentProbeTests: XCTestCase {
     }
 
     func testNoticeIsAStatementNotAnInstruction() {
-        let text = EnvironmentProbe.notice(isNetworkAvailable: true) ?? ""
+        let text = EnvironmentProbe.notice(isNetworkAvailable: true, locale: en) ?? ""
         XCTAssertFalse(text.contains("!"), "Kein Ausrufezeichen — Feststellung, kein Alarm")
         XCTAssertFalse(text.lowercased().hasPrefix("warning"))
     }

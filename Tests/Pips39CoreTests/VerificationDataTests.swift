@@ -3,6 +3,10 @@ import XCTest
 
 final class VerificationDataTests: XCTestCase {
 
+    /// Regeln werden gegen die englische Fassung geprueft, unabhaengig von der
+    /// Systemsprache der Testmaschine.
+    private let en = Locale(identifier: "en")
+
     private func session(_ method: DiceMethod, face: UInt8, times: Int) -> DiceSession {
         let session = DiceSession(method: method)
         for _ in 0..<times { session.roll(face) }
@@ -42,7 +46,7 @@ final class VerificationDataTests: XCTestCase {
     }
 
     func testHashedStepsMentionShasum() {
-        let joined = DiceMethod.sha256.verificationSteps(for: .standard).joined(separator: " ")
+        let joined = DiceMethod.sha256.verificationSteps(for: .standard, locale: en).joined(separator: " ")
         XCTAssertTrue(joined.contains("shasum"))
     }
 
@@ -50,14 +54,14 @@ final class VerificationDataTests: XCTestCase {
     /// sonst produziert der Verifikationsweg Fehlalarme — und ein Fehlalarm bei
     /// korrektem Seed ist genau das, was Vertrauen zerstört.
     func testColemanStepsWarnAboutBothPitfalls() {
-        let joined = DiceMethod.coleman.verificationSteps(for: .standard).joined(separator: " ")
+        let joined = DiceMethod.coleman.verificationSteps(for: .standard, locale: en).joined(separator: " ")
         XCTAssertTrue(joined.contains("Dice"), "Hinweis auf den Radio-Button Dice fehlt")
         XCTAssertTrue(joined.contains("Raw Entropy"), "Hinweis auf Use Raw Entropy fehlt")
     }
 
     func testEveryMethodWarnsAboutThrowawaySequences() {
         for method in DiceMethod.allCases {
-            XCTAssertTrue(method.verificationWarning.lowercased().contains("throwaway"),
+            XCTAssertTrue(method.verificationWarning(locale: en).lowercased().contains("throwaway"),
                           "Wegwerf-Hinweis fehlt bei \(method)")
         }
     }

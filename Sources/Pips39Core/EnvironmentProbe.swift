@@ -35,8 +35,9 @@ public final class EnvironmentProbe: ObservableObject {
     /// > kann — Bluetooth ist seit iOS 13 nicht abfragbar, und wer den Flugmodus
     /// > kurz einschaltet, käme an jeder Sperre vorbei. Ein falsches
     /// > Sicherheitsversprechen ist schlechter als gar keins.
-    public static func notice(isNetworkAvailable: Bool) -> String? {
+    public static func notice(isNetworkAvailable: Bool,
+                              locale: Locale = .current) -> String? {
         guard isNetworkAvailable else { return nil }
-        return "This device is connected to a network."
+        return Localized.string("env.connected", locale)
     }
 }

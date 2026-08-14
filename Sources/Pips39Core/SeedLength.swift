@@ -40,5 +40,7 @@ public enum SeedLength: Int, CaseIterable, Identifiable, Equatable {
     }
 
     /// Beschriftung für den Schalter.
-    public var title: String { "\(wordCount) words" }
+    public func title(locale: Locale = .current) -> String {
+        Localized.string("seedLength.title", locale, wordCount)
+    }
 }

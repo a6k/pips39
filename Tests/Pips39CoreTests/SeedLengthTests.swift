@@ -3,6 +3,10 @@ import XCTest
 
 final class SeedLengthTests: XCTestCase {
 
+    /// Regeln werden gegen die englische Fassung geprueft, unabhaengig von der
+    /// Systemsprache der Testmaschine.
+    private let en = Locale(identifier: "en")
+
     func testWordCounts() {
         XCTAssertEqual(SeedLength.twelve.wordCount, 12)
         XCTAssertEqual(SeedLength.twentyFour.wordCount, 24)
@@ -43,8 +47,8 @@ final class SeedLengthTests: XCTestCase {
     }
 
     func testTitlesNameTheWordCount() {
-        XCTAssertTrue(SeedLength.twelve.title.contains("12"))
-        XCTAssertTrue(SeedLength.twentyFour.title.contains("24"))
+        XCTAssertTrue(SeedLength.twelve.title(locale: en).contains("12"))
+        XCTAssertTrue(SeedLength.twentyFour.title(locale: en).contains("24"))
     }
 
     func testAllCasesAreDistinct() {

@@ -26,7 +26,7 @@ struct MethodChoiceView: View {
                     .font(.headline)
                 Picker("Seed length", selection: $length) {
                     ForEach(SeedLength.allCases) { option in
-                        Text(option.title).tag(option)
+                        Text(option.title()).tag(option)
                     }
                 }
                 .pickerStyle(.segmented)
@@ -51,7 +51,7 @@ struct MethodChoiceView: View {
                                     .clipShape(Capsule())
                             }
                         }
-                        Text(method.summary).font(.footnote)
+                        Text(method.summary()).font(.footnote)
                         Text(method.rollCountHint(for: length))
                             .font(.footnote.weight(.medium))
                             .foregroundStyle(.secondary)

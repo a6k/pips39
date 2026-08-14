@@ -1,0 +1,29 @@
+/* Umgebungshinweis. Feststellung, nie Entwarnung — siehe LocalizationRuleTests. */
+"env.connected" = "Dieses Gerät ist mit einem Netzwerk verbunden.";
+
+/* Verfahren: Kurzbeschreibung */
+"method.sha256.summary" = "Die Wurffolge wird mit SHA-256 gehasht. Nachprüfbar mit shasum und jedem BIP39-Werkzeug.";
+"method.coleman.summary" = "Bit für Bit identisch mit iancoleman.io/bip39. Nachprüfbar, indem dort dieselben Würfe eingegeben werden.";
+
+/* Verfahren: Wurfzahl. %d ist die Zahl. */
+"method.sha256.rollCount" = "Genau %d Würfe.";
+"method.coleman.rollCount" = "Etwa %d Würfe, die genaue Zahl schwankt.";
+
+/* Wortzahl. %d ist die Zahl. */
+"seedLength.title" = "%d Wörter";
+
+/* Nachrechnen: Warnung */
+"verify.warning" = "Zum Ausprobieren eine Wegwerf-Folge verwenden. Die echten Würfe niemals in einen Browser tippen.";
+
+/* Nachrechnen: SHA-256. Der shasum-Befehl bleibt unübersetzt. */
+"verify.sha256.step.hash" = "Ausführen: printf '%%s' \"<Wurffolge>\" | shasum -a 256";
+"verify.sha256.step.truncate" = "Nur die ersten 32 Hex-Zeichen nehmen — 12 Wörter nutzen 128 der 256 Bit.";
+"verify.sha256.step.paste" = "iancoleman.io/bip39 öffnen und den Hex-Wert in das Feld Entropy einfügen.";
+"verify.sha256.step.compare" = "Entropy type auf Hex stellen, dann die Wörter vergleichen.";
+
+/* Nachrechnen: Coleman. „Dice" und „Use Raw Entropy" sind Beschriftungen auf
+   seiner englischen Seite und bleiben in jeder Sprache englisch. */
+"verify.coleman.step.open" = "iancoleman.io/bip39 öffnen.";
+"verify.coleman.step.dice" = "Zuerst den Entropie-Typ Dice wählen — sonst wird eine reine 1er-Folge als Binär gelesen.";
+"verify.coleman.step.raw" = "Mnemonic Length auf Use Raw Entropy stehen lassen — eine feste Wortzahl hasht stattdessen und schneidet am anderen Ende ab.";
+"verify.coleman.step.enter" = "Genau die hier gezeigten Würfe eingeben, nicht mehr, und die Wörter vergleichen.";

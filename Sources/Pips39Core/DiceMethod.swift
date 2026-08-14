@@ -27,51 +27,52 @@ public enum DiceMethod: String, CaseIterable, Equatable {
     }
 
     /// Ein Satz dazu, was das Verfahren tut.
-    public var summary: String {
+    public func summary(locale: Locale = .current) -> String {
         switch self {
-        case .sha256:
-            return "Your dice sequence is hashed with SHA-256. Verify with shasum and any BIP39 tool."
-        case .coleman:
-            return "Bit-for-bit identical to iancoleman.io/bip39. Verify by entering the same rolls there."
+        case .sha256:  return Localized.string("method.sha256.summary", locale)
+        case .coleman: return Localized.string("method.coleman.summary", locale)
         }
     }
 
     /// Was den Nutzer an Würfelarbeit erwartet. Verfahren A darf keine feste Zahl
     /// nennen — dort liefert jeder Wurf ein oder zwei Bit.
-    public func rollCountHint(for length: SeedLength) -> String {
+    public func rollCountHint(for length: SeedLength, locale: Locale = .current) -> String {
         switch self {
         case .sha256:
-            return "Exactly \(length.rollsForHashedMethod) rolls."
+            return Localized.string("method.sha256.rollCount", locale, length.rollsForHashedMethod)
         case .coleman:
-            return "Around \(length.approximateColemanRolls) rolls, but the exact number varies."
+            return Localized.string("method.coleman.rollCount", locale, length.approximateColemanRolls)
         }
     }
 
     /// Die Schritte, mit denen der Nutzer das Ergebnis unabhängig nachrechnet.
-    public func verificationSteps(for length: SeedLength) -> [String] {
+    ///
+    /// Der `shasum`-Befehl und Colemans Bedienelemente („Dice", „Use Raw Entropy")
+    /// bleiben in **jeder** Sprache englisch — übersetzt zeigten sie auf Knöpfe, die
+    /// es auf seiner Seite nicht gibt. `LocalizationRuleTests` nagelt das fest.
+    public func verificationSteps(for length: SeedLength,
+                                  locale: Locale = .current) -> [String] {
         switch self {
         case .sha256:
-            var steps = [
-                "Run: printf '%s' \"<your rolls>\" | shasum -a 256"
-            ]
+            var steps = [Localized.string("verify.sha256.step.hash", locale)]
             if length == .twelve {
-                steps.append("Take only the first 32 hex characters — 12 words use 128 of the 256 bits.")
+                steps.append(Localized.string("verify.sha256.step.truncate", locale))
             }
-            steps.append("Open iancoleman.io/bip39 and paste the hex into the Entropy field.")
-            steps.append("Set Entropy type to Hex, then compare the words.")
+            steps.append(Localized.string("verify.sha256.step.paste", locale))
+            steps.append(Localized.string("verify.sha256.step.compare", locale))
             return steps
         case .coleman:
             return [
-                "Open iancoleman.io/bip39.",
-                "Select the Dice entropy type first — otherwise a sequence of only 1s is read as binary.",
-                "Leave Mnemonic Length on Use Raw Entropy — a fixed word count hashes instead and truncates the other way.",
-                "Enter exactly the rolls shown here, no more, and compare the words."
+                Localized.string("verify.coleman.step.open", locale),
+                Localized.string("verify.coleman.step.dice", locale),
+                Localized.string("verify.coleman.step.raw", locale),
+                Localized.string("verify.coleman.step.enter", locale)
             ]
         }
     }
 
     /// Der Satz, ohne den der Nachrechnen-Bereich mehr schadet als nützt.
-    public var verificationWarning: String {
-        "Use a throwaway sequence to try this out. Never type your real rolls into a browser."
+    public func verificationWarning(locale: Locale = .current) -> String {
+        Localized.string("verify.warning", locale)
     }
 }
