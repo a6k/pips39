@@ -32,5 +32,7 @@
 "pattern.singleFace" = "Every roll in this sequence is the same value.";
 "pattern.repeating" = "This sequence repeats a short pattern.";
 "pattern.twoFaces" = "This sequence uses only two of the six values.";
+"pattern.threeFaces" = "This sequence uses only three of the six values.";
+"pattern.fewRuns" = "This sequence is made of long blocks of the same value.";
 "pattern.advice.rolling" = "If you did not actually roll dice, go back and start over.";
 "pattern.advice.result" = "If you did not actually roll dice, discard and start over.";

@@ -40,6 +40,37 @@ final class RollPatternTests: XCTestCase {
                        .singleFace)
     }
 
+    func testOnlyThreeDistinctFaces() {
+        let sequence = "21241141241411122111421411444144211141221414244114"
+        XCTAssertEqual(rolls(sequence).count, 50)
+        XCTAssertEqual(RollPattern.finding(for: rolls(sequence)), .threeFacesOnly)
+    }
+
+    /// Drei Augenzahlen brauchen mehr Würfe als zwei: Bei 20 Würfen läge die
+    /// Wahrscheinlichkeit noch bei etwa 1 zu 50 000, erst ab 35 fällt sie unter die
+    /// Schwelle. Darunter schweigt die Prüfung lieber.
+    func testThreeFacesNeedMoreRollsThanTwo() {
+        let sequence = "21241141241411122111421411444144211141221414244114"
+        XCTAssertNil(RollPattern.finding(for: Array(rolls(sequence).prefix(34))))
+        XCTAssertEqual(RollPattern.finding(for: Array(rolls(sequence).prefix(35))),
+                       .threeFacesOnly)
+    }
+
+    /// Ein zwölfstelliger Block, viermal getippt — von der alten Grenze bei Periode 6
+    /// nicht gesehen.
+    func testLongPeriodIsFound() {
+        let sequence = String(String(repeating: "123456654321", count: 5).prefix(50))
+        XCTAssertEqual(RollPattern.finding(for: rolls(sequence)), .repeatingBlock(12))
+    }
+
+    /// Alle sechs Augenzahlen, keine Periode — und trotzdem unmöglich. Sechs Läufe
+    /// bei dreißig Würfen, erwartet wären rund 25.
+    func testBlockStructureIsFound() {
+        let sequence = (1...6).map { String(repeating: String($0), count: 5) }.joined()
+        XCTAssertEqual(rolls(sequence).count, 30)
+        XCTAssertEqual(RollPattern.finding(for: rolls(sequence)), .fewRuns(6))
+    }
+
     // MARK: Der entscheidende Test — keine Fehlalarme
 
     /// Zehntausend echte Zufallsfolgen dürfen **keine** Meldung erzeugen. Das ist die
@@ -48,7 +79,7 @@ final class RollPatternTests: XCTestCase {
     /// Fehlschlag reproduzierbar ist.
     func testRandomSequencesAreNeverFlagged() {
         var rng = SeededGenerator(seed: 20260814)
-        for length in [50, 99, 128, 154] {
+        for length in [20, 35, 50, 77, 99, 154] {
             for _ in 0..<2500 {
                 let sequence = (0..<length).map { _ in UInt8.random(in: 1...6, using: &rng) }
                 XCTAssertNil(RollPattern.finding(for: sequence),
@@ -72,7 +103,8 @@ final class RollPatternTests: XCTestCase {
 
     // MARK: Texte
 
-    private let findings: [RollPattern.Finding] = [.singleFace, .repeatingBlock(3), .twoFacesOnly]
+    private let findings: [RollPattern.Finding] = [.singleFace, .repeatingBlock(3),
+                                                   .twoFacesOnly, .threeFacesOnly, .fewRuns(6)]
 
     func testEveryFindingHasANotice() {
         for finding in findings {

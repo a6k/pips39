@@ -32,5 +32,7 @@
 "pattern.singleFace" = "Alle Würfe dieser Folge zeigen dieselbe Zahl.";
 "pattern.repeating" = "Diese Folge wiederholt ein kurzes Muster.";
 "pattern.twoFaces" = "In dieser Folge kommen nur zwei der sechs Zahlen vor.";
+"pattern.threeFaces" = "In dieser Folge kommen nur drei der sechs Zahlen vor.";
+"pattern.fewRuns" = "Diese Folge besteht aus langen Blöcken derselben Zahl.";
 "pattern.advice.rolling" = "Falls nicht wirklich gewürfelt wurde: über Zurück neu beginnen.";
 "pattern.advice.result" = "Falls nicht wirklich gewürfelt wurde: verwerfen und neu beginnen.";

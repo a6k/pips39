@@ -46,13 +46,40 @@ final class DiceSessionPatternTests: XCTestCase {
     }
 
     /// Der Hinweis ist eine Feststellung über den aktuellen Stand, kein Urteil, das
-    /// stehen bleibt: Sobald die Folge nicht mehr auffällig ist, verschwindet er.
-    func testLivePatternDisappearsWhenTheSequenceRecovers() {
+    /// stehen bleibt. Er wandert mit der Folge — und verschwindet, sobald sie
+    /// insgesamt nicht mehr auffällt.
+    ///
+    /// Dass er nach dem 22. Wurf noch steht, ist richtig so: zwanzig gleiche Würfe und
+    /// danach zwei einzelne sind drei Blöcke, und drei Blöcke auf zweiundzwanzig
+    /// Würfen bleiben unmöglich. Erst der unauffällige Rest hebt es auf.
+    func testLivePatternFollowsTheSequenceAndClearsAgain() {
         let session = session(face: 1, times: 20)
+        XCTAssertEqual(session.livePattern, .singleFace)
+
         session.roll(2)
         XCTAssertEqual(session.livePattern, .twoFacesOnly)
+
         session.roll(3)
+        XCTAssertEqual(session.livePattern, .fewRuns(3))
+
+        for face in "4544552254652143215661544665" {
+            session.roll(UInt8(face.wholeNumberValue!))
+        }
+        XCTAssertEqual(session.rollCount, 50)
         XCTAssertNil(session.livePattern)
+    }
+
+    /// Die Prüfung schaut auf die **ganze** Folge, nicht auf Ausschnitte. Ein
+    /// auffälliger Anfang, der später untergeht, wird nicht mehr gemeldet — jedes
+    /// Fenster einzeln zu prüfen würde die Zahl der Gelegenheiten für einen Fehlalarm
+    /// vervielfachen. Der Hinweis kommt deshalb früh oder gar nicht.
+    func testAStrikingStartIsNotRememberedOnceTheWholeLooksNormal() {
+        let session = session(face: 1, times: 20)
+        for face in "234544552254652143215661544665" {
+            session.roll(UInt8(face.wholeNumberValue!))
+        }
+        XCTAssertNil(session.livePattern)
+        XCTAssertNil(session.rollPattern)
     }
 
     /// Die Wortanzeige zeigt weiterhin erst zum Ergebnis.
