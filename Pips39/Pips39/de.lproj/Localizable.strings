@@ -75,7 +75,7 @@
 
 /* ===== Nachschlagetabelle. 'Word %lld of %lld' steht schon oben. ===== */
 "Method from the BitBox02 dice guide by Shift Crypto, CC BY-SA 4.0." = "Verfahren aus der BitBox02-Würfelanleitung von Shift Crypto, CC BY-SA 4.0.";
-"Throw five dice and the coin. Re-throw any die showing 5 or 6. Then enter the first three dice." = "Fünf Würfel und die Münze werfen. Jeden Würfel, der 5 oder 6 zeigt, neu werfen. Dann die ersten drei Würfel eingeben.";
+"Throw five dice and the coin. Then enter the first three dice." = "Fünf Würfel und die Münze werfen. Dann die ersten drei Würfel eingeben.";
 "A die showing 5 or 6 carries no value here. Throw it again until it shows 1 to 4." = "Eine 5 oder 6 trägt hier keinen Wert. Den Würfel neu werfen, bis er 1 bis 4 zeigt.";
 "H" = "K";
 "T" = "Z";
@@ -104,10 +104,10 @@
 /* ===== Onboarding, Tabellen-Weg ===== */
 "What you need" = "Was du brauchst";
 "Five dice. One works too. Throw it five times and keep the order." = "Fünf Würfel. Einer geht auch. Fünfmal werfen und die Reihenfolge merken.";
-"A coin. Or a sixth die: 1 to 3 is heads, 4 to 6 is tails." = "Eine Münze. Oder ein sechster Würfel: 1 bis 3 ist Kopf, 4 bis 6 ist Zahl.";
+"A coin. Or a sixth die, where all six values count: 1 to 3 is heads, 4 to 6 is tails." = "Eine Münze. Oder ein sechster Würfel, bei dem alle sechs Werte zählen: 1 bis 3 ist Kopf, 4 bis 6 ist Zahl.";
 "Paper and a pen for the 23 words." = "Papier und Stift für die 23 Wörter.";
 "A hardware wallet. It supplies the 24th word, which this app cannot work out." = "Eine Hardware-Wallet. Sie liefert das 24. Wort, das diese App nicht berechnen kann.";
-"A die showing 5 or 6 counts for nothing here. Throw it again until it shows 1 to 4." = "Ein Würfel mit 5 oder 6 zählt hier nicht. Neu werfen, bis er 1 bis 4 zeigt.";
+"Of the five dice, a 5 or 6 counts for nothing. Throw that die again until it shows 1 to 4." = "Von den fünf Würfeln trägt eine 5 oder 6 keinen Wert. Diesen Würfel neu werfen, bis er 1 bis 4 zeigt.";
 "Take this device offline too. It sees less on this path, but less is not nothing." = "Dieses Gerät ebenfalls abschotten. Es sieht auf diesem Weg weniger, aber weniger ist nicht nichts.";
 "What the app sees" = "Was die App sieht";
 "The app gets to see three of the five dice. Which of the 32 words you took from them, it never learns. That leaves 118 of the 256 bits hidden from it." = "Die App bekommt drei der fünf Würfel zu sehen. Welches der 32 Wörter du daraus genommen hast, erfährt sie nie. Damit bleiben ihr 118 der 256 Bit verborgen.";

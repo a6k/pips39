@@ -67,13 +67,18 @@ struct BrandProminentButtonStyle: ButtonStyle {
             .font(.body.weight(.semibold))
             .foregroundStyle(Brand.gradientBottom)
             .padding(.vertical, 14)
-            .padding(.horizontal, 20)
+            // Etwas mehr als bei einem eckigen Knopf: An den Enden einer Kapsel
+            // nimmt die Rundung Platz weg, den die Beschriftung sonst berührt.
+            .padding(.horizontal, 24)
             // **Keine** Breitenvorgabe im Stil: In den Fußleisten steht der Knopf
             // neben „Überspringen" und dürfte dort nicht die ganze Zeile nehmen.
             // Wer volle Breite will, setzt sie auf die Beschriftung, so wie es die
             // Wortanzeige und die Wurfansicht ohnehin schon tun.
             .background(Color.white.opacity(configuration.isPressed ? 0.75 : 1))
-            .clipShape(RoundedRectangle(cornerRadius: 14))
+            // Kapsel, nicht Rechteck. Daneben steht in jeder Fußleiste ein
+            // `.bordered`-Knopf, und den zeichnet iOS 26 als Kapsel. Zwei Formen
+            // nebeneinander sahen aus wie zwei verschiedene Arten von Knopf.
+            .clipShape(Capsule())
     }
 }
 
