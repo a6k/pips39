@@ -113,7 +113,7 @@ Die Verzweigung ist eine Abkürzung, keine Sperre.
 - Create: `Sources/Pips39Core/OnboardingPath.swift`
 - Create: `Tests/Pips39CoreTests/OnboardingPathTests.swift`
 
-- [ ] **Step 1: Den fehlschlagenden Test schreiben**
+- [x] **Step 1: Den fehlschlagenden Test schreiben**
 
 `Tests/Pips39CoreTests/OnboardingPathTests.swift`:
 
@@ -171,14 +171,14 @@ final class OnboardingPathTests: XCTestCase {
 }
 ```
 
-- [ ] **Step 2: Test laufen lassen, Fehlschlag bestätigen**
+- [x] **Step 2: Test laufen lassen, Fehlschlag bestätigen**
 
 ```bash
 cd "$REPO" && swift test 2>&1 | grep -E "error:" | head -3
 ```
 Expected: `cannot find 'OnboardingPath' in scope`.
 
-- [ ] **Step 3: `OnboardingPath` schreiben**
+- [x] **Step 3: `OnboardingPath` schreiben**
 
 `Sources/Pips39Core/OnboardingPath.swift`:
 
@@ -225,7 +225,7 @@ public enum OnboardingPath: String, CaseIterable, Equatable, Identifiable {
 }
 ```
 
-- [ ] **Step 4: Die Texte in beide Tabellen eintragen**
+- [x] **Step 4: Die Texte in beide Tabellen eintragen**
 
 `Sources/Pips39Core/Localization/en.lproj/Localizable.strings` anhängen:
 
@@ -264,14 +264,14 @@ public enum OnboardingPath: String, CaseIterable, Equatable, Identifiable {
 >    `String(format:)` weiter; auf 64-Bit ist `%d` falsch. Die beiden `exposure`-Zeilen
 >    sind die einzigen mit Platzhalter.
 
-- [ ] **Step 5: Test laufen lassen**
+- [x] **Step 5: Test laufen lassen**
 
 ```bash
 cd "$REPO" && swift test 2>&1 | grep -E "error:|failed:|Executed [0-9]+ tests, with" | tail -3
 ```
 Expected: PASS.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 cd "$REPO"
@@ -288,7 +288,7 @@ git commit -m "feat: OnboardingPath — die grobe Wahl mit dem Satz, der sie tra
 - Modify: `Sources/Pips39Core/ExternalLinks.swift`
 - Modify: `Tests/Pips39CoreTests/ExternalLinksTests.swift`
 
-- [ ] **Step 1: Den Test erweitern**
+- [x] **Step 1: Den Test erweitern**
 
 In `ExternalLinksTests.swift` die Liste in Zeile 7 ergänzen und einen Test anhängen:
 
@@ -306,14 +306,14 @@ In `ExternalLinksTests.swift` die Liste in Zeile 7 ergänzen und einen Test anh�
     }
 ```
 
-- [ ] **Step 2: Test laufen lassen, Fehlschlag bestätigen**
+- [x] **Step 2: Test laufen lassen, Fehlschlag bestätigen**
 
 ```bash
 cd "$REPO" && swift test --filter ExternalLinksTests 2>&1 | grep -E "error:" | head -2
 ```
 Expected: `type 'ExternalLinks' has no member 'bitboxGuide'`.
 
-- [ ] **Step 3: Die Adresse eintragen**
+- [x] **Step 3: Die Adresse eintragen**
 
 In `Sources/Pips39Core/ExternalLinks.swift`, nach `sourceCode`:
 
@@ -327,14 +327,14 @@ In `Sources/Pips39Core/ExternalLinks.swift`, nach `sourceCode`:
     public static let bitboxGuide = "https://bitbox.swiss"
 ```
 
-- [ ] **Step 4: Test laufen lassen**
+- [x] **Step 4: Test laufen lassen**
 
 ```bash
 cd "$REPO" && swift test --filter ExternalLinksTests 2>&1 | grep -E "Executed [0-9]+ tests, with" | tail -1
 ```
 Expected: PASS.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 cd "$REPO"
@@ -349,7 +349,7 @@ git commit -m "feat: Adresse der BitBox-Wuerfelanleitung"
 **Files:**
 - Create: `Pips39/Pips39/OnboardingPage.swift`
 
-- [ ] **Step 1: Die Datei anlegen**
+- [x] **Step 1: Die Datei anlegen**
 
 Heute ist das eine private Funktion in `OnboardingView`. Sieben Seiten in drei Dateien
 brauchen sie gemeinsam.
@@ -382,7 +382,7 @@ struct OnboardingPage<Content: View>: View {
 }
 ```
 
-- [ ] **Step 2: Bauen**
+- [x] **Step 2: Bauen**
 
 Der Build muss durchlaufen — die Datei wird noch nicht benutzt.
 
@@ -404,7 +404,7 @@ Inhaltlich sind das die heutigen Seiten 1 und 2 plus die Reste der heutigen Seit
 **Die Reihenfolge bleibt: prüfen, dann abschotten.** Das war die Korrektur aus Phase 7 —
 die Prüfung braucht Shell und Browser und ginge nach dem Abschotten nicht mehr.
 
-- [ ] **Step 1: Die Datei anlegen**
+- [x] **Step 1: Die Datei anlegen**
 
 ```swift
 import SwiftUI
@@ -507,7 +507,7 @@ struct RollingOnboardingPages: View {
 }
 ```
 
-- [ ] **Step 2: Bauen**
+- [x] **Step 2: Bauen**
 
 ```bash
 cd "$REPO/Pips39"
@@ -524,7 +524,7 @@ doppelte Texte in beiden Dateien sind in Ordnung, Task 6 räumt sie weg).
 **Files:**
 - Create: `Pips39/Pips39/LookupOnboardingPages.swift`
 
-- [ ] **Step 1: Die Datei anlegen**
+- [x] **Step 1: Die Datei anlegen**
 
 ```swift
 import SwiftUI
@@ -609,7 +609,7 @@ struct LookupOnboardingPages: View {
 }
 ```
 
-- [ ] **Step 2: Bauen**
+- [x] **Step 2: Bauen**
 
 ```bash
 cd "$REPO/Pips39"
@@ -625,7 +625,7 @@ Expected: `** BUILD SUCCEEDED **`
 **Files:**
 - Modify: `Pips39/Pips39/OnboardingView.swift` (vollständig ersetzen)
 
-- [ ] **Step 1: Die Datei ersetzen**
+- [x] **Step 1: Die Datei ersetzen**
 
 ```swift
 import SwiftUI
@@ -848,7 +848,7 @@ struct OnboardingView: View {
 > Onboarding zu früh beenden. Wer eine Seite ergänzt, ersetzt die beiden `1` durch die
 > Seitenzahl des jeweiligen Wegs — dann gehört sie als Eigenschaft an `OnboardingPath`.
 
-- [ ] **Step 2: Bauen**
+- [x] **Step 2: Bauen**
 
 Der Build **muss** jetzt an `ContentView` scheitern — die Signatur von `onDone` hat sich
 geändert. Das ist der erwartete Zwischenstand, Task 7 schließt ihn.
@@ -860,7 +860,7 @@ geändert. Das ist der erwartete Zwischenstand, Task 7 schließt ihn.
 **Files:**
 - Modify: `Pips39/Pips39/ContentView.swift`
 
-- [ ] **Step 1: Zustand und Verzweigung**
+- [x] **Step 1: Zustand und Verzweigung**
 
 Zwei geänderte Stellen. Erstens der Zustand:
 
@@ -901,7 +901,7 @@ Und im Hilfe-Knopf der Würfelansicht: Wer mitten im Würfeln Hilfe sucht, will 
 > Wer daraus später eine dauerhaft eingehängte Ansicht macht, braucht `.id(startPath)`
 > oder ein `onChange`.
 
-- [ ] **Step 2: Bauen und installieren**
+- [x] **Step 2: Bauen und installieren**
 
 ```bash
 cd "$REPO/Pips39"
@@ -917,7 +917,7 @@ Expected: `** BUILD SUCCEEDED **`
 > der Simulator zeigte danach noch stundenlang das alte Verhalten. Nach **jedem** Build,
 > dessen Ergebnis man ansehen will, gehört das `simctl install` dazu.
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 cd "$REPO"
@@ -934,7 +934,7 @@ git commit -m "feat: Onboarding erklaert erst, verzweigt dann"
 **Files:**
 - Modify: `Pips39/Pips39/de.lproj/Localizable.strings`
 
-- [ ] **Step 1: Prüfen, was schon da ist**
+- [x] **Step 1: Prüfen, was schon da ist**
 
 Die Checkliste, die Prüfschritte und die beiden Absätze zu den Würfeln sind **bereits**
 übersetzt und wurden nur verschoben. Neu sind nur die Seiten 1 und 2 und der
@@ -950,7 +950,7 @@ Die drei Schlüssel `"Ready"`, `"First: check the app"` und `"Then: take it offl
 bleiben ebenfalls; nur `"Ready"` wird nicht mehr benutzt und kann stehenbleiben, ohne zu
 stören.
 
-- [ ] **Step 2: Die neuen Zeilen anhängen**
+- [x] **Step 2: Die neuen Zeilen anhängen**
 
 ```
 /* ===== Onboarding, gemeinsame Seiten ===== */
@@ -995,7 +995,7 @@ stören.
 > awk -F'"' '/^"/{print $2}' de.lproj/Localizable.strings | sort | uniq -d
 > ```
 
-- [ ] **Step 3: Bauen, installieren, committen**
+- [x] **Step 3: Bauen, installieren, committen**
 
 ```bash
 cd "$REPO/Pips39"
@@ -1015,35 +1015,35 @@ git push
 
 Vor jedem Durchgang: bauen **und** installieren, dann starten.
 
-- [ ] **Step 1: Die drei gemeinsamen Seiten**
+- [x] **Step 1: Die drei gemeinsamen Seiten**
 
 Seite 1 muss mit der Einordnung beginnen, nicht mit einem Shell-Befehl. Der
 BitBox-Link muss sichtbar sein. Der Überspringen-Knopf muss ab Seite 1 unten links
 stehen.
 
-- [ ] **Step 2: Die Verzweigung**
+- [x] **Step 2: Die Verzweigung**
 
 Auf Seite 3 stehen zwei Karten. Unter jeder muss die Aussage stehen, was die App sieht —
 bei der zweiten mit der Zahl **118**.
 
-- [ ] **Step 3: Weg A**
+- [x] **Step 3: Weg A**
 
 „Würfeln, die App rechnet" antippen. Es müssen genau zwei Seiten folgen: erst „Zuerst:
 die App prüfen" (mit `shasum`), dann „Danach: abschotten". Unten links steht jetzt
 „Zurück", nicht „Überspringen". Ein Tipp auf „Zurück" von Seite 1 dieses Wegs muss zur
 Verzweigung zurückführen. „Los" auf der zweiten Seite landet auf der Verfahrenswahl.
 
-- [ ] **Step 4: Weg B**
+- [x] **Step 4: Weg B**
 
 Neu starten, diesmal „Würfeln, das Wort ablesen" wählen. Zwei Seiten, dann muss „Los"
 **direkt** in die Nachschlagetabelle führen — nicht auf die Verfahrenswahl.
 
-- [ ] **Step 5: Überspringen**
+- [x] **Step 5: Überspringen**
 
 Neu starten, auf Seite 1 „Überspringen" tippen. Landung auf der Verfahrenswahl, und dort
 müssen **beide** Blöcke stehen: die zwei Verfahrenskarten und die Nachschlagetabelle.
 
-- [ ] **Step 6: Der Hilfe-Knopf**
+- [x] **Step 6: Der Hilfe-Knopf**
 
 Einen Würfeldurchlauf beginnen (12 Wörter wählen — 50 statt 99 Würfe), oben rechts auf
 „?" tippen. Es müssen **direkt** die beiden Seiten des Würfel-Wegs erscheinen, nicht die
@@ -1054,12 +1054,12 @@ ohne die bisherigen Würfe zu verlieren.
 
 ## Abschluss der Phase
 
-- [ ] **Spec nachziehen:** In `~/Documents/Doku/02 Projekte/Ideen und Tests/Pips39/würfel-tool-spec.md`
+- [x] **Spec nachziehen:** In `~/Documents/Doku/02 Projekte/Ideen und Tests/Pips39/würfel-tool-spec.md`
       den Abschnitt 3 „Ablauf" um die neue Onboarding-Abfolge ergänzen und in
       Abschnitt 10 „Verworfen" den Punkt aufnehmen, warum kein „nutze das nie für einen
       echten Seed" in der App steht.
 
-- [ ] **README nachziehen:** Der Abschnitt „Read this before you trust it" beschreibt das
+- [x] **README nachziehen:** Der Abschnitt „Read this before you trust it" beschreibt das
       Onboarding als drei Seiten. Auf die neue Abfolge anpassen und den Satz ergänzen,
       dass der stärkere Weg ohne die App auskommt.
 

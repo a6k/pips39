@@ -13,6 +13,40 @@ nothing stays behind.
 There is also a third mode, **Lookup table**, which does something different: it
 replaces a printed sheet rather than computing a seed. See below.
 
+## The stronger way does not need this app
+
+Dice, a printed table, paper and a pen, no electronics in the room. That produces a
+seed no device has ever seen. There is a good guide for it at
+[bitbox.swiss](https://bitbox.swiss), and the app says so on its first screen rather
+than burying it.
+
+Pips39 is the step below: for an old iPhone you keep permanently offline. Weaker than
+paper, stronger than letting a wallet roll the seed for you and hoping it did it
+properly. If you are securing serious money, take the paper route.
+
+One catch that applies either way: paper and a pen get you 23 of the 24 words. The last
+one carries a checksum over the others and nobody works that out by hand — a wallet has
+to supply it.
+
+## How the onboarding is laid out
+
+Three shared pages, then a branch, then two pages for whichever way you chose:
+
+| | Page | Content |
+|---|---|---|
+| **shared** | 1 · Before you start | Where this sits, the BitBox link, the checksum caveat |
+| | 2 · What a seed is | A number, not words; why randomness is everything; loaded dice |
+| | 3 · Two ways from here | The two cards — **this is where it branches** |
+| **A** | A1 · Check the app | `shasum`, iancoleman, source — while still online |
+| | A2 · Take it offline | The device checklist and what the app cannot tell you |
+| **B** | B1 · What you need | Five dice, a coin, a hardware wallet, offline too |
+| | B2 · What the app sees | 6 of 11 bits, the 118, the 24th word |
+
+Checking comes before going offline, because checking needs a shell and a browser. The
+branch decides only the coarse question — does the app compute, or do I read off? The
+fine one (SHA-256 or Coleman, 12 or 24 words) stays on the start screen. Skipping the
+onboarding lands you there too, with both ways still on offer.
+
 ## Read this before you trust it
 
 > **"Open source" means the source is auditable. It does not mean the binary you
