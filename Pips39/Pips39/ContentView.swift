@@ -14,12 +14,17 @@ struct ContentView: View {
 
     @StateObject private var probe = EnvironmentProbe()
     @State private var hasStarted = false
+    @State private var showsLookupTable = false
     @State private var session: DiceSession?
     @State private var step: Step = .rolling
 
     var body: some View {
         if !hasStarted {
             OnboardingView(probe: probe) { hasStarted = true }
+        } else if showsLookupTable {
+            // Steht vor der Sitzungsprüfung, weil dieser Modus keine Sitzung hat und
+            // keinen Seed erzeugt — er ist ein Ausdruck, kein Ablauf.
+            LookupView { showsLookupTable = false }
         } else if let session {
             switch step {
             case .rolling:
@@ -55,6 +60,8 @@ struct ContentView: View {
                 MethodChoiceView { method, length in
                     session = DiceSession(method: method, length: length)
                     step = .rolling
+                } onChooseLookupTable: {
+                    showsLookupTable = true
                 }
             }
         }
