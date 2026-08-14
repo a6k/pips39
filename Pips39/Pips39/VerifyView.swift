@@ -37,6 +37,7 @@ struct VerifyView: View {
             .padding()
         }
         .screenProtected()
+        .hiddenFromScreenCapture()
     }
 
     private var warning: some View {

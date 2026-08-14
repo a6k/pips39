@@ -62,6 +62,7 @@ struct WordsView: View {
             .padding()
         }
         .screenProtected()
+        .hiddenFromScreenCapture()
     }
 }
 
