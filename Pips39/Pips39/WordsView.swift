@@ -7,6 +7,7 @@ struct WordsView: View {
     @ObservedObject var session: DiceSession
     let onDiscard: () -> Void
     let onCheck: () -> Void
+    let onVerify: () -> Void
 
     private let columns = [GridItem(.flexible()), GridItem(.flexible())]
 
@@ -44,6 +45,10 @@ struct WordsView: View {
                     }
                     .buttonStyle(.borderedProminent)
 
+                    Button("Check this yourself", action: onVerify)
+                        .buttonStyle(.bordered)
+                        .frame(maxWidth: .infinity)
+
                     Button(role: .destructive) {
                         onDiscard()
                     } label: {
@@ -70,5 +75,5 @@ private func previewSession() -> DiceSession {
 }
 
 #Preview {
-    WordsView(session: previewSession(), onDiscard: { }, onCheck: { })
+    WordsView(session: previewSession(), onDiscard: { }, onCheck: { }, onVerify: { })
 }

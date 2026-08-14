@@ -1,20 +1,26 @@
 import SwiftUI
 import Pips39Core
 
-/// Der Ablauf: Verfahren wählen → würfeln → Wörter → abschreiben prüfen → verwerfen.
+/// Der Ablauf: Erklärseite → Verfahren wählen → würfeln → Wörter →
+/// Abschreibkontrolle → verwerfen. Der Nachrechnen-Bereich hängt an der Wortanzeige.
 struct ContentView: View {
 
     private enum Step {
         case rolling
         case words
+        case verifying
         case checking(TranscriptionCheck)
     }
 
+    @StateObject private var probe = EnvironmentProbe()
+    @State private var hasStarted = false
     @State private var session: DiceSession?
     @State private var step: Step = .rolling
 
     var body: some View {
-        if let session {
+        if !hasStarted {
+            IntroView(probe: probe) { hasStarted = true }
+        } else if let session {
             switch step {
             case .rolling:
                 RollingView(session: session) {
@@ -25,6 +31,12 @@ struct ContentView: View {
                     startOver()
                 } onCheck: {
                     step = .checking(TranscriptionCheck(expected: session.words))
+                } onVerify: {
+                    step = .verifying
+                }
+            case .verifying:
+                VerifyView(session: session) {
+                    step = .words
                 }
             case let .checking(check):
                 TranscriptionView(check: check) {
@@ -34,9 +46,12 @@ struct ContentView: View {
                 }
             }
         } else {
-            MethodChoiceView { method in
-                session = DiceSession(method: method)
-                step = .rolling
+            VStack(spacing: 12) {
+                EnvironmentNotice(probe: probe)
+                MethodChoiceView { method in
+                    session = DiceSession(method: method)
+                    step = .rolling
+                }
             }
         }
     }
