@@ -10,6 +10,9 @@ that you copied them onto paper correctly. That is the whole app.
 transactions and has no network code. There is nothing in it to steal, because
 nothing stays behind.
 
+There is also a third mode, **Lookup table**, which does something different: it
+replaces a printed sheet rather than computing a seed. See below.
+
 ## Read this before you trust it
 
 > **"Open source" means the source is auditable. It does not mean the binary you
@@ -79,6 +82,48 @@ Each roll is looked up in a variable-length bit table (`1→01`, `2→10`, `3→
 under this method is not fixed. The full analysis, with line references into Coleman's
 source, is in [`docs/coleman-verfahren.md`](docs/coleman-verfahren.md).
 
+## The lookup table mode
+
+This one is not a third way to compute a seed. It is a replacement for a sheet of
+paper, for people who own dice and a hardware wallet but no printer.
+
+The method comes from *BitBox02 — Würfle deinen eigenen Seed* and its diceware lookup
+table by **Shift Crypto AG** ([bitbox.swiss](https://bitbox.swiss)), published under
+**CC BY-SA 4.0**. Pips39 is not affiliated with Shift Crypto. The guides themselves are
+not redistributed here — see [`BitBox-Anleitung/`](BitBox-Anleitung/) for the
+attribution and for what was taken from them and what was not.
+
+Five dice and a coin pick one word from the BIP39 list. A die showing 5 or 6 is thrown
+again, so each die carries exactly two unbiased bits — no modulo bias, no truncation:
+
+```
+index = (d1−1)·512 + (d2−1)·128 + (d3−1)·32 + (d4−1)·8 + (d5−1)·2 + coin
+```
+
+You enter only the **first three dice**. The app then shows the block of 32 words your
+word is in; you read off the right one and never type it back. Nothing is computed
+beyond that formula — check it against any BIP39 word list and you are done.
+
+### What this costs, stated plainly
+
+The app sees 6 of the 11 bits per word. What stays hidden from it, even if it were
+compromised:
+
+| | 24 words | 12 words |
+|---|---|---|
+| hidden from the app | **118 bit** | **62 bit** |
+| for comparison: a printed table | 256 bit | 128 bit |
+| for comparison: the normal Pips39 flow | 0 bit | 0 bit |
+
+118 bit is beyond any feasible attack, but it is **below** the 256 bit a dice-rolled
+24-word seed otherwise has, and below the usual 128 bit mark. 62 bit is not safe, which
+is why the mode is 24 words only and has no length switch.
+
+The 24th word is deliberately out of reach: working it out needs the checksum over all
+the others, so a device would have to see all 23 words. Your wallet offers eight valid
+options — pick between them with three coin flips, which is exactly the three bits
+those eight options carry.
+
 ## Building and testing
 
 The security-critical code lives in a Swift package with no UI, so it can be tested
@@ -125,3 +170,10 @@ will need to select your own signing team.
 ## Licence
 
 MIT.
+
+The lookup table mode implements a method described by **Shift Crypto AG** in
+*BitBox02 — Würfle deinen eigenen Seed* and its diceware lookup table, both published
+under **CC BY-SA 4.0**. Those documents are not part of this repository; the code here
+is an independent implementation of the method, not a derivative of them. Attribution
+and the detail of what was taken:
+[`BitBox-Anleitung/README.md`](BitBox-Anleitung/README.md).
