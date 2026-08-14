@@ -121,3 +121,42 @@
 "Start rolling" = "Loswürfeln";
 "Start again" = "Von vorn";
 "Word table" = "Worttabelle";
+
+/* ===== Hilfe: Prüfsumme ===== */
+"The last word and the checksum" = "Das letzte Wort und die Prüfsumme";
+"Every BIP39 phrase carries a checksum in its last word. With 12 words that is 4 bits, with 24 words 8 bits." = "Jede BIP39-Phrase trägt eine Prüfsumme im letzten Wort. Bei 12 Wörtern sind das 4 Bit, bei 24 Wörtern 8 Bit.";
+"12 words are 132 bits: 128 bits of entropy plus 4 bits of checksum. The twelfth word is therefore 7 entropy bits and 4 checksum bits. With 24 words it is 264 bits, 256 plus 8, and the last word is 3 entropy bits and 8 checksum bits." = "12 Wörter sind 132 Bit: 128 Bit Entropie plus 4 Bit Prüfsumme. Das zwölfte Wort besteht also aus 7 Entropie-Bits und 4 Prüf-Bits. Bei 24 Wörtern sind es 264 Bit, 256 plus 8, und das letzte Wort besteht aus 3 Entropie-Bits und 8 Prüf-Bits.";
+"Why you never notice it here" = "Warum du es hier nie merkst";
+"SHA-256 and Coleman produce the whole entropy block first. The app works out the checksum itself and then cuts the block into words. The last word simply falls out, there is nothing to choose and nothing to ask." = "SHA-256 und Coleman liefern zuerst den ganzen Entropie-Block. Die App rechnet daraus die Prüfsumme selbst aus und schneidet den Block anschließend in Wörter. Das letzte fällt dabei einfach mit heraus, es gibt nichts zu wählen und nichts zu fragen.";
+"Why you do notice it with the word table" = "Warum du es bei der Worttabelle merkst";
+"There the words arrive one at a time. After 23 words you have 253 bits and cannot look the last one up, because its checksum needs all the others. That is why a wallet has to supply it." = "Dort kommen die Wörter einzeln. Nach 23 Wörtern hast du 253 Bit und kannst das letzte nicht nachschlagen, weil dafür die Prüfsumme über alle vorherigen nötig wäre. Deshalb muss eine Wallet einspringen.";
+"This also explains how many options a wallet offers you. With 24 words, 3 bits are left free, so 8 options. With 12 words it would be 7 free bits, so 128." = "Daraus folgt auch, wie viele Möglichkeiten eine Wallet anbietet. Bei 24 Wörtern bleiben 3 freie Bit, also 8 Möglichkeiten. Bei 12 wären es 7 freie Bit, also 128.";
+"Check it yourself" = "Selbst nachprüfen";
+"Take a finished phrase into any BIP39 tool and swap the last word for another one from the list. In about fifteen of sixteen cases the phrase becomes invalid, because the 4 checksum bits no longer match." = "Nimm eine fertige Phrase in ein beliebiges BIP39-Werkzeug und tausche das letzte Wort gegen ein anderes aus der Liste. In etwa fünfzehn von sechzehn Fällen wird die Phrase ungültig, weil die 4 Prüf-Bits nicht mehr passen.";
+
+/* ===== Hilfe: Angreifbarkeit ===== */
+"How safe is this really" = "Wie sicher ist das wirklich";
+"On the SHA-256 and Coleman tabs the app sees your whole seed while it is on screen. So this page is about the word table, where it sees only a part." = "In den Reitern SHA-256 und Coleman sieht die App deinen ganzen Seed, solange er auf dem Schirm steht. Diese Seite handelt deshalb von der Worttabelle, wo sie nur einen Teil sieht.";
+"There the app gets three of the five dice per word. Five of the eleven bits per word stay hidden from it. Across 23 words plus the free bits of the last one, that is 118 bits." = "Dort bekommt die App drei der fünf Würfel je Wort. Fünf der elf Bit je Wort bleiben ihr verborgen. Über 23 Wörter plus die freien Bit des letzten sind das 118 Bit.";
+"Suppose the phone recorded everything" = "Angenommen, das Telefon hat alles mitgeschnitten";
+"Then someone with that recording would still have to try 2¹¹⁸ combinations, about 3 followed by 35 zeros. Every attempt has to go through PBKDF2 with 2048 rounds, which is slow on purpose." = "Dann müsste jemand mit diesem Mitschnitt immer noch 2¹¹⁸ Kombinationen durchprobieren, also eine 3 mit 35 Nullen. Jeder Versuch muss durch PBKDF2 mit 2048 Runden, und das ist absichtlich langsam.";
+"24 words, 118 bits hidden" = "24 Wörter, 118 Bit verborgen";
+"12 words, 62 bits hidden" = "12 Wörter, 62 Bit verborgen";
+"10,000 GPUs" = "10 000 GPUs";
+"1 million GPUs" = "1 Million GPUs";
+"100 million GPUs" = "100 Millionen GPUs";
+"10¹⁸ years" = "10¹⁸ Jahre";
+"10¹⁶ years" = "10¹⁶ Jahre";
+"10¹⁴ years" = "10¹⁴ Jahre";
+"15 years" = "15 Jahre";
+"53 days" = "53 Tage";
+"13 hours" = "13 Stunden";
+"For comparison, the universe is about 10¹⁰ years old." = "Zum Vergleich: Das Universum ist etwa 10¹⁰ Jahre alt.";
+"This is why the word table has no length switch. With 12 words only 62 bits would stay hidden, and that is a different world:" = "Genau deshalb hat die Worttabelle keine Längenwahl. Bei 12 Wörtern blieben nur 62 Bit verborgen, und das ist eine andere Welt:";
+"Between the two lies a factor of 70 quadrillion. That is not a gradual difference. It is the line between something a well funded attacker manages and something nobody manages." = "Zwischen beiden liegt der Faktor 70 Billiarden. Das ist kein gradueller Unterschied, sondern die Grenze zwischen dem, was jemand mit Geld schafft, und dem, was niemand schafft.";
+"There is nothing to filter out" = "Es gibt nichts vorzufiltern";
+"Every one of those combinations gives a valid BIP39 phrase, because the checksum follows from the entropy. An attacker cannot discard any of them cheaply. They gain nothing from the checksum either." = "Jede dieser Kombinationen ergibt eine gültige BIP39-Phrase, weil die Prüfsumme aus der Entropie folgt. Ein Angreifer kann keine davon billig aussortieren, gewinnt aus der Prüfsumme aber auch nichts.";
+"What this calculation assumes" = "Was diese Rechnung voraussetzt";
+"That the phone recorded what it saw. Without that recording it is the full 128 or 256 bits, and no number in the tables above applies." = "Dass das Telefon mitgeschnitten hat, was es sah. Ohne diesen Mitschnitt sind es die vollen 128 oder 256 Bit, und keine Zahl aus den Tabellen oben gilt.";
+"And that the attacker knows what to look for, meaning they have an address to check against." = "Und dass der Angreifer weiß, wonach er sucht, also eine Adresse hat, gegen die er prüfen kann.";
+"What no number protects against: somebody photographing your paper." = "Wogegen keine Zahl hilft: dass jemand deinen Zettel fotografiert.";
