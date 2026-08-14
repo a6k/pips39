@@ -3,6 +3,7 @@ import PackageDescription
 
 let package = Package(
     name: "Pips39Core",
+    defaultLocalization: "en",
     platforms: [
         .iOS(.v16),
         .macOS(.v13)
@@ -13,7 +14,10 @@ let package = Package(
     targets: [
         .target(
             name: "Pips39Core",
-            resources: [.copy("Resources/english.txt")]
+            resources: [
+                .copy("Resources/english.txt"),
+                .process("Localization")
+            ]
         ),
         .testTarget(
             name: "Pips39CoreTests",
