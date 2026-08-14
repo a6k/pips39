@@ -40,7 +40,7 @@
 /* ===== Die zwei Wege im Onboarding ===== */
 "onboarding.path.rollAndCompute.title" = "Würfeln, die App rechnet";
 "onboarding.path.rollAndCompute.summary" = "Sie tippen jeden einzelnen Würfelwert ein, Wert für Wert. Ob Sie dabei einen Würfel 99-mal werfen oder fünf auf einmal, ändert daran nichts. Für 24 Wörter sind das 99 Eingaben, mit dem Verfahren Coleman rund 154. Am Ende zeigt Ihnen die App alle 24 Wörter.";
-"onboarding.path.rollAndCompute.exposure" = "Damit kennt die App jeden Wurf und berechnet den Seed selbst. Sie sieht ihn vollständig.";
+"onboarding.path.rollAndCompute.exposure" = "Die App sieht den Seed vollständig. Jeden Wurf bekommt sie einzeln, den Seed berechnet sie selbst.";
 "onboarding.path.lookupTable.title" = "Würfeln, das Wort ablesen";
 "onboarding.path.lookupTable.summary" = "Pro Wort werfen Sie fünf Würfel und eine Münze. Eingetippt werden nur die ersten drei Würfel. Die App zeigt daraufhin 32 Wörter; welches davon Ihres ist, entscheiden Würfel 4, Würfel 5 und die Münze. Sie lesen es ab und schreiben es auf. Drei Eingaben pro Wort, für 23 Wörter also 69. Das 24. Wort kommt aus Ihrer Hardware-Wallet.";
 "onboarding.path.lookupTable.exposure" = "Die App sieht drei von fünf Würfeln und erfährt nie, welches der 32 Wörter Sie genommen haben. %lld der 256 Bit bleiben ihr verborgen.";

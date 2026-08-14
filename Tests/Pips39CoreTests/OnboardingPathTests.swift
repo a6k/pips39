@@ -38,6 +38,21 @@ final class OnboardingPathTests: XCTestCase {
         XCTAssertTrue(text.contains("\(LookupTable.hiddenBits(for: .twentyFour))"), text)
     }
 
+    /// Genau ein Weg legt den Seed offen. Wäre das bei beiden so, hätte die
+    /// Verzweigung keinen Zweck; wäre es bei keinem so, stimmte die Aussage nicht.
+    func testExactlyOnePathExposesTheWholeSeed() {
+        let offen = OnboardingPath.allCases.filter(\.appSeesEverything)
+        XCTAssertEqual(offen, [.rollAndCompute])
+    }
+
+    /// Der Satz, der rot wird, muss ohne Pronomen auskommen. „Sie sieht ihn
+    /// vollständig" liest sich in einem Text in Höflichkeitsform wie eine Aussage über
+    /// den Leser, nicht über die App.
+    func testTheCriticalSentenceNamesTheAppAndTheSeed() {
+        let text = OnboardingPath.rollAndCompute.exposure(locale: de)
+        XCTAssertTrue(text.hasPrefix("Die App sieht den Seed vollständig."), text)
+    }
+
     /// Keine Entwarnung, nirgends — dieselbe Regel wie bei `EnvironmentProbe`.
     func testNoPathPromisesSafety() {
         let forbidden = ["safe", "secure", "protected", "guaranteed"]

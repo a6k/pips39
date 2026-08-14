@@ -134,9 +134,11 @@ struct OnboardingView: View {
                             .font(.title3.weight(.semibold))
                         Text(option.summary())
                             .font(.footnote)
+                        // Rot nur auf dem Weg, der den Seed offenlegt. Das ist der
+                        // wichtigste Satz der Seite, und in Grau wird er überlesen.
                         Text(option.exposure())
-                            .font(.footnote.weight(.medium))
-                            .foregroundStyle(.secondary)
+                            .font(.footnote.weight(option.appSeesEverything ? .semibold : .medium))
+                            .foregroundStyle(option.appSeesEverything ? Color.red : Color.secondary)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding()

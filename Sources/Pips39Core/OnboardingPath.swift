@@ -18,6 +18,16 @@ public enum OnboardingPath: String, CaseIterable, Equatable, Identifiable {
 
     public var id: String { rawValue }
 
+    /// Ob die App auf diesem Weg den ganzen Seed zu sehen bekommt.
+    ///
+    /// Steht hier und nicht in der Ansicht, weil es eine Aussage über das Verfahren ist
+    /// und keine über die Gestaltung. Die Ansicht entscheidet daraufhin, dass dieser
+    /// eine Satz rot wird: Er ist der wichtigste der Seite, und in Grau wird er
+    /// überlesen.
+    public var appSeesEverything: Bool {
+        self == .rollAndCompute
+    }
+
     public func title(locale: Locale = .current) -> String {
         Localized.string("onboarding.path.\(rawValue).title", locale)
     }
