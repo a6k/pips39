@@ -55,7 +55,7 @@ Diese Lücke bleibt bewusst offen; der richtige Ort dafür ist die Erklärseite.
 - Create: `Sources/Pips39Core/RollPattern.swift`
 - Create: `Tests/Pips39CoreTests/RollPatternTests.swift`
 
-- [ ] **Step 1: Den fehlschlagenden Test schreiben**
+- [x] **Step 1: Den fehlschlagenden Test schreiben**
 
 ```swift
 import XCTest
@@ -169,12 +169,12 @@ struct SeededGenerator: RandomNumberGenerator {
 }
 ```
 
-- [ ] **Step 2: Test laufen lassen, Fehlschlag bestätigen**
+- [x] **Step 2: Test laufen lassen, Fehlschlag bestätigen**
 
 Run: `cd "$REPO" && swift test`
 Expected: FAIL, `cannot find 'RollPattern' in scope`.
 
-- [ ] **Step 3: `RollPattern.swift` schreiben**
+- [x] **Step 3: `RollPattern.swift` schreiben**
 
 ```swift
 import Foundation
@@ -235,7 +235,7 @@ public enum RollPattern {
 }
 ```
 
-- [ ] **Step 4: Die Texte in beide Tabellen eintragen**
+- [x] **Step 4: Die Texte in beide Tabellen eintragen**
 
 `Sources/Pips39Core/Localization/en.lproj/Localizable.strings`:
 
@@ -253,12 +253,12 @@ public enum RollPattern {
 "pattern.twoFaces" = "In dieser Folge kommen nur zwei der sechs Zahlen vor. Falls nicht wirklich gewürfelt wurde: verwerfen und neu beginnen.";
 ```
 
-- [ ] **Step 5: Tests laufen lassen**
+- [x] **Step 5: Tests laufen lassen**
 
 Run: `cd "$REPO" && swift test`
 Expected: PASS. `testRandomSequencesAreNeverFlagged` prüft 10 000 Zufallsfolgen.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 cd "$REPO"
@@ -275,7 +275,7 @@ git push
 - Modify: `Sources/Pips39Core/DiceSession.swift`
 - Create: `Tests/Pips39CoreTests/DiceSessionPatternTests.swift`
 
-- [ ] **Step 1: Den fehlschlagenden Test schreiben**
+- [x] **Step 1: Den fehlschlagenden Test schreiben**
 
 ```swift
 import XCTest
@@ -312,11 +312,11 @@ final class DiceSessionPatternTests: XCTestCase {
 }
 ```
 
-- [ ] **Step 2: Test laufen lassen, Fehlschlag bestätigen**
+- [x] **Step 2: Test laufen lassen, Fehlschlag bestätigen**
 
 Expected: FAIL, `value of type 'DiceSession' has no member 'rollPattern'`.
 
-- [ ] **Step 3: `DiceSession.swift` erweitern**
+- [x] **Step 3: `DiceSession.swift` erweitern**
 
 Vor der schließenden Klammer einfügen:
 
@@ -332,11 +332,11 @@ Vor der schließenden Klammer einfügen:
     }
 ```
 
-- [ ] **Step 4: Tests laufen lassen**
+- [x] **Step 4: Tests laufen lassen**
 
 Expected: PASS.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 cd "$REPO"
@@ -352,7 +352,7 @@ git push
 **Files:**
 - Modify: `Pips39/Pips39/WordsView.swift`
 
-- [ ] **Step 1: Den Hinweis oben einfügen**
+- [x] **Step 1: Den Hinweis oben einfügen**
 
 Direkt nach dem Kopfbereich, **vor** dem Wortraster:
 
@@ -376,7 +376,7 @@ Direkt nach dem Kopfbereich, **vor** dem Wortraster:
 > rot, weil nichts kaputt ist — die Wörter sind gültig, und wer tatsächlich so
 > gewürfelt hat, darf sie behalten. Die App stellt fest und blockiert nicht.
 
-- [ ] **Step 2: Bauen**
+- [x] **Step 2: Bauen**
 
 ```bash
 cd "$REPO/Pips39"
@@ -385,7 +385,7 @@ xcodebuild -project Pips39.xcodeproj -scheme Pips39 \
 ```
 Expected: `** BUILD SUCCEEDED **`
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 cd "$REPO"
@@ -398,19 +398,19 @@ git push
 
 ### Task 4: Ansehen
 
-- [ ] **Step 1: Den Fall herstellen**
+- [x] **Step 1: Den Fall herstellen**
 
 Mit 12 Wörtern und Verfahren B fünfzigmal dieselbe Zahl tippen, dann „Wörter zeigen".
 Über den Wörtern muss die orange Feststellung stehen.
 
-- [ ] **Step 2: Die Gegenprobe**
+- [x] **Step 2: Die Gegenprobe**
 
 Denselben Weg mit gemischten Würfen — dort darf **nichts** erscheinen. Das ist der
 wichtigere der beiden Durchgänge.
 
 ## Abschluss der Phase
 
-- [ ] **Spec nachziehen:** Den offenen Punkt „Bias-Warnung" in Abschnitt 11 abhaken,
+- [x] **Spec nachziehen:** Den offenen Punkt „Bias-Warnung" in Abschnitt 11 abhaken,
       mit der Unterscheidung zwischen statistischem Test (verworfen) und
       Entartungsprüfung (umgesetzt).
 
