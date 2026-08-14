@@ -21,7 +21,7 @@ struct WordsView: View {
                 VStack(alignment: .leading, spacing: 4) {
                     Text("Write these down")
                         .font(.title2.bold())
-                    Text("Method: \(session.method.title) — note this down too. The same rolls give different words under the other method.")
+                    Text("Method: \(session.method.title). Note this down too. The same rolls give different words under the other method.")
                         .font(.footnote)
                         .foregroundStyle(.secondary)
                 }

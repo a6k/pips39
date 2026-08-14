@@ -1,4 +1,4 @@
-/* Umgebungshinweis. Feststellung, nie Entwarnung — siehe LocalizationRuleTests. */
+/* Umgebungshinweis. Feststellung, nie Entwarnung, siehe LocalizationRuleTests. */
 "env.connected" = "Dieses Gerät ist mit einem Netzwerk verbunden.";
 
 /* Verfahren: Kurzbeschreibung */
@@ -17,18 +17,18 @@
 
 /* Nachrechnen: SHA-256. Der shasum-Befehl bleibt unübersetzt. */
 "verify.sha256.step.hash" = "Ausführen: printf '%s' \"<Wurffolge>\" | shasum -a 256";
-"verify.sha256.step.truncate" = "Nur die ersten 32 Hex-Zeichen nehmen — 12 Wörter nutzen 128 der 256 Bit.";
+"verify.sha256.step.truncate" = "Nur die ersten 32 Hex-Zeichen nehmen. 12 Wörter nutzen 128 der 256 Bit.";
 "verify.sha256.step.paste" = "iancoleman.io/bip39 öffnen und den Hex-Wert in das Feld Entropy einfügen.";
 "verify.sha256.step.compare" = "Entropy type auf Hex stellen, dann die Wörter vergleichen.";
 
 /* Nachrechnen: Coleman. „Dice" und „Use Raw Entropy" sind Beschriftungen auf
    seiner englischen Seite und bleiben in jeder Sprache englisch. */
 "verify.coleman.step.open" = "iancoleman.io/bip39 öffnen.";
-"verify.coleman.step.dice" = "Zuerst den Entropie-Typ Dice wählen — sonst wird eine reine 1er-Folge als Binär gelesen.";
-"verify.coleman.step.raw" = "Mnemonic Length auf Use Raw Entropy stehen lassen — eine feste Wortzahl hasht stattdessen und schneidet am anderen Ende ab.";
+"verify.coleman.step.dice" = "Zuerst den Entropie-Typ Dice wählen. Sonst wird eine reine 1er-Folge als Binär gelesen.";
+"verify.coleman.step.raw" = "Mnemonic Length auf Use Raw Entropy stehen lassen. Eine feste Wortzahl hasht stattdessen und schneidet am anderen Ende ab.";
 "verify.coleman.step.enter" = "Genau die hier gezeigten Würfe eingeben, nicht mehr, und die Wörter vergleichen.";
 
-/* Auffaellige Wurffolgen. Feststellung, kein Alarm — siehe RollPatternTests. */
+/* Auffaellige Wurffolgen. Feststellung, kein Alarm, siehe RollPatternTests. */
 "pattern.singleFace" = "Alle Würfe dieser Folge zeigen dieselbe Zahl.";
 "pattern.repeating" = "Diese Folge wiederholt ein kurzes Muster.";
 "pattern.twoFaces" = "In dieser Folge kommen nur zwei der sechs Zahlen vor.";

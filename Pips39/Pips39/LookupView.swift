@@ -212,7 +212,7 @@ struct LookupView: View {
                 .font(.title2.weight(.semibold))
             Text("This app cannot work it out. It never saw your words, and the last word carries a checksum over all the others.")
                 .font(.footnote)
-            Text("Enter your 23 words into your wallet. It will offer eight valid options for the last one. Pick between them with three coin flips, not by feel — eight options are exactly three bits.")
+            Text("Enter your 23 words into your wallet. It will offer eight valid options for the last one. Pick between them with three coin flips, not by feel. Eight options are exactly three bits.")
                 .font(.footnote)
             Button("Done", action: onExit)
                 .buttonStyle(.borderedProminent)

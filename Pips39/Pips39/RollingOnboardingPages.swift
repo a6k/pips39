@@ -24,7 +24,7 @@ struct RollingOnboardingPages: View {
 
     private var verifyPage: some View {
         OnboardingPage(title: "First: check the app") {
-            Text("Do this now, while this device is still online. Make up a dice sequence for it — never use the rolls behind a seed you intend to keep.")
+            Text("Do this now, while this device is still online. Make up a dice sequence for it. Never use the rolls behind a seed you intend to keep.")
                 .font(.footnote)
                 .foregroundStyle(.secondary)
 
@@ -49,7 +49,7 @@ struct RollingOnboardingPages: View {
             }
             .font(.footnote.weight(.medium))
 
-            Text("Tapping a link opens Safari. That is fine now and not later — do it before you take the device offline.")
+            Text("Tapping a link opens Safari. That is fine now and not later, so do it before you take the device offline.")
                 .font(.caption)
                 .foregroundStyle(.secondary)
         }
@@ -89,10 +89,10 @@ struct RollingOnboardingPages: View {
     }
 
     private let checklist: [LocalizedStringKey] = [
-        "Turn off Wi-Fi, cellular, Bluetooth and AirDrop in Settings — not in Control Center.",
+        "Turn off Wi-Fi, cellular, Bluetooth and AirDrop in Settings, not in Control Center.",
         "Turn off iCloud completely: no backup, no keychain sync.",
         "Block USB accessories under Face ID & Passcode.",
         "Turn on Lockdown Mode.",
-        "Turn off Settings, App Store, Offload Unused Apps — otherwise iOS may delete this app and need the network to restore it."
+        "Turn off Settings, App Store, Offload Unused Apps. Otherwise iOS may delete this app and need the network to restore it."
     ]
 }

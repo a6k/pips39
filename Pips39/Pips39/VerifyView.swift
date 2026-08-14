@@ -27,7 +27,7 @@ struct VerifyView: View {
                 field(title: "Dice rolls", value: session.rollSequence, monospaced: true)
                 field(title: "Entropy (hex)", value: session.entropyHex ?? "—", monospaced: true)
 
-                Text("Keep these exactly as private as the words themselves, or do not keep them at all. If you write the rolls down, write the method down with them — the same rolls give different words under the other method.")
+                Text("Keep these exactly as private as the words themselves, or do not keep them at all. If you write the rolls down, write the method down with them. The same rolls give different words under the other method.")
                     .font(.footnote)
                     .foregroundStyle(.secondary)
 

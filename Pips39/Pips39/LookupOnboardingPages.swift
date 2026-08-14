@@ -42,7 +42,7 @@ struct LookupOnboardingPages: View {
     }
 
     private let needs: [LocalizedStringKey] = [
-        "Five dice. One works too — throw it five times and keep the order.",
+        "Five dice. One works too. Throw it five times and keep the order.",
         "A coin. Or a sixth die: 1 to 3 is heads, 4 to 6 is tails.",
         "Paper and a pen for the 23 words.",
         "A hardware wallet. It supplies the 24th word, which this app cannot work out.",
@@ -59,7 +59,7 @@ struct LookupOnboardingPages: View {
             VStack(alignment: .leading, spacing: 8) {
                 Text("Why it is 24 words only")
                     .font(.headline)
-                Text("With 12 words too little would stay hidden — 62 bits, which is within reach of an attacker who got hold of what you typed. There is no length switch on this path for that reason.")
+                Text("With 12 words too little would stay hidden: 62 bits, which is within reach of an attacker who got hold of what you typed. There is no length switch on this path for that reason.")
                     .font(.footnote)
                     .foregroundStyle(.secondary)
             }
@@ -67,7 +67,7 @@ struct LookupOnboardingPages: View {
             VStack(alignment: .leading, spacing: 8) {
                 Text("The 24th word")
                     .font(.headline)
-                Text("It carries a checksum over the other 23, so working it out needs all of them. Your wallet offers eight valid options — pick between them with three coin flips, not by feel.")
+                Text("It carries a checksum over the other 23, so working it out needs all of them. Your wallet offers eight valid options. Pick between them with three coin flips, not by feel.")
                     .font(.footnote)
                     .foregroundStyle(.secondary)
             }

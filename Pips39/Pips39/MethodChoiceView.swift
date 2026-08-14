@@ -95,7 +95,7 @@ struct MethodChoiceView: View {
                 VStack(alignment: .leading, spacing: 4) {
                     Text("Lookup table")
                         .font(.title3.weight(.semibold))
-                    Text("For dice and a hardware wallet. The seed is made on paper — this app only shows the words to read off, and never learns it.")
+                    Text("For dice and a hardware wallet. The seed is made on paper. This app only shows the words to read off, and never learns it.")
                         .font(.footnote)
                     Text("Always 24 words.")
                         .font(.footnote.weight(.medium))

@@ -75,7 +75,7 @@ struct OnboardingView: View {
             Link("bitbox.swiss", destination: URL(string: ExternalLinks.bitboxGuide)!)
                 .font(.body.weight(.medium))
 
-            Text("One catch, so nobody is surprised later: paper and a pen get you 23 of the 24 words. The last one carries a checksum over the others, and nobody works that out by hand — a wallet has to supply it.")
+            Text("One catch, so nobody is surprised later: paper and a pen get you 23 of the 24 words. The last one carries a checksum over the others, and nobody works that out by hand. A wallet has to supply it.")
                 .font(.footnote)
                 .foregroundStyle(.secondary)
 
@@ -96,11 +96,11 @@ struct OnboardingView: View {
         OnboardingPage(title: "What a seed is") {
             Text("Your wallet is one very large number. Every key and every address is worked out from it. That number is the seed.")
                 .font(.footnote)
-            Text("It is written as words only so you can copy it by hand without mistakes. The words are not the secret — the number is.")
+            Text("It is written as words only so you can copy it by hand without mistakes. The words are not the secret. The number is.")
                 .font(.footnote)
             Text("Nothing else protects it. No password, no device, no company. It is safe exactly as long as nobody can guess the number.")
                 .font(.footnote)
-            Text("Dice make a number nobody can guess, not even you afterwards. A wallet can make one too, and then you are trusting it to have done it well — which you cannot check. That is the whole reason to roll it yourself.")
+            Text("Dice make a number nobody can guess, not even you afterwards. A wallet can make one too, and then you are trusting it to have done it well, which you cannot check. That is the whole reason to roll it yourself.")
                 .font(.footnote)
 
             VStack(alignment: .leading, spacing: 8) {
@@ -146,7 +146,7 @@ struct OnboardingView: View {
                 .buttonStyle(.plain)
             }
 
-            Text("You can change your mind afterwards — both stay on the start screen.")
+            Text("You can change your mind afterwards. Both stay on the start screen.")
                 .font(.caption)
                 .foregroundStyle(.secondary)
         }
