@@ -19,8 +19,8 @@ struct SecureLayer<Content: View>: UIViewRepresentable {
 
     let content: Content
 
-    func makeCoordinator() -> Coordinator {
-        Coordinator()
+    func makeCoordinator() -> SecureLayerCoordinator {
+        SecureLayerCoordinator()
     }
 
     func makeUIView(context: Context) -> UIView {
@@ -50,7 +50,7 @@ struct SecureLayer<Content: View>: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: UIView, context: Context) {
-        context.coordinator.host?.rootView = content
+        (context.coordinator.host as? UIHostingController<Content>)?.rootView = content
     }
 
     private func pin(_ view: UIView, to parent: UIView) {
@@ -62,12 +62,25 @@ struct SecureLayer<Content: View>: UIViewRepresentable {
         ])
     }
 
-    final class Coordinator {
-        let field = UITextField()
-        var host: UIHostingController<Content>?
-        /// Nur zur Diagnose — wird bewusst nirgends angezeigt.
-        var isProtected = false
-    }
+}
+
+/// Der Zustand hinter `SecureLayer`, **bewusst außerhalb** des generischen Structs
+/// und ohne eigenen Typparameter.
+///
+/// Als verschachtelte Klasse hieße sie `SecureLayer<Content>.Coordinator` und wäre
+/// damit selbst generisch, auch wenn sie den Parameter gar nicht mehr benutzt. Genau
+/// daran ist der Swift-Optimizer abgestürzt: Ein Archive baut mit `-O`, und der
+/// `EarlyPerfInliner` fiel über den generischen Deinit dieser Klasse. Debug baut
+/// weiter sauber, weil der Pass dort nicht läuft, deshalb fiel es erst beim ersten
+/// Archive auf.
+///
+/// **Den Typparameter nicht wieder einführen.** Das `UIHostingController<Content>`
+/// wird deshalb als `UIViewController` gehalten und beim Aktualisieren zurückgecastet.
+final class SecureLayerCoordinator {
+    let field = UITextField()
+    var host: UIViewController?
+    /// Nur zur Diagnose — wird bewusst nirgends angezeigt.
+    var isProtected = false
 }
 
 extension View {
