@@ -25,6 +25,8 @@ struct ContentView: View {
             case .rolling:
                 RollingView(session: session) {
                     step = .words
+                } onBack: {
+                    startOver()
                 }
             case .words:
                 WordsView(session: session) {

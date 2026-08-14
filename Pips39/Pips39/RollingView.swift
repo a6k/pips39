@@ -6,11 +6,15 @@ struct RollingView: View {
 
     @ObservedObject var session: DiceSession
     let onFinished: () -> Void
+    let onBack: () -> Void
+
+    @State private var showsDiscardConfirmation = false
 
     private let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
 
     var body: some View {
         VStack(spacing: 20) {
+            backBar
             header
 
             LazyVGrid(columns: columns, spacing: 12) {
@@ -49,6 +53,37 @@ struct RollingView: View {
         .padding()
     }
 
+    /// Zurück zur Verfahrenswahl.
+    ///
+    /// Nachfragen nur, wenn tatsächlich etwas verloren geht. Ein Dialog auf einem
+    /// leeren Puffer wäre reine Reiberei — er würde dazu erziehen, Rückfragen
+    /// wegzutippen, und dann trifft es irgendwann die Rückfrage, die zählt.
+    private var backBar: some View {
+        HStack {
+            Button {
+                if session.rollCount > 0 {
+                    showsDiscardConfirmation = true
+                } else {
+                    onBack()
+                }
+            } label: {
+                Label("Back", systemImage: "chevron.left")
+                    .font(.body)
+            }
+            Spacer()
+        }
+        .confirmationDialog(
+            "Discard \(session.rollCount) rolls?",
+            isPresented: $showsDiscardConfirmation,
+            titleVisibility: .visible
+        ) {
+            Button("Discard and go back", role: .destructive, action: onBack)
+            Button("Keep rolling", role: .cancel) { }
+        } message: {
+            Text("Going back means choosing the method and seed length again. Your rolls so far cannot be carried over.")
+        }
+    }
+
     private var header: some View {
         VStack(spacing: 6) {
             Text(session.method.title)
@@ -79,5 +114,5 @@ struct RollingView: View {
 }
 
 #Preview {
-    RollingView(session: DiceSession(method: .sha256)) { }
+    RollingView(session: DiceSession(method: .sha256), onFinished: { }, onBack: { })
 }
