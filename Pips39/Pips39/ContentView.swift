@@ -15,12 +15,17 @@ struct ContentView: View {
     @StateObject private var probe = EnvironmentProbe()
     @State private var hasStarted = false
     @State private var showsLookupTable = false
+    @State private var takenPath: OnboardingPath?
     @State private var session: DiceSession?
     @State private var step: Step = .rolling
 
     var body: some View {
         if !hasStarted {
-            OnboardingView(probe: probe) { hasStarted = true }
+            OnboardingView(probe: probe, startPath: takenPath) { destination in
+                takenPath = destination
+                showsLookupTable = destination == .lookupTable
+                hasStarted = true
+            }
         } else if showsLookupTable {
             // Steht vor der Sitzungsprüfung, weil dieser Modus keine Sitzung hat und
             // keinen Seed erzeugt — er ist ein Ausdruck, kein Ablauf.
@@ -33,6 +38,9 @@ struct ContentView: View {
                 } onBack: {
                     startOver()
                 } onHelp: {
+                    // Wer mitten im Würfeln Hilfe sucht, will nicht bei „Was ein Seed
+                    // ist" anfangen — `startPath` überspringt die gemeinsamen Seiten.
+                    takenPath = .rollAndCompute
                     hasStarted = false
                 }
             case .words:

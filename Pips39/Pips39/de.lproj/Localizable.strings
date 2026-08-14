@@ -92,3 +92,32 @@
 "The 24th word" = "Das 24. Wort";
 "This app cannot work it out. It never saw your words, and the last word carries a checksum over all the others." = "Diese App kann es nicht berechnen. Sie hat die Wörter nie gesehen, und das letzte Wort trägt eine Prüfsumme über alle anderen.";
 "Enter your 23 words into your wallet. It will offer eight valid options for the last one. Pick between them with three coin flips, not by feel — eight options are exactly three bits." = "Die 23 Wörter in die Wallet eingeben. Sie bietet acht gültige Möglichkeiten für das letzte an. Zwischen ihnen mit drei Münzwürfen wählen, nicht nach Gefühl — acht Möglichkeiten sind genau drei Bit.";
+
+/* ===== Onboarding, gemeinsame Seiten ===== */
+"The safest way needs no app" = "Der sicherste Weg braucht keine App";
+"Dice, a printed table, paper and a pen, no electronics in the room. That makes a seed no device has ever seen. There is a good guide for it at BitBox." = "Würfel, eine gedruckte Tabelle, Papier und Stift, keine Elektronik im Raum. So entsteht ein Seed, den nie ein Gerät gesehen hat. Eine gute Anleitung dazu gibt es bei BitBox.";
+"One catch, so nobody is surprised later: paper and a pen get you 23 of the 24 words. The last one carries a checksum over the others, and nobody works that out by hand — a wallet has to supply it." = "Ein Haken, damit später niemand überrascht ist: Papier und Stift bringen Sie bis Wort 23 von 24. Das letzte trägt eine Prüfsumme über die anderen, und die rechnet niemand von Hand — die muss eine Wallet liefern.";
+"Where Pips39 sits" = "Wo Pips39 steht";
+"It is the step below: for an old iPhone you keep permanently offline. Weaker than paper, stronger than letting a wallet roll the seed for you and hoping it did it properly." = "Eine Stufe darunter: für ein altes iPhone, das dauerhaft offline bleibt. Schwächer als Papier, stärker als eine Wallet, die den Seed für Sie auswürfelt und von der Sie hoffen, dass sie es ordentlich getan hat.";
+"If you are securing serious money, take the paper route." = "Wer echtes Geld absichert, nimmt den Papierweg.";
+"What a seed is" = "Was ein Seed ist";
+"Your wallet is one very large number. Every key and every address is worked out from it. That number is the seed." = "Ihre Wallet ist eine einzige sehr große Zahl. Jeder Schlüssel und jede Adresse wird daraus berechnet. Diese Zahl ist der Seed.";
+"It is written as words only so you can copy it by hand without mistakes. The words are not the secret — the number is." = "Sie wird nur deshalb als Wörter geschrieben, damit man sie ohne Fehler abschreiben kann. Nicht die Wörter sind das Geheimnis, sondern die Zahl.";
+"Nothing else protects it. No password, no device, no company. It is safe exactly as long as nobody can guess the number." = "Sonst schützt sie nichts. Kein Passwort, kein Gerät, keine Firma. Sie hält genau so lange, wie niemand die Zahl erraten kann.";
+"Dice make a number nobody can guess, not even you afterwards. A wallet can make one too, and then you are trusting it to have done it well — which you cannot check. That is the whole reason to roll it yourself." = "Würfel erzeugen eine Zahl, die niemand erraten kann — auch Sie selbst hinterher nicht. Eine Wallet kann das auch, dann vertrauen Sie darauf, dass sie es ordentlich gemacht hat, und nachprüfen können Sie es nicht. Genau deshalb würfelt man selbst.";
+"Two ways from here" = "Zwei Wege von hier";
+"They differ in one thing that matters: how much of your seed this app gets to see." = "Sie unterscheiden sich in einem Punkt, auf den es ankommt: wie viel vom Seed diese App zu sehen bekommt.";
+"You can change your mind afterwards — both stay on the start screen." = "Sie können sich später umentscheiden — beide Wege bleiben auf der Startseite.";
+
+/* ===== Onboarding, Tabellen-Weg ===== */
+"What you need" = "Was Sie brauchen";
+"Five dice. One works too — throw it five times and keep the order." = "Fünf Würfel. Einer geht auch — fünfmal werfen und die Reihenfolge merken.";
+"A coin. Or a sixth die: 1 to 3 is heads, 4 to 6 is tails." = "Eine Münze. Oder ein sechster Würfel: 1 bis 3 ist Kopf, 4 bis 6 ist Zahl.";
+"Paper and a pen for the 23 words." = "Papier und Stift für die 23 Wörter.";
+"A hardware wallet. It supplies the 24th word, which this app cannot work out." = "Eine Hardware-Wallet. Sie liefert das 24. Wort, das diese App nicht berechnen kann.";
+"A die showing 5 or 6 counts for nothing here. Throw it again until it shows 1 to 4." = "Ein Würfel mit 5 oder 6 zählt hier nicht. Neu werfen, bis er 1 bis 4 zeigt.";
+"Take this device offline too. It sees less on this path, but less is not nothing." = "Dieses Gerät ebenfalls abschotten. Es sieht auf diesem Weg weniger, aber weniger ist nicht nichts.";
+"What the app sees" = "Was die App sieht";
+"Why it is 24 words only" = "Warum nur 24 Wörter";
+"With 12 words too little would stay hidden — 62 bits, which is within reach of an attacker who got hold of what you typed. There is no length switch on this path for that reason." = "Bei 12 Wörtern bliebe zu wenig verborgen — 62 Bit, und die sind für jemanden, der Ihre Eingaben hat, in Reichweite. Deshalb gibt es auf diesem Weg keine Längenwahl.";
+"It carries a checksum over the other 23, so working it out needs all of them. Your wallet offers eight valid options — pick between them with three coin flips, not by feel." = "Es trägt eine Prüfsumme über die anderen 23, zum Ausrechnen braucht man also alle. Ihre Wallet bietet acht gültige Möglichkeiten an — zwischen ihnen mit drei Münzwürfen wählen, nicht nach Gefühl.";
