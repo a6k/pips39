@@ -36,3 +36,11 @@
 "pattern.fewRuns" = "This sequence is made of long blocks of the same value.";
 "pattern.advice.rolling" = "If you did not actually roll dice, go back and start over.";
 "pattern.advice.result" = "If you did not actually roll dice, discard and start over.";
+
+/* ===== Die zwei Wege im Onboarding ===== */
+"onboarding.path.rollAndCompute.title" = "Roll, and let the app do the maths";
+"onboarding.path.rollAndCompute.summary" = "You roll dice and tap in every result. The app turns them into your words and shows all of them on this screen.";
+"onboarding.path.rollAndCompute.exposure" = "The app sees your whole seed. Everything that follows is about making sure this device cannot pass it on.";
+"onboarding.path.lookupTable.title" = "Roll, and read the word off a table";
+"onboarding.path.lookupTable.summary" = "You roll five dice and a coin, enter only the first three dice, and read your word off the table the app shows. You need a hardware wallet for the last of the 24 words.";
+"onboarding.path.lookupTable.exposure" = "The app sees part of each roll and never learns which word you took. %lld bits of your seed stay hidden from it — less than the 256 you would have on paper, more than the nothing you keep on the other path.";

@@ -36,3 +36,11 @@
 "pattern.fewRuns" = "Diese Folge besteht aus langen Blöcken derselben Zahl.";
 "pattern.advice.rolling" = "Falls nicht wirklich gewürfelt wurde: über Zurück neu beginnen.";
 "pattern.advice.result" = "Falls nicht wirklich gewürfelt wurde: verwerfen und neu beginnen.";
+
+/* ===== Die zwei Wege im Onboarding ===== */
+"onboarding.path.rollAndCompute.title" = "Würfeln, die App rechnet";
+"onboarding.path.rollAndCompute.summary" = "Sie würfeln und tippen jedes Ergebnis ein. Die App macht daraus die Wörter und zeigt alle auf diesem Bildschirm.";
+"onboarding.path.rollAndCompute.exposure" = "Die App sieht den ganzen Seed. Alles Weitere dreht sich darum, dass dieses Gerät ihn nicht weitergeben kann.";
+"onboarding.path.lookupTable.title" = "Würfeln, das Wort ablesen";
+"onboarding.path.lookupTable.summary" = "Sie werfen fünf Würfel und eine Münze, geben nur die ersten drei Würfel ein und lesen Ihr Wort aus der Tabelle ab, die die App zeigt. Für das letzte der 24 Wörter brauchen Sie eine Hardware-Wallet.";
+"onboarding.path.lookupTable.exposure" = "Die App sieht von jedem Wurf nur einen Teil und erfährt nie, welches Wort genommen wurde. %lld Bit des Seeds bleiben ihr verborgen — weniger als die 256 auf Papier, mehr als die null auf dem anderen Weg.";
