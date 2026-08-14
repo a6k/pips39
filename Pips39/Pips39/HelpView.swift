@@ -15,18 +15,22 @@ struct HelpView: View {
     var body: some View {
         NavigationStack {
             List {
-                NavigationLink("What a seed is") { HelpSeedTopic() }
-                NavigationLink("The last word and the checksum") { HelpChecksumTopic() }
-                NavigationLink("About the dice") { HelpDiceTopic() }
-                NavigationLink("How safe is this really") { HelpStrengthTopic() }
-                NavigationLink("Take it offline") { HelpOfflineTopic(probe: probe) }
+                // Die Zeilenfarbe steht **innen**, an einer `Group` um die Zeilen.
+                // Auf der `List` selbst wirkt `.listRowBackground` nicht: Er gilt für
+                // die Zeile, auf die er angewandt wird, und außen gibt es keine.
+                Group {
+                    NavigationLink("What a seed is") { HelpSeedTopic() }
+                    NavigationLink("The last word and the checksum") { HelpChecksumTopic() }
+                    NavigationLink("About the dice") { HelpDiceTopic() }
+                    NavigationLink("How safe is this really") { HelpStrengthTopic() }
+                    NavigationLink("Take it offline") { HelpOfflineTopic(probe: probe) }
+                }
+                .listRowBackground(Brand.sheetRow)
             }
-            // Die Liste bringt zwei eigene Gründe mit, einen für die Rolle und einen
-            // je Zeile. Beide sind systemgrau und stünden als Insel in einer sonst
-            // violetten App.
-            .listRowBackground(Brand.panel)
+            // Die Liste bringt einen eigenen, systemgrauen Grund mit und stünde damit
+            // als graue Insel auf dem violetten Sheet.
             .scrollContentBackground(.hidden)
-            .brandBackground()
+            .sheetBackground()
             .navigationTitle("Help")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {

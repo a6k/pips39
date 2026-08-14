@@ -22,6 +22,23 @@ enum Brand {
     /// genau den Zeilen, die klein gesetzt sind. Bei 78 Prozent sind es 5,84:1.
     static let secondaryText = Color.white.opacity(0.78)
 
+    /// Der Grund der Hilfe. Flach und dunkel, **kein** Verlauf.
+    ///
+    /// Ein Sheet soll sich von der Seite darunter lösen. Trüge es denselben Verlauf,
+    /// stünde oben in beiden dasselbe Magenta, und der Inhalt wiederholte den Grund,
+    /// statt sich davon abzuheben. Weiß ginge nicht: Die App läuft erzwungen dunkel,
+    /// ein heller Grund bräuchte dunkle Schrift und damit eine zweite Farbwelt nur
+    /// für die Hilfe.
+    ///
+    /// Der Ton ist `gradientBottom` auf 60 Prozent seiner Helligkeit. Weißer Text
+    /// trägt darauf 13,7:1, und gegen den Verlauf darunter hebt er sich mit 1,5:1 ab,
+    /// also genauso deutlich wie die Hinweisflächen.
+    static let sheet = Color(red: 0x3E/255, green: 0x17/255, blue: 0x69/255)
+
+    /// Die Zeilen der Hilfe-Liste. Auf dem dunklen Sheet-Grund muss die Fläche
+    /// **heller** werden, nicht dunkler wie sonst, sonst verschwindet sie darin.
+    static let sheetRow = Color.white.opacity(0.15)
+
     /// Die Fläche unter Warnungen und Hinweisen. **Es gibt keine Warnfarbe.**
     ///
     /// Auf diesem Violett kommt Systemrot auf 2,15:1 und ist unlesbar. Bernstein trüge
@@ -88,5 +105,10 @@ extension View {
     /// alles, was dahinter liegt.
     func brandBackground() -> some View {
         background { Brand.background.ignoresSafeArea() }
+    }
+
+    /// Der flache dunkle Grund der Hilfe. Siehe `Brand.sheet`.
+    func sheetBackground() -> some View {
+        background { Brand.sheet.ignoresSafeArea() }
     }
 }

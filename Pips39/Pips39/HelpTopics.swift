@@ -20,7 +20,7 @@ private struct HelpPage<Content: View>: View {
             .padding()
             .padding(.bottom, 24)
         }
-        .brandBackground()
+        .sheetBackground()
         .navigationTitle(title)
         .navigationBarTitleDisplayMode(.inline)
     }
