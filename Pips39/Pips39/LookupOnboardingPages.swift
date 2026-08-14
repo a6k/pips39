@@ -59,7 +59,7 @@ struct LookupOnboardingPages: View {
                 .font(.footnote)
 
             VStack(alignment: .leading, spacing: 8) {
-                Text("Why it is 24 words only")
+                Text("Why 12 words are not enough")
                     .font(.headline)
                 Text("With 12 words too little would stay hidden: 62 bits, which is within reach of an attacker who got hold of what you typed. There is no length switch on this path for that reason.")
                     .font(.footnote)
