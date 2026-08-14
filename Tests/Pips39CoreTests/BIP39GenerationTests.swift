@@ -49,6 +49,25 @@ final class BIP39GenerationTests: XCTestCase {
         }
     }
 
+    /// Für 21 Wörter gibt es keinen offiziellen Vektor, und über die Würfelverfahren
+    /// ist diese Länge nicht erreichbar. Der Pfad war deshalb ungeprüft, obwohl
+    /// `allowedWordCounts` ihn zulässt.
+    func testTwentyOneWordsFromTwoHundredTwentyFourBits() throws {
+        let entropy = [UInt8](repeating: 0x5A, count: 28)
+        let words = try BIP39.mnemonic(from: entropy)
+        XCTAssertEqual(words.count, 21)
+        XCTAssertTrue(BIP39.isValid(mnemonic: words))
+    }
+
+    func testEveryAllowedWordCountCanBeGenerated() throws {
+        for count in BIP39.allowedWordCounts {
+            let entropyBytes = count * 11 * 32 / 33 / 8
+            let words = try BIP39.mnemonic(from: [UInt8](repeating: 0x3C, count: entropyBytes))
+            XCTAssertEqual(words.count, count, "\(entropyBytes) Byte ergaben nicht \(count) Wörter")
+            XCTAssertTrue(BIP39.isValid(mnemonic: words))
+        }
+    }
+
     func testRejectsEmptyEntropy() {
         XCTAssertThrowsError(try BIP39.mnemonic(from: [])) { error in
             XCTAssertEqual(error as? BIP39Error, .invalidEntropyLength(0))

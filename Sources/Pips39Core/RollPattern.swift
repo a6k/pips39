@@ -31,8 +31,18 @@ public enum RollPattern {
     /// gemeldet — auch dann nicht, wenn es für einen Menschen „komisch aussieht".
     private static let maximumProbability = 1e-9
 
-    /// Unter zwanzig Würfen reicht keine der Prüfungen unter die Grenze.
-    private static let minimumLength = 20
+    /// Unter zweiundzwanzig Würfen reicht keine der Prüfungen unter die Grenze.
+    ///
+    /// Bestimmt wird die Zahl von der schwächsten Prüfung, „nur zwei Augenzahlen":
+    /// 15 · ((1/3)ⁿ − 2 · 6⁻ⁿ) ergibt bei 20 Würfen 4,3·10⁻⁹, bei 21 noch 1,4·10⁻⁹
+    /// und erst bei 22 mit 4,8·10⁻¹⁰ einen Wert unter der Grenze. Hier stand vorher
+    /// 20, und damit meldete die Prüfung etwas, das nach der eigenen Regel zu häufig
+    /// vorkommt.
+    ///
+    /// „Alle gleich" läge schon ab 13 Würfen darunter (4,6·10⁻¹⁰). Zwei getrennte
+    /// Schwellen wären genauer, brächten aber nur bei sehr kurzen Folgen etwas, und
+    /// gewürfelt werden mindestens 50.
+    private static let minimumLength = 22
 
     /// Ab hier liegt „höchstens drei Augenzahlen" unter der Grenze: 20 · 2⁻³⁵ ≈ 6·10⁻¹⁰.
     /// Bei zwanzig Würfen wären es noch etwa 1 zu 50 000 — zu häufig.
@@ -119,8 +129,18 @@ public enum RollPattern {
     /// Das ist eine Teststatistik — der Unterschied zum verworfenen Chi-Quadrat-Test
     /// liegt nicht in der Methode, sondern in der Schwelle: Sie kommt aus der exakten
     /// Verteilung bei 10⁻⁹ und nicht aus einem üblichen Signifikanzniveau.
+    ///
+    /// **Nur der untere Schwanz.** Zu *wenige* Wechsel werden gemeldet, zu *viele*
+    /// nicht. Wer bewusst nie dieselbe Augenzahl zweimal hintereinander notiert,
+    /// erzeugt die maximale Wechselzahl und bleibt unbemerkt. Das kostet Entropie
+    /// (bei 99 Würfen 230 statt 256 Bit), fiele nach der 10⁻⁹-Regel aber ohnehin
+    /// erst ab etwa 154 Würfen unter die Grenze und wäre hier also gar nicht
+    /// meldbar.
     private static func probabilityOfAtMost(runs: Int, in length: Int) -> Double {
-        guard length > 0, runs >= 1 else { return 0 }
+        // Rückgabe 1, nicht 0: Eine 0 hieße „unmöglich" und führte zur Meldung.
+        // Erreichbar ist der Zweig nicht, `finding` bricht vorher ab. Als Vorgabe
+        // gehört trotzdem „nicht melden" ans Ende, nicht „melden".
+        guard length > 0, runs >= 1 else { return 1 }
 
         let logChange = log(5.0 / 6.0)
         let logStay = log(1.0 / 6.0)

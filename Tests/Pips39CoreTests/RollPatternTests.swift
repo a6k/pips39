@@ -90,7 +90,7 @@ final class RollPatternTests: XCTestCase {
 
     // MARK: Kurze Folgen
 
-    /// Unter 20 Würfen sind die Wahrscheinlichkeiten nicht mehr vernachlässigbar.
+    /// Unter 22 Würfen sind die Wahrscheinlichkeiten nicht mehr vernachlässigbar.
     /// Die Prüfung schweigt dann lieber.
     func testShortSequencesAreNotJudged() {
         XCTAssertNil(RollPattern.finding(for: rolls("111111")))

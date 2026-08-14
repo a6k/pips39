@@ -124,10 +124,11 @@ final class LocalizationRuleTests: XCTestCase {
         for method in DiceMethod.allCases {
             XCTAssertNotEqual(method.summary(locale: de), method.summary(locale: en),
                               "Kurzbeschreibung nicht übersetzt: \(method)")
-            XCTAssertNotEqual(method.verificationWarning(locale: de),
-                              method.verificationWarning(locale: en),
-                              "Warnung nicht übersetzt")
         }
+
+        XCTAssertNotEqual(DiceMethod.verificationWarning(locale: de),
+                          DiceMethod.verificationWarning(locale: en),
+                          "Warnung nicht übersetzt")
 
         XCTAssertNotEqual(EnvironmentProbe.notice(isNetworkAvailable: true, locale: de),
                           EnvironmentProbe.notice(isNetworkAvailable: true, locale: en),
@@ -138,10 +139,10 @@ final class LocalizationRuleTests: XCTestCase {
     /// Schlüssel selbst zurück, fehlt der Eintrag in der Tabelle.
     func testNoLookupReturnsItsOwnKey() {
         for locale in locales {
-            var texts = [EnvironmentProbe.notice(isNetworkAvailable: true, locale: locale) ?? ""]
+            var texts = [EnvironmentProbe.notice(isNetworkAvailable: true, locale: locale) ?? "",
+                         DiceMethod.verificationWarning(locale: locale)]
             for method in DiceMethod.allCases {
                 texts.append(method.summary(locale: locale))
-                texts.append(method.verificationWarning(locale: locale))
                 for length in SeedLength.allCases {
                     texts.append(method.rollCountHint(for: length, locale: locale))
                     texts.append(contentsOf: method.verificationSteps(for: length, locale: locale))

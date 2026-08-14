@@ -24,9 +24,21 @@ struct RollingOnboardingPages: View {
 
     private var verifyPage: some View {
         OnboardingPage(title: "First: check the app") {
-            Text("Do this now, while this device is still online. Make up a dice sequence for it. Never use the rolls behind a seed you intend to keep.")
+            Text("Do this now, while this device is still online.")
                 .font(.footnote)
                 .foregroundStyle(Brand.secondaryText)
+
+            // Der Satz kommt aus dem Paket (`verify.warning`) statt hier noch einmal
+            // geschrieben zu werden. Er stand dort seit jeher, wurde aber nur von
+            // Tests gelesen, während die Ansicht eine eigene Fassung führte. Zwei
+            // Fassungen derselben Warnung laufen früher oder später auseinander.
+            HStack(alignment: .top, spacing: 8) {
+                Image(systemName: "exclamationmark.triangle.fill")
+                Text(DiceMethod.verificationWarning())
+                    .font(.footnote.weight(.medium))
+                Spacer(minLength: 0)
+            }
+            .noticePanel()
 
             ForEach(DiceMethod.allCases, id: \.rawValue) { method in
                 VStack(alignment: .leading, spacing: 6) {

@@ -4,7 +4,7 @@
 
 /* ===== Onboarding ===== */
 "First: check the app" = "Zuerst: die App prüfen";
-"Do this now, while this device is still online. Make up a dice sequence for it. Never use the rolls behind a seed you intend to keep." = "Jetzt erledigen, solange dieses Gerät noch am Netz ist. Dafür eine Wurffolge ausdenken. Niemals die Würfe eines Seeds verwenden, der behalten werden soll.";
+"Do this now, while this device is still online." = "Jetzt erledigen, solange dieses Gerät noch am Netz ist.";
 "Source code on GitHub" = "Quelltext auf GitHub";
 "Tapping a link opens Safari. That is fine now and not later, so do it before you take the device offline." = "Ein Tipp auf einen Link öffnet Safari. Das ist jetzt in Ordnung und später nicht mehr, also vor dem Abschotten erledigen.";
 
@@ -96,7 +96,7 @@
 "Not for real money" = "Nicht für echtes Geld";
 "Do not use this app to create a seed for a wallet that will hold real money." = "Erzeuge mit dieser App keinen Seed für eine Wallet, in die echtes Geld soll.";
 "Use dice, a printed table and paper for that, in a room without electronics." = "Nimm dafür Würfel, eine gedruckte Tabelle und Papier in einem Raum ohne Elektronik.";
-"There is a very good guide for it on the bitbox.swiss site:" = "Eine sehr gute Anleitung findest du auf der Seite von bitbox.swiss:";
+"There is a good guide for it on the bitbox.swiss site, in German:" = "Eine gute Anleitung findest du auf der Seite von bitbox.swiss:";
 "Two ways to roll" = "Zwei Arten zu würfeln";
 "What differs: what you tap in, and who turns it into words." = "Der Unterschied: was du eintippst, und wer daraus die Wörter macht.";
 "You can change your mind afterwards. Both stay on the start screen." = "Du kannst dich später umentscheiden. Beide Wege bleiben auf der Startseite.";

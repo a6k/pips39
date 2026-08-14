@@ -37,23 +37,26 @@ final class DiceSessionPatternTests: XCTestCase {
 
     /// Unter zwanzig Würfen schweigt die Prüfung — dort wären drei oder fünf gleiche
     /// Würfe hintereinander noch gewöhnlich.
-    func testLivePatternStaysSilentBelowTwenty() {
-        XCTAssertNil(session(face: 1, times: 19).livePattern)
+    func testLivePatternStaysSilentBelowTwentyTwo() {
+        XCTAssertNil(session(face: 1, times: 21).livePattern)
     }
 
-    func testLivePatternAppearsAtTwenty() {
-        XCTAssertEqual(session(face: 1, times: 20).livePattern, .singleFace)
+    /// Zweiundzwanzig, nicht zwanzig. Die Zahl kommt von der schwächsten Prüfung:
+    /// „nur zwei Augenzahlen" liegt bei zwanzig Würfen noch bei 4,3·10⁻⁹ und damit
+    /// über der eigenen Grenze von 10⁻⁹.
+    func testLivePatternAppearsAtTwentyTwo() {
+        XCTAssertEqual(session(face: 1, times: 22).livePattern, .singleFace)
     }
 
     /// Der Hinweis ist eine Feststellung über den aktuellen Stand, kein Urteil, das
     /// stehen bleibt. Er wandert mit der Folge — und verschwindet, sobald sie
     /// insgesamt nicht mehr auffällt.
     ///
-    /// Dass er nach dem 22. Wurf noch steht, ist richtig so: zwanzig gleiche Würfe und
-    /// danach zwei einzelne sind drei Blöcke, und drei Blöcke auf zweiundzwanzig
-    /// Würfen bleiben unmöglich. Erst der unauffällige Rest hebt es auf.
+    /// Dass er nach dem 24. Wurf noch steht, ist richtig so: zweiundzwanzig gleiche
+    /// Würfe und danach zwei einzelne sind drei Blöcke, und drei Blöcke auf
+    /// vierundzwanzig Würfen bleiben unmöglich. Erst der unauffällige Rest hebt es auf.
     func testLivePatternFollowsTheSequenceAndClearsAgain() {
-        let session = session(face: 1, times: 20)
+        let session = session(face: 1, times: 22)
         XCTAssertEqual(session.livePattern, .singleFace)
 
         session.roll(2)
@@ -62,7 +65,7 @@ final class DiceSessionPatternTests: XCTestCase {
         session.roll(3)
         XCTAssertEqual(session.livePattern, .fewRuns(3))
 
-        for face in "4544552254652143215661544665" {
+        for face in "45445522546521432156615446" {
             session.roll(UInt8(face.wholeNumberValue!))
         }
         XCTAssertEqual(session.rollCount, 50)
@@ -74,7 +77,7 @@ final class DiceSessionPatternTests: XCTestCase {
     /// Fenster einzeln zu prüfen würde die Zahl der Gelegenheiten für einen Fehlalarm
     /// vervielfachen. Der Hinweis kommt deshalb früh oder gar nicht.
     func testAStrikingStartIsNotRememberedOnceTheWholeLooksNormal() {
-        let session = session(face: 1, times: 20)
+        let session = session(face: 1, times: 22)
         for face in "234544552254652143215661544665" {
             session.roll(UInt8(face.wholeNumberValue!))
         }
@@ -84,7 +87,7 @@ final class DiceSessionPatternTests: XCTestCase {
 
     /// Die Wortanzeige zeigt weiterhin erst zum Ergebnis.
     func testRollPatternStillWaitsForCompletion() {
-        let session = session(face: 1, times: 20)
+        let session = session(face: 1, times: 22)
         XCTAssertNotNil(session.livePattern)
         XCTAssertNil(session.rollPattern)
     }

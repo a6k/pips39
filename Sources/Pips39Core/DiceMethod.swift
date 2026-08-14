@@ -72,7 +72,11 @@ public enum DiceMethod: String, CaseIterable, Equatable {
     }
 
     /// Der Satz, ohne den der Nachrechnen-Bereich mehr schadet als nützt.
-    public func verificationWarning(locale: Locale = .current) -> String {
+    ///
+    /// **Statisch**, weil er für beide Verfahren derselbe ist. Als Instanzmethode
+    /// legte er nahe, es gäbe je Verfahren eine eigene Warnung, und die Ansicht
+    /// hätte ihn zweimal untereinander gezeigt.
+    public static func verificationWarning(locale: Locale = .current) -> String {
         Localized.string("verify.warning", locale)
     }
 }

@@ -71,7 +71,10 @@ struct OnboardingView: View {
                 .font(.body)
 
             VStack(alignment: .leading, spacing: 6) {
-                Text("There is a very good guide for it on the bitbox.swiss site:")
+                // Der Sprachhinweis steht **nur** im englischen Schlüssel. Für
+                // deutsche Leser ist er keine Einschränkung, und die Übersetzung
+                // lässt ihn deshalb weg.
+                Text("There is a good guide for it on the bitbox.swiss site, in German:")
                     .font(.body)
                 // Als Beschriftung der Titel des Artikels und nicht die nackte
                 // Adresse: Der Satz nennt die Seite bereits, und ein Slug über zwei

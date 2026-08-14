@@ -59,10 +59,10 @@ final class VerificationDataTests: XCTestCase {
         XCTAssertTrue(joined.contains("Raw Entropy"), "Hinweis auf Use Raw Entropy fehlt")
     }
 
-    func testEveryMethodWarnsAboutThrowawaySequences() {
-        for method in DiceMethod.allCases {
-            XCTAssertTrue(method.verificationWarning(locale: en).lowercased().contains("throwaway"),
-                          "Wegwerf-Hinweis fehlt bei \(method)")
-        }
+    /// Ein Satz für beide Verfahren, deshalb statisch. Wäre er je Verfahren
+    /// verschieden, stünde er auf der Prüfseite zweimal untereinander.
+    func testTheWarningAboutThrowawaySequencesExists() {
+        XCTAssertTrue(DiceMethod.verificationWarning(locale: en).lowercased().contains("throwaway"),
+                      "Wegwerf-Hinweis fehlt")
     }
 }
