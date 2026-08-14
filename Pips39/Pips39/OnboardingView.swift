@@ -63,30 +63,23 @@ struct OnboardingView: View {
 
     // MARK: Seite 1 — die Einordnung
 
-    /// Kein Verbot. „Nutze das nie für einen echten Seed" machte die App in sich
-    /// widersprüchlich — Abschreibkontrolle, Bildschirmschutz und Lockdown-Checkliste
-    /// ergeben nur für einen echten Seed Sinn — und wäre wirkungslos: Wer es trotzdem
-    /// tut, hat dann von der App selbst gehört, dass ihre Hinweise nicht gelten.
+    /// Zwei Sätze, sonst nichts.
+    ///
+    /// Die vorige Fassung ordnete die App auf einer Skala ein, statt zu warnen. Das
+    /// las sich wie Werbung und ging an der Aussage vorbei, die hier stehen soll.
+    /// Jeder weitere Satz auf dieser Seite schwächt die Warnung ab, deshalb stehen die
+    /// Einzelheiten auf den folgenden Seiten und nicht hier.
     private var introPage: some View {
-        OnboardingPage(title: "The safest way needs no app") {
-            Text("Dice, a printed table, paper and a pen, no electronics in the room. That makes a seed no device has ever seen. There is a good guide for it at BitBox.")
+        OnboardingPage(title: "Not for real money") {
+            Text("Do not use this app to create a seed for a wallet that will hold real money.")
+                .font(.body.weight(.semibold))
+                .foregroundStyle(.red)
+
+            Text("Use dice, a printed table and paper for that, in a room without electronics.")
                 .font(.body)
 
             Link("bitbox.swiss", destination: URL(string: ExternalLinks.bitboxGuide)!)
                 .font(.body.weight(.medium))
-
-            Text("One catch, so nobody is surprised later: paper and a pen get you 23 of the 24 words. The last one carries a checksum over the others, and nobody works that out by hand. A wallet has to supply it.")
-                .font(.footnote)
-                .foregroundStyle(.secondary)
-
-            VStack(alignment: .leading, spacing: 8) {
-                Text("Where Pips39 sits")
-                    .font(.headline)
-                Text("It is the step below: for an old iPhone you keep permanently offline. Weaker than paper, stronger than letting a wallet roll the seed for you and hoping it did it properly.")
-                    .font(.footnote)
-                Text("If you are securing serious money, take the paper route.")
-                    .font(.footnote.weight(.medium))
-            }
         }
     }
 

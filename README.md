@@ -13,20 +13,17 @@ nothing stays behind.
 There is also a third mode, **Lookup table**, which does something different: it
 replaces a printed sheet rather than computing a seed. See below.
 
-## The stronger way does not need this app
+## Not for real money
 
-Dice, a printed table, paper and a pen, no electronics in the room. That produces a
-seed no device has ever seen. There is a good guide for it at
-[bitbox.swiss](https://bitbox.swiss), and the app says so on its first screen rather
-than burying it.
+The first screen of the app says this, and so does this README:
 
-Pips39 is the step below: for an old iPhone you keep permanently offline. Weaker than
-paper, stronger than letting a wallet roll the seed for you and hoping it did it
-properly. If you are securing serious money, take the paper route.
+> **Do not use this app to create a seed for a wallet that will hold real money.**
+> Use dice, a printed table and paper for that, in a room without electronics. There is
+> a good guide at [bitbox.swiss](https://bitbox.swiss).
 
 One catch that applies either way: paper and a pen get you 23 of the 24 words. The last
-one carries a checksum over the others and nobody works that out by hand — a wallet has
-to supply it.
+one carries a checksum over the others and nobody works that out by hand, so a wallet
+has to supply it.
 
 ## How the onboarding is laid out
 
@@ -34,7 +31,7 @@ Three shared pages, then a branch, then two pages for whichever way you chose:
 
 | | Page | Content |
 |---|---|---|
-| **shared** | 1 · Before you start | Where this sits, the BitBox link, the checksum caveat |
+| **shared** | 1 · Not for real money | The warning, in two sentences, and the BitBox link |
 | | 2 · What a seed is | A number, not words; why randomness is everything; loaded dice |
 | | 3 · Two ways from here | The two cards — **this is where it branches** |
 | **A** | A1 · Check the app | `shasum`, iancoleman, source — while still online |

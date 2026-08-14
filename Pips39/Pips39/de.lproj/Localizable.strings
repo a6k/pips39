@@ -92,12 +92,9 @@
 "Enter your 23 words into your wallet. It will offer eight valid options for the last one. Pick between them with three coin flips, not by feel. Eight options are exactly three bits." = "Die 23 Wörter in die Wallet eingeben. Sie bietet acht gültige Möglichkeiten für das letzte an. Zwischen ihnen mit drei Münzwürfen wählen, nicht nach Gefühl. Acht Möglichkeiten sind genau drei Bit.";
 
 /* ===== Onboarding, gemeinsame Seiten ===== */
-"The safest way needs no app" = "Der sicherste Weg braucht keine App";
-"Dice, a printed table, paper and a pen, no electronics in the room. That makes a seed no device has ever seen. There is a good guide for it at BitBox." = "Würfel, eine gedruckte Tabelle, Papier und Stift, keine Elektronik im Raum. So entsteht ein Seed, den nie ein Gerät gesehen hat. Eine gute Anleitung dazu gibt es bei BitBox.";
-"One catch, so nobody is surprised later: paper and a pen get you 23 of the 24 words. The last one carries a checksum over the others, and nobody works that out by hand. A wallet has to supply it." = "Ein Haken, damit später niemand überrascht ist: Papier und Stift bringen dich bis Wort 23 von 24. Das letzte trägt eine Prüfsumme über die anderen, und die rechnet niemand von Hand. Die muss eine Wallet liefern.";
-"Where Pips39 sits" = "Wo Pips39 steht";
-"It is the step below: for an old iPhone you keep permanently offline. Weaker than paper, stronger than letting a wallet roll the seed for you and hoping it did it properly." = "Eine Stufe darunter: für ein altes iPhone, das dauerhaft offline bleibt. Schwächer als Papier, stärker als eine Wallet, die den Seed für dich auswürfelt und von der du hoffst, dass sie es ordentlich getan hat.";
-"If you are securing serious money, take the paper route." = "Wer echtes Geld absichert, nimmt den Papierweg.";
+"Not for real money" = "Nicht für echtes Geld";
+"Do not use this app to create a seed for a wallet that will hold real money." = "Erzeuge mit dieser App keinen Seed für eine Wallet, in die echtes Geld soll.";
+"Use dice, a printed table and paper for that, in a room without electronics." = "Nimm dafür Würfel, eine gedruckte Tabelle und Papier in einem Raum ohne Elektronik.";
 "What a seed is" = "Was ein Seed ist";
 "Your wallet is one very large number. Every key and every address is worked out from it. That number is the seed." = "Deine Wallet ist eine einzige sehr große Zahl. Jeder Schlüssel und jede Adresse wird daraus berechnet. Diese Zahl ist der Seed.";
 "It is written as words only so you can copy it by hand without mistakes. The words are not the secret. The number is." = "Geschrieben wird sie als Wörter, damit man sie ohne Fehler abschreiben kann. Nicht die Wörter sind das Geheimnis, sondern die Zahl.";
