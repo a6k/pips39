@@ -6,7 +6,7 @@
 
 **Architecture:** Wie bisher — die Wahl wird ein Typ im Paket (`SeedLength`), alles Rechnende hängt daran, die Ansicht bleibt dumm. Der Schalter ist ein `Picker` mit `.pickerStyle(.segmented)`.
 
-**Spec:** `~/Documents/Doku/02 Projekte/Ideen und Tests/Pips39/würfel-tool-spec.md`, Abschnitt 11 („12-Wort-Option")
+**Spec:** `das Spec (liegt im privaten Vault, nicht im Repo)`, Abschnitt 11 („12-Wort-Option")
 
 **Vorhanden:** 131 Tests grün, alle fünf Phasen umgesetzt.
 
@@ -109,7 +109,7 @@ final class SeedLengthTests: XCTestCase {
 
 - [ ] **Step 2: Test laufen lassen, Fehlschlag bestätigen**
 
-Run: `cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test`
+Run: `cd "$REPO" && swift test`
 Expected: FAIL, `cannot find 'SeedLength' in scope`.
 
 - [ ] **Step 3: `SeedLength.swift` schreiben**
@@ -163,13 +163,13 @@ public enum SeedLength: Int, CaseIterable, Identifiable, Equatable {
 
 - [ ] **Step 4: Tests laufen lassen**
 
-Run: `cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test`
+Run: `cd "$REPO" && swift test`
 Expected: PASS.
 
 - [ ] **Step 5: Commit**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 git add Sources/Pips39Core/SeedLength.swift Tests/Pips39CoreTests/SeedLengthTests.swift
 git commit -m "feat: SeedLength — 12 oder 24 Wörter als Typ"
 git push
@@ -272,7 +272,7 @@ final class SeedLengthWiringTests: XCTestCase {
 
 - [ ] **Step 2: Test laufen lassen, Fehlschlag bestätigen**
 
-Run: `cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test`
+Run: `cd "$REPO" && swift test`
 Expected: FAIL, `extra argument 'length' in call`.
 
 - [ ] **Step 3: `HashedEncoding.swift` erweitern**
@@ -369,13 +369,13 @@ Und in `discard()` die Wortzahl mitgeben:
 
 - [ ] **Step 6: Tests laufen lassen**
 
-Run: `cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test`
+Run: `cd "$REPO" && swift test`
 Expected: PASS, auch alle bisherigen Tests — die Vorgabe `.standard` hält sie am Leben.
 
 - [ ] **Step 7: Commit**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 git add Sources/Pips39Core/HashedEncoding.swift Sources/Pips39Core/DiceEntropy.swift Sources/Pips39Core/DiceSession.swift Tests/Pips39CoreTests/SeedLengthWiringTests.swift
 git commit -m "feat: Wortzahl durch DiceEntropy und DiceSession gereicht"
 git push
@@ -480,7 +480,7 @@ umstellen — die Erwartungen bleiben gleich.
 
 - [ ] **Step 3: Test laufen lassen, Fehlschlag bestätigen**
 
-Run: `cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test`
+Run: `cd "$REPO" && swift test`
 Expected: FAIL, `cannot call value of non-function type 'String'`.
 
 - [ ] **Step 4: `DiceMethod.swift` umstellen**
@@ -547,7 +547,7 @@ ihn im Nachrechnen-Bereich am Ergebnis, wo die tatsächliche Wortzahl bekannt is
 - [ ] **Step 6: Tests und Build**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test 2>&1 | tail -3
+cd "$REPO" && swift test 2>&1 | tail -3
 cd Pips39 && xcodebuild -project Pips39.xcodeproj -scheme Pips39 \
   -destination 'generic/platform=iOS Simulator' build 2>&1 | tail -3
 ```
@@ -556,7 +556,7 @@ Expected: alle Tests grün, `** BUILD SUCCEEDED **`.
 - [ ] **Step 7: Commit**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 git add Sources/Pips39Core/DiceMethod.swift Tests/Pips39CoreTests/ Pips39/Pips39/MethodChoiceView.swift Pips39/Pips39/IntroView.swift
 git commit -m "feat: Wurfzahl-Hinweise und Nachrechen-Anleitung folgen der Wortzahl"
 git push
@@ -640,16 +640,16 @@ Dort ist die Wortzahl bekannt, also gehört der 32-Zeichen-Hinweis genau hierhin
 - [ ] **Step 4: Bauen und Tests**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39/Pips39" && xcodebuild -project Pips39.xcodeproj \
+cd "$REPO/Pips39" && xcodebuild -project Pips39.xcodeproj \
   -scheme Pips39 -destination 'generic/platform=iOS Simulator' build 2>&1 | tail -3
-cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test 2>&1 | tail -3
+cd "$REPO" && swift test 2>&1 | tail -3
 ```
 Expected: `** BUILD SUCCEEDED **`, alle Tests grün.
 
 - [ ] **Step 5: Commit**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 git add Pips39/Pips39/MethodChoiceView.swift Pips39/Pips39/ContentView.swift Pips39/Pips39/VerifyView.swift
 git commit -m "feat: segmentierter Schalter für 12 oder 24 Wörter"
 git push

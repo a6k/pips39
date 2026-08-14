@@ -1,18 +1,127 @@
 # Pips39
 
-Ein Rechner, der aus Würfelwürfen einen BIP39-Seed macht und beim korrekten
-Abschreiben hilft. Keine Wallet: es wird nichts gespeichert, keine Adresse
-abgeleitet, keine Transaktion signiert.
+Roll dice, get a BIP39 seed phrase. Nothing is stored.
 
-## Aufbau
+Pips39 is a calculator for an old iPhone you keep permanently offline. You roll real
+dice, tap the results in, and it shows you 24 words (or 12). Then it helps you check
+that you copied them onto paper correctly. That is the whole app.
 
-- `Sources/Pips39Core` — Kernlogik ohne UI, per `swift test` prüfbar
-- Die iOS-App kommt in einer späteren Phase als eigenes Target dazu
+**It is not a wallet.** It never stores a seed, derives no addresses, signs no
+transactions and has no network code. There is nothing in it to steal, because
+nothing stays behind.
 
-## Tests
+## Read this before you trust it
 
-    swift test
+> **"Open source" means the source is auditable. It does not mean the binary you
+> installed is.**
 
-## Lizenz
+If you install Pips39 from the App Store, Apple re-signs the app and encrypts the
+executable with FairPlay. You cannot byte-compare that download against a build of
+this repository — reproducible builds are not achievable on iOS in practice. What you
+can verify is the source in front of you, and the app you build yourself from it.
 
-MIT
+So there are two honest positions, and you should pick one consciously:
+
+- **Convenience:** install from the App Store, read the source here to see what it is
+  supposed to do, and accept that the binary is Apple's word.
+- **Certainty:** clone this repository and build it yourself in Xcode. The app is
+  small enough that this is realistic, not theoretical.
+
+The app also has no way to prove it is offline. iOS gives no app a way to guarantee
+that. Pips39 states what it can observe — "this device is connected to a network" —
+and never tells you that you are safe. That judgement stays with you.
+
+## Verifying that it computes correctly
+
+Do this **once, on an ordinary computer, with a dice sequence you made up.** Never
+type the rolls behind a seed you intend to keep into a browser.
+
+Pips39 offers two ways to turn dice into entropy. They produce **different** seeds
+from the same rolls, which is why the method is shown next to the result and should be
+written down with the words.
+
+### SHA-256 (the default)
+
+Exactly 99 rolls for 24 words, 50 for 12. The digit string is hashed:
+
+```
+printf '%s' "1111…" | shasum -a 256
+```
+
+Paste the hex into the Entropy field at [iancoleman.io/bip39](https://iancoleman.io/bip39/),
+set Entropy type to `Hex`, and compare the words.
+
+For **12 words, use only the first 32 hex characters** — 128 of the 256 bits. Pasting
+all 64 gives you 24 words and a mismatch on a perfectly good seed.
+
+Worked example, 50 rolls of `1`:
+
+```
+3dac51a65ec9fcfc409a1b5f1defe92b
+diet glad hat rural panther lawsuit act drop gallery urge where fit
+```
+
+### Coleman
+
+Bit-for-bit identical to iancoleman.io/bip39 with the Dice entropy type. Enter exactly
+the rolls the app shows, no more, and compare.
+
+Two things there will silently give you the wrong answer if you miss them:
+
+1. **Select the Dice entropy type first.** Otherwise a sequence of only `1`s is read
+   as binary.
+2. **Leave Mnemonic Length on "Use Raw Entropy".** A fixed word count hashes the input
+   instead and truncates from the other end.
+
+Coleman does **not** convert dice as a base-6 number, which is what most people assume.
+Each roll is looked up in a variable-length bit table (`1→01`, `2→10`, `3→11`, `6→00`,
+`4→0`, `5→1`), yielding 1.67 bits per roll instead of 2.585. That is why the roll count
+under this method is not fixed. The full analysis, with line references into Coleman's
+source, is in [`docs/coleman-verfahren.md`](docs/coleman-verfahren.md).
+
+## Building and testing
+
+The security-critical code lives in a Swift package with no UI, so it can be tested
+without a simulator:
+
+```
+swift test
+```
+
+The app target is an ordinary Xcode project:
+
+```
+open Pips39/Pips39.xcodeproj
+```
+
+Deployment target is iOS 16, deliberately — the point is to reuse an old iPhone. You
+will need to select your own signing team.
+
+### What the tests actually check
+
+- All 24 official BIP39 vectors from `trezor/python-mnemonic`
+- The word list is byte-identical to `bitcoin/bips` `english.txt`, 2048 entries,
+  sorted and duplicate-free
+- Five dice vectors produced by running Ian Coleman's **actual JavaScript** under
+  node, matched on raw bits, entropy hex and the resulting words
+- The SHA-256 path against values computed independently with `shasum`
+- That the environment notice never contains the words *safe*, *secure*, *protected*,
+  *offline* or *air-gap* — the "no false all-clear" rule, enforced rather than
+  intended
+- That all 49 BIP39 words which are a prefix of another word stay ambiguous in the
+  keyboard, so nothing is ever auto-completed to the wrong word
+
+## Design notes worth knowing
+
+- **The custom keyboard is not decoration.** The iOS system keyboard learns typed
+  words, has autocorrect and dictation, and can be replaced by third-party keyboards.
+  Typing a seed through it would be a leak in the middle of the security core.
+- **Nothing is persisted, not even a "don't show this again" flag.** That is why the
+  onboarding appears on every launch.
+- **The method and seed length are chosen at the start of a run, not in settings.**
+  A setting that silently drifts between sessions would make a user believe a correct
+  backup was broken.
+
+## Licence
+
+MIT.

@@ -8,7 +8,7 @@
 
 **Tech Stack:** Swift 5.9, SwiftPM, CryptoKit (SHA-256), XCTest. Deployment-Targets `.iOS(.v16)` und `.macOS(.v13)`.
 
-**Spec:** `~/Documents/Doku/02 Projekte/Ideen und Tests/Pips39/würfel-tool-spec.md`
+**Spec:** `das Spec (liegt im privaten Vault, nicht im Repo)`
 
 **Nicht in dieser Phase:** `DiceEntropy` (blockiert, siehe Task 8), BIP39-Tastatur, Umgebungsprüfung, jegliche UI.
 
@@ -27,16 +27,16 @@ Das Konzept sagt „kein externes Framework für Krypto-Primitiven — alles sel
 ### Task 1: Repo, Paket, Grundgerüst
 
 **Files:**
-- Create: `/Users/dev/Documents/Projekte/Apps/Pips39/.gitignore`
-- Create: `/Users/dev/Documents/Projekte/Apps/Pips39/Package.swift`
-- Create: `/Users/dev/Documents/Projekte/Apps/Pips39/README.md`
-- Create: `/Users/dev/Documents/Projekte/Apps/Pips39/Sources/Pips39Core/Placeholder.swift`
-- Create: `/Users/dev/Documents/Projekte/Apps/Pips39/Tests/Pips39CoreTests/SmokeTests.swift`
+- Create: `.gitignore`
+- Create: `Package.swift`
+- Create: `README.md`
+- Create: `Sources/Pips39Core/Placeholder.swift`
+- Create: `Tests/Pips39CoreTests/SmokeTests.swift`
 
 - [ ] **Step 1: Git-Repo anlegen**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 git init
 git symbolic-ref HEAD refs/heads/main
 ```
@@ -109,7 +109,7 @@ final class SmokeTests: XCTestCase {
 - [ ] **Step 5: Leere Ressourcenordner anlegen, damit `Package.swift` auflöst**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 mkdir -p Sources/Pips39Core/Resources Tests/Pips39CoreTests/Resources
 touch Sources/Pips39Core/Resources/english.txt Tests/Pips39CoreTests/Resources/vectors.json
 ```
@@ -141,14 +141,14 @@ MIT
 
 Run:
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test
+cd "$REPO" && swift test
 ```
 Expected: PASS, ein Test (`testPackageBuilds`).
 
 - [ ] **Step 8: Commit**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 git add -A
 git commit -m "chore: Swift-Paket Pips39Core mit Grundgerüst angelegt"
 ```
@@ -158,7 +158,7 @@ git commit -m "chore: Swift-Paket Pips39Core mit Grundgerüst angelegt"
 Das Repo besteht bereits unter `https://github.com/a6k/pips39`.
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 git remote add origin https://github.com/a6k/pips39.git
 git push -u origin main
 ```
@@ -189,7 +189,7 @@ Die Wortliste ist sicherheitsrelevant: ein einziges vertauschtes Wort erzeugt fa
 - [ ] **Step 1: Wortliste laden und Prüfsumme notieren**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 curl -sL "https://raw.githubusercontent.com/bitcoin/bips/master/bip-0039/english.txt" \
   -o Sources/Pips39Core/Resources/english.txt
 wc -l < Sources/Pips39Core/Resources/english.txt
@@ -241,7 +241,7 @@ final class WordListTests: XCTestCase {
 
 Run:
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test
+cd "$REPO" && swift test
 ```
 Expected: FAIL, Compilerfehler `cannot find 'WordList' in scope`.
 
@@ -286,7 +286,7 @@ public enum WordList {
 - [ ] **Step 5: Platzhalter entfernen**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 rm Sources/Pips39Core/Placeholder.swift Tests/Pips39CoreTests/SmokeTests.swift
 ```
 
@@ -294,14 +294,14 @@ rm Sources/Pips39Core/Placeholder.swift Tests/Pips39CoreTests/SmokeTests.swift
 
 Run:
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test
+cd "$REPO" && swift test
 ```
 Expected: PASS, sechs Tests in `WordListTests`.
 
 - [ ] **Step 7: Commit**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 git add -A
 git commit -m "feat: offizielle BIP39-Wortliste eingebettet und Integrität getestet
 
@@ -373,7 +373,7 @@ final class BitStreamTests: XCTestCase {
 
 Run:
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test
+cd "$REPO" && swift test
 ```
 Expected: FAIL, Compilerfehler `cannot find 'BitStream' in scope`.
 
@@ -427,7 +427,7 @@ enum BitStream {
 
 Run:
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test
+cd "$REPO" && swift test
 ```
 Expected: PASS, alle Tests in `BitStreamTests` und `WordListTests`.
 
@@ -446,7 +446,7 @@ Das passt zum bekannten Vektor aus Task 4: Bei 128 Nullbits ist die letzte
 - [ ] **Step 5: Commit**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 git add -A
 git commit -m "feat: Bitzerlegung, 11-Bit-Gruppierung und SHA-256-Prüfsummenbits"
 ```
@@ -527,7 +527,7 @@ final class BIP39GenerationTests: XCTestCase {
 
 Run:
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test
+cd "$REPO" && swift test
 ```
 Expected: FAIL, Compilerfehler `cannot find 'BIP39' in scope`.
 
@@ -570,14 +570,14 @@ public enum BIP39 {
 
 Run:
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test
+cd "$REPO" && swift test
 ```
 Expected: PASS, alle Tests.
 
 - [ ] **Step 5: Commit**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 git add -A
 git commit -m "feat: Entropie zu BIP39-Mnemonic, geprüft an bekannten Vektoren"
 ```
@@ -595,7 +595,7 @@ Die vier Vektoren aus Task 4 sind Handarbeit und könnten falsch abgeschrieben s
 - [ ] **Step 1: Offizielle Vektoren laden**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 curl -sL "https://raw.githubusercontent.com/trezor/python-mnemonic/master/vectors.json" \
   -o Tests/Pips39CoreTests/Resources/vectors.json
 python3 -c "import json;d=json.load(open('Tests/Pips39CoreTests/Resources/vectors.json'));print(len(d['english']),'Vektoren')"
@@ -666,7 +666,7 @@ Der dritte Test benutzt `BIP39.isValid(mnemonic:)`, das erst in Task 6 entsteht.
 
 Run:
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test
+cd "$REPO" && swift test
 ```
 Expected: FAIL, Compilerfehler `type 'BIP39' has no member 'isValid'`.
 
@@ -684,14 +684,14 @@ ersetzen, damit Task 5 für sich abschließbar ist.
 
 Run:
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test
+cd "$REPO" && swift test
 ```
 Expected: PASS, `testAllOfficialVectorsProduceExpectedMnemonic` grün, ein übersprungener Test.
 
 - [ ] **Step 6: Commit**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 git add -A
 git commit -m "test: vollständige offizielle BIP39-Vektoren eingebunden"
 ```
@@ -762,7 +762,7 @@ final class BIP39ValidationTests: XCTestCase {
 
 Run:
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test
+cd "$REPO" && swift test
 ```
 Expected: FAIL, `type 'BIP39' has no member 'isValid'`.
 
@@ -845,14 +845,14 @@ löschen und den ursprünglichen Rumpf aus Task 5 Step 2 wiederherstellen:
 
 Run:
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test
+cd "$REPO" && swift test
 ```
 Expected: PASS, keine übersprungenen Tests mehr.
 
 - [ ] **Step 6: Commit**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 git add -A
 git commit -m "feat: Mnemonic-Validierung und Positionsvergleich für die Abschreibkontrolle"
 ```
@@ -907,7 +907,7 @@ final class SecretBytesTests: XCTestCase {
 
 Run:
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test
+cd "$REPO" && swift test
 ```
 Expected: FAIL, `cannot find 'SecretBytes' in scope`.
 
@@ -946,14 +946,14 @@ public struct SecretBytes: CustomStringConvertible, CustomDebugStringConvertible
 
 Run:
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test
+cd "$REPO" && swift test
 ```
 Expected: PASS, alle Tests.
 
 - [ ] **Step 5: Commit**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 git add -A
 git commit -m "feat: SecretBytes — Entropie ohne Debug-Ausgabe, aktiv löschbar"
 ```
@@ -1031,7 +1031,7 @@ Für jede Eingabe aus Step 4 einen Eintrag anlegen. Die Platzhalter in spitzen K
 - [ ] **Step 6: Prüfen, dass die Datei vollständig ist**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 python3 -c "
 import json
 d = json.load(open('Tests/Pips39CoreTests/Resources/coleman-vectors.json'))
@@ -1046,7 +1046,7 @@ Expected: `5 Vektoren vollständig` oder mehr.
 - [ ] **Step 7: Commit**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 git add -A
 git commit -m "docs: Colemans Würfel-Umrechnung analysiert und Referenzvektoren erhoben
 
@@ -1060,7 +1060,7 @@ Beantwortet den Blocker aus Spec 2.1. Grundlage für DiceEntropy in Phase 2."
 - [ ] **Alle Tests grün**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test
+cd "$REPO" && swift test
 ```
 
 - [ ] **Spec nachziehen:** In `würfel-tool-spec.md` Abschnitt 11 den Punkt „99 oder 100 Würfe" mit dem Ergebnis aus Task 8 schließen.

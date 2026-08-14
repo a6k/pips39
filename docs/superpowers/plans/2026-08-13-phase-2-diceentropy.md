@@ -8,7 +8,7 @@
 
 **Tech Stack:** Swift 5.9, SwiftPM, CryptoKit, XCTest. `swift test` auf der Kommandozeile, kein Simulator.
 
-**Spec:** `~/Documents/Doku/02 Projekte/Ideen und Tests/Pips39/würfel-tool-spec.md`, Abschnitte 2.1 und 2.4
+**Spec:** `das Spec (liegt im privaten Vault, nicht im Repo)`, Abschnitte 2.1 und 2.4
 **Quellenanalyse:** `docs/coleman-verfahren.md` im Repo — dort steht jede Behauptung mit Zeilenbeleg
 
 **Vorhanden aus Phase 1:** `WordList`, `BitStream`, `BIP39` (Erzeugung, `isValid`, `firstMismatch`), `SecretBytes`. 32 Tests grün.
@@ -161,7 +161,7 @@ enum ColemanVectors {
 
 - [ ] **Step 4: Test laufen lassen, Fehlschlag bestätigen**
 
-Run: `cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test`
+Run: `cd "$REPO" && swift test`
 Expected: FAIL, `cannot find 'ColemanEncoding' in scope`.
 
 - [ ] **Step 5: `DiceMethod.swift` schreiben**
@@ -221,13 +221,13 @@ enum ColemanEncoding {
 
 - [ ] **Step 7: Tests laufen lassen**
 
-Run: `cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test`
+Run: `cd "$REPO" && swift test`
 Expected: PASS. `testRawBitsMatchColemanVectors` prüft alle fünf Vektoren.
 
 - [ ] **Step 8: Commit**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 git add Package.swift Sources/Pips39Core/DiceMethod.swift Sources/Pips39Core/ColemanEncoding.swift Tests/Pips39CoreTests/ColemanEncodingTests.swift Tests/Pips39CoreTests/ColemanVectors.swift
 git commit -m "feat: Colemans Bit-Tabelle, geprüft gegen seine echte Ausgabe"
 git push
@@ -281,7 +281,7 @@ Folgendes vor der privaten `bitString`-Methode in `ColemanEncodingTests` einfüg
 
 - [ ] **Step 2: Test laufen lassen, Fehlschlag bestätigen**
 
-Run: `cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test`
+Run: `cd "$REPO" && swift test`
 Expected: FAIL, `type 'ColemanEncoding' has no member 'entropy'`.
 
 - [ ] **Step 3: `ColemanEncoding.swift` erweitern**
@@ -322,13 +322,13 @@ Vor der schließenden Klammer von `enum ColemanEncoding` einfügen:
 
 - [ ] **Step 4: Tests laufen lassen**
 
-Run: `cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test`
+Run: `cd "$REPO" && swift test`
 Expected: PASS. `testEntropyMatchesColemanVectors` prüft alle fünf Vektoren, darunter zwei mit leerem Ergebnis (zu wenig Entropie) und drei mit 160 bzw. 192 Bit.
 
 - [ ] **Step 5: Commit**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 git add Sources/Pips39Core/ColemanEncoding.swift Tests/Pips39CoreTests/ColemanEncodingTests.swift
 git commit -m "feat: Colemans Kürzungsregel — vorne abschneiden auf Vielfaches von 32"
 git push
@@ -385,7 +385,7 @@ final class ColemanRoundTripTests: XCTestCase {
 
 - [ ] **Step 2: Tests laufen lassen**
 
-Run: `cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test`
+Run: `cd "$REPO" && swift test`
 Expected: PASS ohne Änderung am Produktivcode — `ColemanEncoding` und `BIP39` existieren
 bereits. Falls hier etwas fehlschlägt, liegt der Fehler in Task 1 oder 2, **nicht** im
 Test: Die erwarteten Werte stammen aus Colemans echtem JavaScript.
@@ -397,7 +397,7 @@ Wurfzahlen ab, nicht Pips39s Zielgröße. Die kommt in Task 6.
 - [ ] **Step 3: Commit**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 git add Tests/Pips39CoreTests/ColemanRoundTripTests.swift
 git commit -m "test: Verfahren A liefert dieselben Wörter wie Colemans Werkzeug"
 git push
@@ -479,7 +479,7 @@ final class HashedEncodingTests: XCTestCase {
 
 - [ ] **Step 2: Test laufen lassen, Fehlschlag bestätigen**
 
-Run: `cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test`
+Run: `cd "$REPO" && swift test`
 Expected: FAIL, `cannot find 'HashedEncoding' in scope`.
 
 - [ ] **Step 3: `HashedEncoding.swift` schreiben**
@@ -507,7 +507,7 @@ enum HashedEncoding {
 
 - [ ] **Step 4: Tests laufen lassen**
 
-Run: `cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test`
+Run: `cd "$REPO" && swift test`
 Expected: PASS.
 
 - [ ] **Step 5: Gegenprobe von Hand**
@@ -522,7 +522,7 @@ Damit ist belegt, dass der im Spec versprochene Prüfweg für Nutzer tatsächlic
 - [ ] **Step 6: Commit**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 git add Sources/Pips39Core/HashedEncoding.swift Tests/Pips39CoreTests/HashedEncodingTests.swift
 git commit -m "feat: Verfahren B — SHA-256 über die Wurffolge, gegen shasum geprüft"
 git push
@@ -600,7 +600,7 @@ final class DiceEntropyBufferTests: XCTestCase {
 
 - [ ] **Step 2: Test laufen lassen, Fehlschlag bestätigen**
 
-Run: `cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test`
+Run: `cd "$REPO" && swift test`
 Expected: FAIL, `cannot find 'DiceEntropy' in scope`.
 
 - [ ] **Step 3: `DiceEntropy.swift` schreiben**
@@ -660,14 +660,14 @@ public struct DiceEntropy {
 
 - [ ] **Step 4: Tests laufen lassen**
 
-Run: `cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test`
+Run: `cd "$REPO" && swift test`
 Expected: PASS. Die Abschlussregel ist noch die Attrappe aus Step 3 — sie wird in
 Task 6 ersetzt, und die Tests dafür entstehen dort.
 
 - [ ] **Step 5: Commit**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 git add Sources/Pips39Core/DiceEntropy.swift Tests/Pips39CoreTests/DiceEntropyBufferTests.swift
 git commit -m "feat: Wurfpuffer mit Rückgängig und Wertprüfung"
 git push
@@ -771,7 +771,7 @@ final class DiceEntropyProgressTests: XCTestCase {
 
 - [ ] **Step 2: Test laufen lassen, Fehlschlag bestätigen**
 
-Run: `cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test`
+Run: `cd "$REPO" && swift test`
 Expected: FAIL, `cannot find 'DiceProgress' in scope`.
 
 - [ ] **Step 3: `DiceEntropy.swift` erweitern**
@@ -824,13 +824,13 @@ public enum DiceProgress: Equatable {
 
 - [ ] **Step 4: Tests laufen lassen**
 
-Run: `cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test`
+Run: `cd "$REPO" && swift test`
 Expected: PASS.
 
 - [ ] **Step 5: Commit**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 git add Sources/Pips39Core/DiceEntropy.swift Tests/Pips39CoreTests/DiceEntropyProgressTests.swift
 git commit -m "feat: Fortschritt in Würfen oder Bits, je nach Verfahren"
 git push
@@ -922,7 +922,7 @@ final class DiceEntropyResultTests: XCTestCase {
 
 - [ ] **Step 2: Test laufen lassen, Fehlschlag bestätigen**
 
-Run: `cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test`
+Run: `cd "$REPO" && swift test`
 Expected: FAIL, `value of type 'DiceEntropy' has no member 'entropy'`.
 
 - [ ] **Step 3: `DiceEntropy.swift` erweitern**
@@ -947,13 +947,13 @@ Vor der schließenden Klammer von `public struct DiceEntropy` einfügen:
 
 - [ ] **Step 4: Tests laufen lassen**
 
-Run: `cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test`
+Run: `cd "$REPO" && swift test`
 Expected: PASS, alle Tests aus Phase 1 und 2.
 
 - [ ] **Step 5: Commit**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 git add Sources/Pips39Core/DiceEntropy.swift Tests/Pips39CoreTests/DiceEntropyResultTests.swift
 git commit -m "feat: DiceEntropy liefert Entropie nach beiden Verfahren"
 git push
@@ -966,7 +966,7 @@ git push
 - [ ] **Alle Tests grün**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test
+cd "$REPO" && swift test
 ```
 
 - [ ] **Spec nachziehen:** In `würfel-tool-spec.md` Abschnitt 4 die Bausteintabelle um

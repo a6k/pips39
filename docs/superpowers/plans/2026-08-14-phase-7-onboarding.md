@@ -6,7 +6,7 @@
 
 **Architecture:** Eine `TabView` im Page-Stil ersetzt die bisherige `IntroView`. Neu im Paket sind nur die externen Adressen; alles andere ist Oberfläche.
 
-**Spec:** `~/Documents/Doku/02 Projekte/Ideen und Tests/Pips39/würfel-tool-spec.md`, Abschnitte 3 und 7
+**Spec:** `das Spec (liegt im privaten Vault, nicht im Repo)`, Abschnitte 3 und 7
 
 **Vorhanden:** 156 Tests grün, sechs Phasen umgesetzt, Zurück-Knopf in der Würfelansicht.
 
@@ -80,7 +80,7 @@ final class ExternalLinksTests: XCTestCase {
 
 - [ ] **Step 2: Test laufen lassen, Fehlschlag bestätigen**
 
-Run: `cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test`
+Run: `cd "$REPO" && swift test`
 Expected: FAIL, `cannot find 'ExternalLinks' in scope`.
 
 - [ ] **Step 3: `ExternalLinks.swift` schreiben**
@@ -105,13 +105,13 @@ public enum ExternalLinks {
 
 - [ ] **Step 4: Tests laufen lassen**
 
-Run: `cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test`
+Run: `cd "$REPO" && swift test`
 Expected: PASS.
 
 - [ ] **Step 5: Commit**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 git add Sources/Pips39Core/ExternalLinks.swift Tests/Pips39CoreTests/ExternalLinksTests.swift
 git commit -m "feat: externe Adressen im Paket, mit https-Test"
 git push
@@ -299,7 +299,7 @@ struct OnboardingView: View {
 - [ ] **Step 2: Bauen**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39/Pips39"
+cd "$REPO/Pips39"
 xcodebuild -project Pips39.xcodeproj -scheme Pips39 \
   -destination 'id=B3AA3F6E-A3D2-4F9F-B69A-05F507F090EF' build 2>&1 | tail -4
 ```
@@ -308,7 +308,7 @@ Expected: `** BUILD SUCCEEDED **`
 - [ ] **Step 3: Commit**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 git add Pips39/Pips39/OnboardingView.swift
 git commit -m "feat: Onboarding in drei Seiten, in ausführbarer Reihenfolge"
 git push
@@ -382,7 +382,7 @@ Und die Vorschau am Dateiende:
 - [ ] **Step 3: `IntroView.swift` löschen**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 git rm Pips39/Pips39/IntroView.swift
 ```
 
@@ -392,17 +392,17 @@ Der synchronisierte Ordner nimmt die Datei automatisch aus dem Build; an
 - [ ] **Step 4: Bauen und Tests**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39/Pips39"
+cd "$REPO/Pips39"
 xcodebuild -project Pips39.xcodeproj -scheme Pips39 \
   -destination 'id=B3AA3F6E-A3D2-4F9F-B69A-05F507F090EF' build 2>&1 | tail -4
-cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test 2>&1 | tail -3
+cd "$REPO" && swift test 2>&1 | tail -3
 ```
 Expected: `** BUILD SUCCEEDED **` und alle Tests grün.
 
 - [ ] **Step 5: Commit**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 git add Pips39/Pips39/ContentView.swift Pips39/Pips39/RollingView.swift Pips39/Pips39/IntroView.swift
 git commit -m "feat: Onboarding eingehängt, Hilfe-Knopf in der Würfelansicht"
 git push

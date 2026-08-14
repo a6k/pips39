@@ -8,7 +8,7 @@
 
 **Tech Stack:** SwiftUI, Combine, Network (`NWPathMonitor`), Swift 5.9, iOS 16.
 
-**Spec:** `~/Documents/Doku/02 Projekte/Ideen und Tests/Pips39/würfel-tool-spec.md`, Abschnitte 2.5, 2.6, 3 und 7
+**Spec:** `das Spec (liegt im privaten Vault, nicht im Repo)`, Abschnitte 2.5, 2.6, 3 und 7
 
 **Vorhanden aus Phasen 1–4:** `WordList`, `BitStream`, `BIP39`, `SecretBytes`, `DiceMethod` (`title`, `summary`, `rollCountHint`, `standard`), `ColemanEncoding`, `HashedEncoding`, `DiceEntropy`, `DiceProgress`, `DiceError`, `DiceSession` (`method`, `words`, `rollCount`, `progress`, `isComplete`, `canUndo`, `rollSequence`, `roll`, `undo`, `reveal`, `discard`), `WordEntry`, `TranscriptionCheck`; App mit `MethodChoiceView`, `RollingView`, `WordsView`, `WordKeyboardView`, `TranscriptionView`, `ScreenProtection`, `ContentView`. 119 Tests grün.
 
@@ -75,7 +75,7 @@ final class EnvironmentProbeTests: XCTestCase {
 
 - [ ] **Step 2: Test laufen lassen, Fehlschlag bestätigen**
 
-Run: `cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test`
+Run: `cd "$REPO" && swift test`
 Expected: FAIL, `cannot find 'EnvironmentProbe' in scope`.
 
 - [ ] **Step 3: `EnvironmentProbe.swift` schreiben**
@@ -127,13 +127,13 @@ public final class EnvironmentProbe: ObservableObject {
 
 - [ ] **Step 4: Tests laufen lassen**
 
-Run: `cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test`
+Run: `cd "$REPO" && swift test`
 Expected: PASS.
 
 - [ ] **Step 5: Commit**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 git add Sources/Pips39Core/EnvironmentProbe.swift Tests/Pips39CoreTests/EnvironmentProbeTests.swift
 git commit -m "feat: EnvironmentProbe — benennt den Netzzustand, gibt nie Entwarnung"
 git push
@@ -221,7 +221,7 @@ final class VerificationDataTests: XCTestCase {
 
 - [ ] **Step 2: Test laufen lassen, Fehlschlag bestätigen**
 
-Run: `cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test`
+Run: `cd "$REPO" && swift test`
 Expected: FAIL, `value of type 'DiceSession' has no member 'entropyHex'`.
 
 - [ ] **Step 3: `DiceSession.swift` erweitern**
@@ -272,13 +272,13 @@ Vor der schließenden Klammer von `public enum DiceMethod` einfügen:
 
 - [ ] **Step 5: Tests laufen lassen**
 
-Run: `cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test`
+Run: `cd "$REPO" && swift test`
 Expected: PASS.
 
 - [ ] **Step 6: Commit**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 git add Sources/Pips39Core/DiceSession.swift Sources/Pips39Core/DiceMethod.swift Tests/Pips39CoreTests/VerificationDataTests.swift
 git commit -m "feat: Hex-Entropie und verfahrensabhängige Nachrechen-Anleitung"
 git push
@@ -331,7 +331,7 @@ struct EnvironmentNotice: View {
 - [ ] **Step 2: Bauen**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39/Pips39"
+cd "$REPO/Pips39"
 xcodebuild -project Pips39.xcodeproj -scheme Pips39 \
   -destination 'generic/platform=iOS Simulator' build 2>&1 | tail -4
 ```
@@ -340,7 +340,7 @@ Expected: `** BUILD SUCCEEDED **`
 - [ ] **Step 3: Commit**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 git add Pips39/Pips39/EnvironmentNotice.swift
 git commit -m "feat: Umgebungshinweis ohne grünen Gegenzustand"
 git push
@@ -434,7 +434,7 @@ Expected: `** BUILD SUCCEEDED **`
 - [ ] **Step 3: Commit**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 git add Pips39/Pips39/IntroView.swift
 git commit -m "feat: Erklärseite mit Geräte-Checkliste"
 git push
@@ -544,7 +544,7 @@ Expected: `** BUILD SUCCEEDED **`
 - [ ] **Step 3: Commit**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 git add Pips39/Pips39/VerifyView.swift
 git commit -m "feat: Nachrechnen-Bereich mit Wurffolge, Hex und Anleitung"
 git push
@@ -658,17 +658,17 @@ struct ContentView: View {
 - [ ] **Step 3: Bauen und Paket-Tests**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39/Pips39"
+cd "$REPO/Pips39"
 xcodebuild -project Pips39.xcodeproj -scheme Pips39 \
   -destination 'generic/platform=iOS Simulator' build 2>&1 | tail -4
-cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test 2>&1 | tail -3
+cd "$REPO" && swift test 2>&1 | tail -3
 ```
 Expected: `** BUILD SUCCEEDED **` und alle Tests grün.
 
 - [ ] **Step 4: Commit**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 git add Pips39/Pips39/ContentView.swift Pips39/Pips39/WordsView.swift
 git commit -m "feat: Erklärseite, Umgebungshinweis und Nachrechnen im Ablauf"
 git push

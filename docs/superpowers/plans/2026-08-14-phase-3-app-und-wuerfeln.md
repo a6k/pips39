@@ -8,7 +8,7 @@
 
 **Tech Stack:** SwiftUI, Combine (`ObservableObject`), Swift 5.9, Deployment Target iOS 16.0.
 
-**Spec:** `~/Documents/Doku/02 Projekte/Ideen und Tests/Pips39/würfel-tool-spec.md`
+**Spec:** `das Spec (liegt im privaten Vault, nicht im Repo)`
 
 **Vorhanden aus Phase 1 und 2:** `WordList`, `BitStream`, `BIP39`, `SecretBytes`, `DiceMethod`, `ColemanEncoding`, `HashedEncoding`, `DiceEntropy`, `DiceProgress`, `DiceError`. 73 Tests grün.
 
@@ -41,7 +41,7 @@ Zwei Dinge, die zusammengehören, weil beide nur am Bauergebnis prüfbar sind.
 - [ ] **Step 1: Ausgangslage festhalten**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39/Pips39"
+cd "$REPO/Pips39"
 grep -c "IPHONEOS_DEPLOYMENT_TARGET = 26.5" Pips39.xcodeproj/project.pbxproj
 ```
 Expected: `4`
@@ -49,7 +49,7 @@ Expected: `4`
 - [ ] **Step 2: Deployment Target senken**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39/Pips39"
+cd "$REPO/Pips39"
 sed -i '' 's/IPHONEOS_DEPLOYMENT_TARGET = 26\.5;/IPHONEOS_DEPLOYMENT_TARGET = 16.0;/g' Pips39.xcodeproj/project.pbxproj
 grep -o "IPHONEOS_DEPLOYMENT_TARGET = [0-9.]*" Pips39.xcodeproj/project.pbxproj | sort | uniq -c
 ```
@@ -68,7 +68,7 @@ ab, sobald ein Anker nicht genau einmal vorkommt — es hinterlässt in dem Fall
 halb bearbeitete Datei.
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39/Pips39"
+cd "$REPO/Pips39"
 cp Pips39.xcodeproj/project.pbxproj /tmp/pbxproj.bak
 python3 - <<'PY'
 import sys
@@ -156,7 +156,7 @@ PY
 Danach prüfen, dass Xcode die Datei noch lesen kann:
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39/Pips39"
+cd "$REPO/Pips39"
 xcodebuild -project Pips39.xcodeproj -list 2>&1 | head -20
 ```
 Expected: die drei Targets `Pips39`, `Pips39Tests`, `Pips39UITests` und das Schema `Pips39`.
@@ -196,7 +196,7 @@ struct ContentView: View {
 - [ ] **Step 5: Bauen**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39/Pips39"
+cd "$REPO/Pips39"
 xcodebuild -project Pips39.xcodeproj -scheme Pips39 \
   -destination 'generic/platform=iOS Simulator' build 2>&1 | tail -20
 ```
@@ -208,7 +208,7 @@ Schlägt der Build mit `no such module 'Pips39Core'` fehl, ist Step 3 nicht voll
 - [ ] **Step 6: Commit**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 git add Pips39/Pips39.xcodeproj/project.pbxproj Pips39/Pips39/ContentView.swift
 git commit -m "chore: App-Target auf iOS 16 gesenkt und mit Pips39Core verdrahtet"
 git push
@@ -341,7 +341,7 @@ final class DiceSessionTests: XCTestCase {
 
 - [ ] **Step 2: Test laufen lassen, Fehlschlag bestätigen**
 
-Run: `cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test`
+Run: `cd "$REPO" && swift test`
 Expected: FAIL, `cannot find 'DiceSession' in scope`.
 
 - [ ] **Step 3: `DiceSession.swift` schreiben**
@@ -411,13 +411,13 @@ public final class DiceSession: ObservableObject {
 
 - [ ] **Step 4: Tests laufen lassen**
 
-Run: `cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test`
+Run: `cd "$REPO" && swift test`
 Expected: PASS, alle bisherigen plus die neuen `DiceSessionTests`.
 
 - [ ] **Step 5: Commit**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 git add Sources/Pips39Core/DiceSession.swift Tests/Pips39CoreTests/DiceSessionTests.swift
 git commit -m "feat: DiceSession — die gesamte Ablauflogik, ohne Simulator prüfbar"
 git push
@@ -472,7 +472,7 @@ final class DiceMethodLabelTests: XCTestCase {
 
 - [ ] **Step 2: Test laufen lassen, Fehlschlag bestätigen**
 
-Run: `cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test`
+Run: `cd "$REPO" && swift test`
 Expected: FAIL, `type 'DiceMethod' has no member 'title'`.
 
 - [ ] **Step 3: `DiceMethod.swift` erweitern**
@@ -513,13 +513,13 @@ Vor der schließenden Klammer von `public enum DiceMethod` einfügen:
 
 - [ ] **Step 4: Tests laufen lassen**
 
-Run: `cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test`
+Run: `cd "$REPO" && swift test`
 Expected: PASS.
 
 - [ ] **Step 5: Commit**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 git add Sources/Pips39Core/DiceMethod.swift Tests/Pips39CoreTests/DiceMethodLabelTests.swift
 git commit -m "feat: Beschriftungen der beiden Verfahren im Modell"
 git push
@@ -610,7 +610,7 @@ struct MethodChoiceView: View {
 - [ ] **Step 2: Bauen**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39/Pips39"
+cd "$REPO/Pips39"
 xcodebuild -project Pips39.xcodeproj -scheme Pips39 \
   -destination 'generic/platform=iOS Simulator' build 2>&1 | tail -5
 ```
@@ -619,7 +619,7 @@ Expected: `** BUILD SUCCEEDED **`
 - [ ] **Step 3: Commit**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 git add Pips39/Pips39/MethodChoiceView.swift
 git commit -m "feat: Verfahrenswahl als erster Schritt, nicht als Einstellung"
 git push
@@ -727,7 +727,7 @@ der letzte Wurf um ein Bit über das Ziel schießt.
 - [ ] **Step 2: Bauen**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39/Pips39"
+cd "$REPO/Pips39"
 xcodebuild -project Pips39.xcodeproj -scheme Pips39 \
   -destination 'generic/platform=iOS Simulator' build 2>&1 | tail -5
 ```
@@ -736,7 +736,7 @@ Expected: `** BUILD SUCCEEDED **`
 - [ ] **Step 3: Commit**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 git add Pips39/Pips39/RollingView.swift
 git commit -m "feat: Würfeleingabe mit Rückgängig und verfahrensrichtigem Fortschritt"
 git push
@@ -825,7 +825,7 @@ Expected: `** BUILD SUCCEEDED **`
 - [ ] **Step 3: Commit**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 git add Pips39/Pips39/WordsView.swift
 git commit -m "feat: Wortanzeige mit Verfahrensangabe"
 git push
@@ -924,7 +924,7 @@ Expected: `** BUILD SUCCEEDED **`, mit einer Deprecation-Warnung zu `UIScreen.ma
 - [ ] **Step 4: Commit**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 git add Pips39/Pips39/ScreenProtection.swift Pips39/Pips39/WordsView.swift
 git commit -m "feat: Wörter bei Hintergrundwechsel und Bildschirmaufnahme verdecken"
 git push
@@ -982,14 +982,14 @@ Expected: `** BUILD SUCCEEDED **`
 - [ ] **Step 3: Alle Paket-Tests laufen lassen**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test
+cd "$REPO" && swift test
 ```
 Expected: PASS, alle Tests aus Phase 1 bis 3.
 
 - [ ] **Step 4: Commit**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 git add Pips39/Pips39/ContentView.swift
 git commit -m "feat: Ablauf verdrahtet — Verfahren, Würfeln, Wörter, Verwerfen"
 git push

@@ -8,7 +8,7 @@
 
 **Tech Stack:** SwiftUI, Combine, Swift 5.9, iOS 16.
 
-**Spec:** `~/Documents/Doku/02 Projekte/Ideen und Tests/Pips39/würfel-tool-spec.md`, Abschnitte 2.2 und 2.3
+**Spec:** `das Spec (liegt im privaten Vault, nicht im Repo)`, Abschnitte 2.2 und 2.3
 
 **Vorhanden aus Phasen 1–3:** `WordList`, `BitStream`, `BIP39`, `SecretBytes`, `DiceMethod`, `ColemanEncoding`, `HashedEncoding`, `DiceEntropy`, `DiceProgress`, `DiceError`, `DiceSession`; App mit `MethodChoiceView`, `RollingView`, `WordsView`, `ScreenProtection`, `ContentView`. 90 Tests grün, App läuft im Simulator.
 
@@ -211,7 +211,7 @@ final class WordEntryTests: XCTestCase {
 
 - [ ] **Step 2: Test laufen lassen, Fehlschlag bestätigen**
 
-Run: `cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test`
+Run: `cd "$REPO" && swift test`
 Expected: FAIL, `cannot find 'WordEntry' in scope`.
 
 - [ ] **Step 3: `WordEntry.swift` schreiben**
@@ -287,13 +287,13 @@ public struct WordEntry {
 
 - [ ] **Step 4: Tests laufen lassen**
 
-Run: `cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test`
+Run: `cd "$REPO" && swift test`
 Expected: PASS. `testFourLettersAlwaysResolveToOneWord` prüft alle 2048 Wörter.
 
 - [ ] **Step 5: Commit**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 git add Sources/Pips39Core/WordEntry.swift Tests/Pips39CoreTests/WordEntryTests.swift
 git commit -m "feat: WordEntry — Eingabe nur entlang der BIP39-Wortliste"
 git push
@@ -418,7 +418,7 @@ final class TranscriptionCheckTests: XCTestCase {
 
 - [ ] **Step 2: Test laufen lassen, Fehlschlag bestätigen**
 
-Run: `cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test`
+Run: `cd "$REPO" && swift test`
 Expected: FAIL, `cannot find 'TranscriptionCheck' in scope`.
 
 - [ ] **Step 3: `TranscriptionCheck.swift` schreiben**
@@ -480,13 +480,13 @@ public final class TranscriptionCheck: ObservableObject {
 
 - [ ] **Step 4: Tests laufen lassen**
 
-Run: `cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test`
+Run: `cd "$REPO" && swift test`
 Expected: PASS.
 
 - [ ] **Step 5: Commit**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 git add Sources/Pips39Core/TranscriptionCheck.swift Tests/Pips39CoreTests/TranscriptionCheckTests.swift
 git commit -m "feat: TranscriptionCheck — Abgleich Position für Position"
 git push
@@ -579,7 +579,7 @@ struct WordKeyboardView: View {
 - [ ] **Step 2: Prüfen**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39/Pips39"
+cd "$REPO/Pips39"
 xcodebuild -project Pips39.xcodeproj -scheme Pips39 \
   -destination 'generic/platform=iOS Simulator' build 2>&1 | tail -4
 ```
@@ -588,7 +588,7 @@ Expected: `** BUILD SUCCEEDED **`
 - [ ] **Step 3: Commit**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 git add Pips39/Pips39/WordKeyboardView.swift
 git commit -m "feat: eigene Buchstabentastatur statt der Systemtastatur"
 git push
@@ -723,7 +723,7 @@ Expected: `** BUILD SUCCEEDED **`
 - [ ] **Step 3: Commit**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 git add Pips39/Pips39/TranscriptionView.swift
 git commit -m "feat: Prüfansicht für die Abschreibkontrolle"
 git push
@@ -842,17 +842,17 @@ struct ContentView: View {
 - [ ] **Step 3: Prüfen**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39/Pips39"
+cd "$REPO/Pips39"
 xcodebuild -project Pips39.xcodeproj -scheme Pips39 \
   -destination 'generic/platform=iOS Simulator' build 2>&1 | tail -4
-cd "/Users/dev/Documents/Projekte/Apps/Pips39" && swift test 2>&1 | tail -3
+cd "$REPO" && swift test 2>&1 | tail -3
 ```
 Expected: `** BUILD SUCCEEDED **` und alle Paket-Tests grün.
 
 - [ ] **Step 4: Commit**
 
 ```bash
-cd "/Users/dev/Documents/Projekte/Apps/Pips39"
+cd "$REPO"
 git add Pips39/Pips39/WordsView.swift Pips39/Pips39/ContentView.swift
 git commit -m "feat: Abschreibkontrolle in den Ablauf eingehängt"
 git push
