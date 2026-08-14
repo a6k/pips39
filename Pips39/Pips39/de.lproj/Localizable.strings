@@ -167,3 +167,18 @@
 "That the phone recorded what it saw. Without that recording it is the full 128 or 256 bits, and no number in the tables above applies." = "Dass das Telefon mitgeschnitten hat, was es sah. Ohne diesen Mitschnitt sind es die vollen 128 oder 256 Bit, und keine Zahl aus den Tabellen oben gilt.";
 "And that the attacker knows what to look for, meaning they have an address to check against." = "Und dass der Angreifer weiß, wonach er sucht, also eine Adresse hat, gegen die er prüfen kann.";
 "What no number protects against: somebody photographing your paper." = "Wogegen keine Zahl hilft: dass jemand deinen Zettel fotografiert.";
+
+/* Hilfe: Der Quellcode */
+"The source code" = "Der Quellcode";
+"You do not have to believe these pages. Everything this app does is open, and you can read it and build it yourself." = "Du musst diesen Seiten nicht glauben. Alles, was die App tut, liegt offen, du kannst es nachlesen und selbst bauen.";
+"Building it" = "Selbst bauen";
+"Clone the repository and open Pips39/Pips39.xcodeproj. For the simulator that is everything you need." = "Das Repo klonen und Pips39/Pips39.xcodeproj öffnen. Für den Simulator brauchst du nichts weiter.";
+"Checking the maths without a simulator" = "Die Rechnung ohne Simulator prüfen";
+"The part that turns dice into words is a Swift package with no interface, so it can be tested on its own. Running swift test in the repository checks it against the official BIP39 test vectors, among others." = "Der Teil, der aus Würfen Wörter macht, ist ein Swift-Paket ohne Oberfläche und lässt sich für sich prüfen. Ein swift test im Repo misst ihn unter anderem an den offiziellen BIP39-Testvektoren.";
+"Building for a real iPhone" = "Für ein echtes iPhone bauen";
+"That needs an Apple development team, and this project carries none on purpose: the ID belongs to a person, and the repository is public." = "Dafür braucht es ein Apple-Entwicklerteam, und dieses Projekt trägt bewusst keines: Die Kennung gehört einer Person, und das Repo ist öffentlich.";
+"Put yours in Pips39/Local.xcconfig, a file that .gitignore keeps out of the repository:" = "Trag deine in Pips39/Local.xcconfig ein, eine Datei, die .gitignore aus dem Repo heraushält:";
+"DEVELOPMENT_TEAM = your ten-character team id" = "DEVELOPMENT_TEAM = deine zehnstellige Team-ID";
+"Pips39/Signing.xcconfig pulls that file in with an optional include, so a clone without it still builds for the simulator." = "Pips39/Signing.xcconfig zieht diese Datei über ein optionales Include herein. Ein Klon ohne sie baut trotzdem für den Simulator.";
+"Xcode writes the team ID back into project.pbxproj whenever you touch the team picker. If you contribute, install the commit hook once per clone; it refuses any commit that carries an ID into the repository." = "Xcode schreibt die Team-ID jedes Mal in project.pbxproj zurück, wenn du die Teamauswahl anfasst. Wer mitarbeitet, richtet den Commit-Hook einmal pro Klon ein; er weist jeden Commit ab, der eine Kennung ins Repo trägt.";
+"git config core.hooksPath scripts/githooks" = "git config core.hooksPath scripts/githooks";

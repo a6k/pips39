@@ -51,6 +51,24 @@ private struct HelpRow: View {
     }
 }
 
+/// Eine Befehls- oder Konfigurationszeile. Nichtproportional und auf eigener Fläche,
+/// damit klar ist, dass sie genau so abgetippt wird.
+private struct HelpCode: View {
+    // `LocalizedStringKey`, nicht `String`: Ein einfacher String geht unübersetzt
+    // durch. Der Schlüsselname bleibt in beiden Sprachen stehen, nur der Platzhalter
+    // dahinter wird übersetzt.
+    let text: LocalizedStringKey
+    var body: some View {
+        Text(text)
+            .font(.system(.caption, design: .monospaced))
+            .textSelection(.enabled)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(10)
+            .background(Brand.sheetRow)
+            .clipShape(RoundedRectangle(cornerRadius: 8))
+    }
+}
+
 // MARK: Was ein Seed ist
 
 struct HelpSeedTopic: View {
@@ -137,6 +155,38 @@ struct HelpStrengthTopic: View {
             Text("And that the attacker knows what to look for, meaning they have an address to check against.")
             Text("What no number protects against: somebody photographing your paper.")
                 .fontWeight(.medium)
+        }
+        .font(.footnote)
+    }
+}
+
+// MARK: Der Quellcode
+
+struct HelpSourceTopic: View {
+    var body: some View {
+        HelpPage(title: "The source code") {
+            Text("You do not have to believe these pages. Everything this app does is open, and you can read it and build it yourself.")
+
+            // Unterstrichen wie überall: Der Akzent ist Weiß, ohne Unterstrich wäre
+            // der Link vom Fließtext nicht zu unterscheiden.
+            Link("github.com/a6k/pips39",
+                 destination: URL(string: ExternalLinks.sourceCode)!)
+                .font(.footnote.weight(.medium))
+                .underline()
+
+            HelpHeading(text: "Building it")
+            Text("Clone the repository and open Pips39/Pips39.xcodeproj. For the simulator that is everything you need.")
+
+            HelpHeading(text: "Checking the maths without a simulator")
+            Text("The part that turns dice into words is a Swift package with no interface, so it can be tested on its own. Running swift test in the repository checks it against the official BIP39 test vectors, among others.")
+
+            HelpHeading(text: "Building for a real iPhone")
+            Text("That needs an Apple development team, and this project carries none on purpose: the ID belongs to a person, and the repository is public.")
+            Text("Put yours in Pips39/Local.xcconfig, a file that .gitignore keeps out of the repository:")
+            HelpCode(text: "DEVELOPMENT_TEAM = your ten-character team id")
+            Text("Pips39/Signing.xcconfig pulls that file in with an optional include, so a clone without it still builds for the simulator.")
+            Text("Xcode writes the team ID back into project.pbxproj whenever you touch the team picker. If you contribute, install the commit hook once per clone; it refuses any commit that carries an ID into the repository.")
+            HelpCode(text: "git config core.hooksPath scripts/githooks")
         }
         .font(.footnote)
     }

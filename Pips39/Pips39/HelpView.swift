@@ -24,6 +24,7 @@ struct HelpView: View {
                     NavigationLink("About the dice") { HelpDiceTopic() }
                     NavigationLink("How safe is this really") { HelpStrengthTopic() }
                     NavigationLink("Take it offline") { HelpOfflineTopic(probe: probe) }
+                    NavigationLink("The source code") { HelpSourceTopic() }
                 }
                 .listRowBackground(Brand.sheetRow)
             }
