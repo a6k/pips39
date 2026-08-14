@@ -111,7 +111,11 @@ struct RollingView: View {
 
     private var header: some View {
         VStack(spacing: 6) {
-            Text(session.method.title)
+            // Verfahren und Wortzahl stehen zusammen, weil beide zum Ergebnis gehören
+            // und man sonst mitten im Würfeln nicht mehr weiß, worauf man zuläuft.
+            // Zusammengesetzt statt als Formatstring: Beide Teile sind bereits
+            // übersetzt, ein eigener Schlüssel dafür wäre eine Fehlerquelle mehr.
+            Text(session.method.title + " " + session.length.title())
                 .font(.caption.weight(.semibold))
                 .foregroundStyle(.secondary)
             Text(progressText)
