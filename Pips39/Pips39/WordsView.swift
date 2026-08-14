@@ -22,6 +22,22 @@ struct WordsView: View {
                         .foregroundStyle(.secondary)
                 }
 
+                // Oben, damit es gelesen wird, *bevor* jemand abschreibt. Orange und
+                // nicht rot: die Wörter sind gültig, wer tatsächlich so gewürfelt hat,
+                // darf sie behalten. Die App stellt fest und blockiert nicht.
+                if let finding = session.rollPattern {
+                    HStack(alignment: .top, spacing: 8) {
+                        Image(systemName: "exclamationmark.triangle.fill")
+                        Text(RollPattern.notice(for: finding))
+                            .font(.footnote.weight(.medium))
+                        Spacer(minLength: 0)
+                    }
+                    .foregroundStyle(.orange)
+                    .padding(12)
+                    .background(Color.orange.opacity(0.12))
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                }
+
                 LazyVGrid(columns: columns, alignment: .leading, spacing: 10) {
                     ForEach(Array(session.words.enumerated()), id: \.offset) { index, word in
                         HStack(spacing: 8) {
