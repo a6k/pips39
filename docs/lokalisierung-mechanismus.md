@@ -124,3 +124,39 @@ gerade Anführungszeichen haben.
 Das **App-Target** ist davon nicht betroffen — dort baut Xcode, und String Catalogs
 sind der bequemere Weg. Es ist also in Ordnung, wenn im Paket `.strings` und in der
 App `.xcstrings` liegen. Zwei Mechanismen, aber jeder dort, wo er trägt.
+
+## Verwaiste Schlüssel finden — und die zwei Fallen dabei
+
+Nach einem Umbau bleiben Einträge zurück, die niemand mehr nachschlägt. Sie schaden
+nicht, aber sie täuschen: Wer sie liest, hält sie für benutzt.
+
+Der naheliegende Weg — jeden Schlüssel im Swift-Code suchen — meldet **falsch positiv**,
+weil zwei Sorten Schlüssel nie wörtlich im Code stehen:
+
+**1. Interpolierte Schlüssel.** `OnboardingPath` baut sie zusammen:
+
+```swift
+Localized.string("onboarding.path.\(rawValue).title", locale)
+```
+
+Im Code steht nie `"onboarding.path.rollAndCompute.title"`. Wer den Schlüssel löscht,
+bekommt keinen Compilerfehler — nur eine Oberfläche, die plötzlich englisch ist.
+
+**2. `Text` mit Interpolation.** SwiftUI macht daraus einen `LocalizedStringKey` mit
+Formatplatzhaltern:
+
+```swift
+Text("Word \(check.position + 1) of \(check.total)")   // Schlüssel: Word %lld of %lld
+Text("Method: \(session.method.title) — note this…")   // Schlüssel: Method: %@ — note…
+```
+
+Der Schlüssel enthält `%lld` bzw. `%@`, der Quelltext `\(…)`. Auch hier findet die Suche
+nichts, obwohl der Eintrag gebraucht wird.
+
+**Praktisch heißt das:** Die Suche liefert Kandidaten, keine Befunde. Jeder Treffer wird
+von Hand geprüft — enthält er einen Formatplatzhalter, oder passt er auf ein Muster, das
+irgendwo zusammengesetzt wird, ist er **nicht** verwaist. Beim Aufräumen am 2026-08-14
+blieben von elf Kandidaten genau zwei übrig.
+
+Danach bauen, installieren und die betroffenen Bildschirme ansehen. Ein fehlender
+Eintrag fällt sonst erst dem Nutzer auf.

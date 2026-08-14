@@ -17,9 +17,7 @@
 "Block USB accessories under Face ID & Passcode." = "USB-Zubehör unter Face ID und Code sperren.";
 "Turn on Lockdown Mode." = "Blockierungsmodus einschalten.";
 "Turn off Settings, App Store, Offload Unused Apps — otherwise iOS may delete this app and need the network to restore it." = "Einstellungen, App Store, Nicht benutzte Apps auslagern abschalten — sonst löscht iOS diese App und braucht zum Wiederherstellen das Netz.";
-"The notice above disappears once there is no connection left. That is a statement, not an all-clear — see the last page." = "Der Hinweis oben verschwindet, sobald keine Verbindung mehr besteht. Das ist eine Feststellung, keine Entwarnung — siehe letzte Seite.";
 
-"Ready" = "Bereit";
 "What this app cannot tell you" = "Was diese App nicht wissen kann";
 "Bluetooth state is not readable by apps since iOS 13, and no network connection does not mean the device is isolated. This app reports what it can see and never claims you are safe. That judgement stays with you." = "Der Bluetooth-Zustand ist für Apps seit iOS 13 nicht abfragbar, und keine Netzverbindung bedeutet nicht, dass das Gerät abgeschottet ist. Diese App benennt, was sie sieht, und behauptet nie, dass alles in Ordnung sei. Diese Einschätzung bleibt bei Ihnen.";
 "About the dice" = "Zu den Würfeln";
