@@ -119,7 +119,7 @@ struct OnboardingView: View {
     // MARK: Seite 3 — die Verzweigung
 
     private var choicePage: some View {
-        OnboardingPage(title: "Two ways from here") {
+        OnboardingPage(title: "Two ways to roll") {
             Text("What differs: what you tap in, and who turns it into words.")
                 .font(.footnote)
                 .foregroundStyle(.secondary)

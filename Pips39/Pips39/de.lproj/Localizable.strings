@@ -19,7 +19,7 @@
 "Turn off Settings, App Store, Offload Unused Apps. Otherwise iOS may delete this app and need the network to restore it." = "Einstellungen, App Store, Nicht benutzte Apps auslagern abschalten. Sonst löscht iOS diese App und braucht zum Wiederherstellen das Netz.";
 
 "What this app cannot tell you" = "Was diese App nicht wissen kann";
-"Bluetooth state is not readable by apps since iOS 13, and no network connection does not mean the device is isolated. This app reports what it can see and never claims you are safe. That judgement stays with you." = "Der Bluetooth-Zustand ist für Apps seit iOS 13 nicht abfragbar, und keine Netzverbindung bedeutet nicht, dass das Gerät abgeschottet ist. Diese App benennt, was sie sieht, und behauptet nie, dass alles in Ordnung sei. Diese Einschätzung bleibt bei Ihnen.";
+"Bluetooth state is not readable by apps since iOS 13, and no network connection does not mean the device is isolated. This app reports what it can see and never claims you are safe. That judgement stays with you." = "Der Bluetooth-Zustand ist für Apps seit iOS 13 nicht abfragbar, und keine Netzverbindung bedeutet nicht, dass das Gerät abgeschottet ist. Diese App benennt, was sie sieht, und behauptet nie, dass alles in Ordnung sei. Diese Einschätzung bleibt bei dir.";
 "About the dice" = "Zu den Würfeln";
 "While you roll, the app watches for sequences that cannot come from dice: all the same value, a repeated block, only two or three of the six values, or long blocks of one value. Each of those is rarer than one in a billion, so the notice never appears on a real run." = "Während des Würfelns achtet die App auf Folgen, die von keinem Würfel stammen können: alle Würfe gleich, ein wiederholter Block, nur zwei oder drei der sechs Zahlen, oder lange Blöcke derselben Zahl. Jedes davon ist seltener als eins zu einer Milliarde. Bei einem echten Durchlauf erscheint der Hinweis also nie.";
 "What it cannot see is the dice themselves. A loaded die, or one that leans a little because it is worn, produces sequences that look ordinary. Testing for that would mean a distribution test, and such a test flags correct runs often enough that people learn to ignore it. So there is none. Use dice you trust, and roll them properly." = "Was sie nicht sieht, sind die Würfel selbst. Ein gezinkter Würfel, oder einer, der durch Abnutzung leicht schief liegt, liefert Folgen, die gewöhnlich aussehen. Das zu prüfen hieße, die Verteilung zu testen, und ein solcher Test schlägt bei korrekten Durchläufen oft genug an, dass man sich angewöhnt, ihn zu übergehen. Deshalb gibt es ihn nicht. Wer würfelt, nimmt Würfel, denen er traut, und würfelt sie richtig.";
@@ -54,7 +54,7 @@
 "Done" = "Fertig";
 
 /* ===== Aufzeichnung ===== */
-"Your rolls and entropy" = "Ihre Würfe und Entropie";
+"Your rolls and entropy" = "Deine Würfe und Entropie";
 "Method" = "Verfahren";
 "Dice rolls" = "Würfe";
 "Entropy (hex)" = "Entropie (hex)";
@@ -88,27 +88,27 @@
 "H = heads (or a die showing 1 to 3), T = tails (4 to 6)." = "K = Kopf (oder ein Würfel mit 1 bis 3), Z = Zahl (4 bis 6).";
 "Next word" = "Nächstes Wort";
 "The 24th word" = "Das 24. Wort";
-"This app cannot work it out. It never saw your words, and the last word carries a checksum over all the others." = "Diese App kann es nicht berechnen. Sie hat die Wörter nie gesehen, und das letzte Wort trägt eine Prüfsumme über alle anderen.";
+"This app cannot work it out. It never saw your words, and the last word carries a checksum over all the others." = "Diese App kann es nicht berechnen. Sie hat deine Wörter nie gesehen, und das letzte Wort trägt eine Prüfsumme über alle anderen.";
 "Enter your 23 words into your wallet. It will offer eight valid options for the last one. Pick between them with three coin flips, not by feel. Eight options are exactly three bits." = "Die 23 Wörter in die Wallet eingeben. Sie bietet acht gültige Möglichkeiten für das letzte an. Zwischen ihnen mit drei Münzwürfen wählen, nicht nach Gefühl. Acht Möglichkeiten sind genau drei Bit.";
 
 /* ===== Onboarding, gemeinsame Seiten ===== */
 "The safest way needs no app" = "Der sicherste Weg braucht keine App";
 "Dice, a printed table, paper and a pen, no electronics in the room. That makes a seed no device has ever seen. There is a good guide for it at BitBox." = "Würfel, eine gedruckte Tabelle, Papier und Stift, keine Elektronik im Raum. So entsteht ein Seed, den nie ein Gerät gesehen hat. Eine gute Anleitung dazu gibt es bei BitBox.";
-"One catch, so nobody is surprised later: paper and a pen get you 23 of the 24 words. The last one carries a checksum over the others, and nobody works that out by hand. A wallet has to supply it." = "Ein Haken, damit später niemand überrascht ist: Papier und Stift bringen Sie bis Wort 23 von 24. Das letzte trägt eine Prüfsumme über die anderen, und die rechnet niemand von Hand. Die muss eine Wallet liefern.";
+"One catch, so nobody is surprised later: paper and a pen get you 23 of the 24 words. The last one carries a checksum over the others, and nobody works that out by hand. A wallet has to supply it." = "Ein Haken, damit später niemand überrascht ist: Papier und Stift bringen dich bis Wort 23 von 24. Das letzte trägt eine Prüfsumme über die anderen, und die rechnet niemand von Hand. Die muss eine Wallet liefern.";
 "Where Pips39 sits" = "Wo Pips39 steht";
-"It is the step below: for an old iPhone you keep permanently offline. Weaker than paper, stronger than letting a wallet roll the seed for you and hoping it did it properly." = "Eine Stufe darunter: für ein altes iPhone, das dauerhaft offline bleibt. Schwächer als Papier, stärker als eine Wallet, die den Seed für Sie auswürfelt und von der Sie hoffen, dass sie es ordentlich getan hat.";
+"It is the step below: for an old iPhone you keep permanently offline. Weaker than paper, stronger than letting a wallet roll the seed for you and hoping it did it properly." = "Eine Stufe darunter: für ein altes iPhone, das dauerhaft offline bleibt. Schwächer als Papier, stärker als eine Wallet, die den Seed für dich auswürfelt und von der du hoffst, dass sie es ordentlich getan hat.";
 "If you are securing serious money, take the paper route." = "Wer echtes Geld absichert, nimmt den Papierweg.";
 "What a seed is" = "Was ein Seed ist";
-"Your wallet is one very large number. Every key and every address is worked out from it. That number is the seed." = "Ihre Wallet ist eine einzige sehr große Zahl. Jeder Schlüssel und jede Adresse wird daraus berechnet. Diese Zahl ist der Seed.";
-"It is written as words only so you can copy it by hand without mistakes. The words are not the secret. The number is." = "Sie wird nur deshalb als Wörter geschrieben, damit man sie ohne Fehler abschreiben kann. Nicht die Wörter sind das Geheimnis, sondern die Zahl.";
-"Nothing else protects it. No password, no device, no company. It is safe exactly as long as nobody can guess the number." = "Sonst schützt sie nichts. Kein Passwort, kein Gerät, keine Firma. Sie hält genau so lange, wie niemand die Zahl erraten kann.";
-"Dice make a number nobody can guess, not even you afterwards. A wallet can make one too, and then you are trusting it to have done it well, which you cannot check. That is the whole reason to roll it yourself." = "Würfel erzeugen eine Zahl, die niemand erraten kann, auch Sie selbst hinterher nicht. Eine Wallet kann das auch, dann vertrauen Sie darauf, dass sie es ordentlich gemacht hat, und nachprüfen können Sie es nicht. Genau deshalb würfelt man selbst.";
-"Two ways from here" = "Zwei Wege von hier";
-"What differs: what you tap in, and who turns it into words." = "Der Unterschied: was Sie eintippen, und wer daraus die Wörter macht.";
-"You can change your mind afterwards. Both stay on the start screen." = "Sie können sich später umentscheiden. Beide Wege bleiben auf der Startseite.";
+"Your wallet is one very large number. Every key and every address is worked out from it. That number is the seed." = "Deine Wallet ist eine einzige sehr große Zahl. Jeder Schlüssel und jede Adresse wird daraus berechnet. Diese Zahl ist der Seed.";
+"It is written as words only so you can copy it by hand without mistakes. The words are not the secret. The number is." = "Geschrieben wird sie als Wörter, damit man sie ohne Fehler abschreiben kann. Nicht die Wörter sind das Geheimnis, sondern die Zahl.";
+"Nothing else protects it. No password, no device, no company. It is safe exactly as long as nobody can guess the number." = "Sonst schützt sie nichts. Kein Passwort, kein Gerät, keine Firma. Wer die Zahl errät, hat die Wallet.";
+"Dice make a number nobody can guess, not even you afterwards. A wallet can make one too, and then you are trusting it to have done it well, which you cannot check. That is the whole reason to roll it yourself." = "Würfel erzeugen eine Zahl, die niemand erraten kann, auch du selbst hinterher nicht. Eine Wallet kann das auch, dann vertraust du darauf, dass sie es ordentlich gemacht hat, und nachprüfen kannst du es nicht. Genau deshalb würfelt man selbst.";
+"Two ways to roll" = "Zwei Arten zu würfeln";
+"What differs: what you tap in, and who turns it into words." = "Der Unterschied: was du eintippst, und wer daraus die Wörter macht.";
+"You can change your mind afterwards. Both stay on the start screen." = "Du kannst dich später umentscheiden. Beide Wege bleiben auf der Startseite.";
 
 /* ===== Onboarding, Tabellen-Weg ===== */
-"What you need" = "Was Sie brauchen";
+"What you need" = "Was du brauchst";
 "Five dice. One works too. Throw it five times and keep the order." = "Fünf Würfel. Einer geht auch. Fünfmal werfen und die Reihenfolge merken.";
 "A coin. Or a sixth die: 1 to 3 is heads, 4 to 6 is tails." = "Eine Münze. Oder ein sechster Würfel: 1 bis 3 ist Kopf, 4 bis 6 ist Zahl.";
 "Paper and a pen for the 23 words." = "Papier und Stift für die 23 Wörter.";
@@ -116,7 +116,7 @@
 "A die showing 5 or 6 counts for nothing here. Throw it again until it shows 1 to 4." = "Ein Würfel mit 5 oder 6 zählt hier nicht. Neu werfen, bis er 1 bis 4 zeigt.";
 "Take this device offline too. It sees less on this path, but less is not nothing." = "Dieses Gerät ebenfalls abschotten. Es sieht auf diesem Weg weniger, aber weniger ist nicht nichts.";
 "What the app sees" = "Was die App sieht";
-"The app gets to see three of the five dice. Which of the 32 words you took from them, it never learns. That leaves 118 of the 256 bits hidden from it." = "Die App bekommt drei der fünf Würfel zu sehen. Welches der 32 Wörter Sie daraus genommen haben, erfährt sie nie. Damit bleiben ihr 118 der 256 Bit verborgen.";
+"The app gets to see three of the five dice. Which of the 32 words you took from them, it never learns. That leaves 118 of the 256 bits hidden from it." = "Die App bekommt drei der fünf Würfel zu sehen. Welches der 32 Wörter du daraus genommen hast, erfährt sie nie. Damit bleiben ihr 118 der 256 Bit verborgen.";
 "Why it is 24 words only" = "Warum nur 24 Wörter";
-"With 12 words too little would stay hidden: 62 bits, which is within reach of an attacker who got hold of what you typed. There is no length switch on this path for that reason." = "Bei 12 Wörtern bliebe zu wenig verborgen: 62 Bit, und die sind für jemanden, der Ihre Eingaben hat, in Reichweite. Deshalb gibt es auf diesem Weg keine Längenwahl.";
-"It carries a checksum over the other 23, so working it out needs all of them. Your wallet offers eight valid options. Pick between them with three coin flips, not by feel." = "Es trägt eine Prüfsumme über die anderen 23, zum Ausrechnen braucht man also alle. Ihre Wallet bietet acht gültige Möglichkeiten an. Zwischen ihnen mit drei Münzwürfen wählen, nicht nach Gefühl.";
+"With 12 words too little would stay hidden: 62 bits, which is within reach of an attacker who got hold of what you typed. There is no length switch on this path for that reason." = "Bei 12 Wörtern bliebe zu wenig verborgen: 62 Bit, und die sind für jemanden, der deine Eingaben hat, in Reichweite. Deshalb gibt es auf diesem Weg keine Längenwahl.";
+"It carries a checksum over the other 23, so working it out needs all of them. Your wallet offers eight valid options. Pick between them with three coin flips, not by feel." = "Es trägt eine Prüfsumme über die anderen 23, zum Ausrechnen braucht man also alle. Deine Wallet bietet acht gültige Möglichkeiten an. Zwischen ihnen mit drei Münzwürfen wählen, nicht nach Gefühl.";

@@ -38,9 +38,9 @@
 "pattern.advice.result" = "If you did not actually roll dice, discard and start over.";
 
 /* ===== Die zwei Wege im Onboarding ===== */
-"onboarding.path.rollAndCompute.title" = "Roll, and let the app do the maths";
+"onboarding.path.rollAndCompute.title" = "The app works out the seed";
 "onboarding.path.rollAndCompute.summary" = "You tap in every single die value. Whether you throw one die 99 times or five at once changes nothing about that. For 24 words that is 99 entries, or about 154 with the Coleman method. At the end the app shows you all 24 words.";
 "onboarding.path.rollAndCompute.exposure" = "The app sees your whole seed.";
-"onboarding.path.lookupTable.title" = "Roll, and read the word off a table";
+"onboarding.path.lookupTable.title" = "You read the seed off a table";
 "onboarding.path.lookupTable.summary" = "Per word you throw five dice and a coin. You tap in only the first three dice. The app then shows 32 words, and which of them is yours is decided by die 4, die 5 and the coin. You read it off and write it down. Three entries per word, so 69 for 23 words. The 24th word comes from your hardware wallet.";
 "onboarding.path.lookupTable.exposure" = "That leaves %lld of the 256 bits hidden from the app.";
