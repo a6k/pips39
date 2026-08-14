@@ -108,6 +108,17 @@ struct OnboardingView: View {
             }
 
             VStack(alignment: .leading, spacing: 8) {
+                Text("About the dice")
+                    .font(.headline)
+                Text("While you roll, the app watches for sequences that cannot come from dice: all the same value, a repeated block, only two or three of the six values, or long blocks of one value. Each of those is rarer than one in a billion, so the notice never appears on a real run.")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+                Text("What it cannot see is the dice themselves. A loaded die, or one that leans a little because it is worn, produces sequences that look ordinary. Testing for that would mean a distribution test, and such a test flags correct runs often enough that people learn to ignore it. So there is none. Use dice you trust, and roll them properly.")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+            }
+
+            VStack(alignment: .leading, spacing: 8) {
                 Text("How this ends")
                     .font(.headline)
                 Text("Nothing is stored. Write the words on paper, note the method next to them, and check your copy with the app before you leave the screen.")
