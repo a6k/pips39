@@ -51,6 +51,8 @@ struct IntroView: View {
                         .foregroundStyle(.secondary)
                 }
 
+                verification
+
                 Button(action: onContinue) {
                     Text("Continue")
                         .frame(maxWidth: .infinity)
@@ -59,6 +61,41 @@ struct IntroView: View {
                 .padding(.top)
             }
             .padding()
+        }
+    }
+
+    /// Der Vertrauensbeweis — bewusst **hier** und nicht beim Ergebnis.
+    ///
+    /// Die Schritte brauchen eine Shell und einen Browser mit Netz. Auf dem
+    /// abgeschotteten Gerät gibt es beides nicht, und neben einem scharfen Seed hätten
+    /// sie ohnehin nichts zu suchen. Der richtige Zeitpunkt ist jetzt: einmal, vorher,
+    /// auf einem gewöhnlichen Rechner, mit einer erfundenen Wurffolge.
+    private var verification: some View {
+        DisclosureGroup {
+            VStack(alignment: .leading, spacing: 16) {
+                Text("Do this once on an ordinary computer, before you take this device offline. Make up a dice sequence for it. Never use the rolls behind a seed you intend to keep.")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+
+                ForEach(DiceMethod.allCases, id: \.self) { method in
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text(method.title)
+                            .font(.subheadline.weight(.semibold))
+                        ForEach(Array(method.verificationSteps.enumerated()), id: \.offset) { index, step in
+                            HStack(alignment: .top, spacing: 8) {
+                                Text("\(index + 1).")
+                                    .font(.footnote.monospacedDigit())
+                                    .foregroundStyle(.secondary)
+                                Text(step).font(.footnote)
+                            }
+                        }
+                    }
+                }
+            }
+            .padding(.top, 8)
+        } label: {
+            Text("Verify the app before you trust it")
+                .font(.headline)
         }
     }
 }

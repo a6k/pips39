@@ -45,7 +45,7 @@ struct WordsView: View {
                     }
                     .buttonStyle(.borderedProminent)
 
-                    Button("Check this yourself", action: onVerify)
+                    Button("Show rolls and entropy", action: onVerify)
                         .buttonStyle(.bordered)
                         .frame(maxWidth: .infinity)
 
