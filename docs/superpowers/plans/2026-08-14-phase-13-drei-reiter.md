@@ -65,7 +65,7 @@ ist die alte `MethodChoiceView`, auf ein Verfahren eingedampft.
 **Files:**
 - Create: `Pips39/Pips39/RollingFlow.swift`
 
-- [ ] **Step 1: Die Datei anlegen**
+- [x] **Step 1: Die Datei anlegen**
 
 ```swift
 import SwiftUI
@@ -189,7 +189,7 @@ struct RollingFlow: View {
 }
 ```
 
-- [ ] **Step 2: Bauen**
+- [x] **Step 2: Bauen**
 
 Der Build läuft noch mit der alten `ContentView` durch; `RollingFlow` wird erst in
 Task 3 benutzt.
@@ -210,7 +210,7 @@ Expected: `** BUILD SUCCEEDED **`
 
 Ein Reiter hat kein Zurück. Der Weg hinaus ist der Reiterwechsel.
 
-- [ ] **Step 1: `onExit` entfernen**
+- [x] **Step 1: `onExit` entfernen**
 
 Die Eigenschaft streichen:
 
@@ -250,7 +250,7 @@ Die Vorschau nachziehen:
 }
 ```
 
-- [ ] **Step 2: Bauen**
+- [x] **Step 2: Bauen**
 
 Der Build **muss** an `ContentView` scheitern, die `LookupView` noch mit `onExit`
 aufruft. Task 3 schließt das.
@@ -263,7 +263,7 @@ aufruft. Task 3 schließt das.
 - Rewrite: `Pips39/Pips39/ContentView.swift`
 - Delete: `Pips39/Pips39/MethodChoiceView.swift`
 
-- [ ] **Step 1: `ContentView` ersetzen**
+- [x] **Step 1: `ContentView` ersetzen**
 
 ```swift
 import SwiftUI
@@ -326,7 +326,7 @@ struct ContentView: View {
 }
 ```
 
-- [ ] **Step 2: Die Verfahrenswahl löschen**
+- [x] **Step 2: Die Verfahrenswahl löschen**
 
 ```bash
 cd "$REPO"
@@ -346,7 +346,7 @@ git rm Pips39/Pips39/MethodChoiceView.swift
 > ```
 > Expected: `1`
 
-- [ ] **Step 3: Bauen**
+- [x] **Step 3: Bauen**
 
 ```bash
 cd "$REPO/Pips39"
@@ -372,7 +372,7 @@ Expected: `** BUILD SUCCEEDED **`
 Zurück führt jetzt auf die Startseite desselben Reiters. Das Verfahren steht dort fest,
 neu zu wählen ist nur die Seed-Länge.
 
-- [ ] **Step 1: Den Text austauschen**
+- [x] **Step 1: Den Text austauschen**
 
 In `RollingView.swift`:
 
@@ -380,7 +380,7 @@ In `RollingView.swift`:
             Text("Going back means choosing the seed length again. Your rolls so far cannot be carried over.")
 ```
 
-- [ ] **Step 2: Die Übersetzungen nachziehen**
+- [x] **Step 2: Die Übersetzungen nachziehen**
 
 In `de.lproj/Localizable.strings` die alte Zeile ersetzen und die neuen Schlüssel
 anhängen:
@@ -392,7 +392,7 @@ anhängen:
 "Word table" = "Worttabelle";
 ```
 
-- [ ] **Step 3: Verwaiste Schlüssel entfernen**
+- [x] **Step 3: Verwaiste Schlüssel entfernen**
 
 Die acht aus Task 3 Step 2. Danach prüfen, dass nichts Lebendiges getroffen wurde:
 
@@ -411,7 +411,7 @@ der Liste ist ein Fehler und muss zurück.
 >   | awk -F: '{n=gsub(/"/,"\"",$0); if (n!=4) print "FEHLER", $0}'
 > ```
 
-- [ ] **Step 4: Bauen, installieren, committen**
+- [x] **Step 4: Bauen, installieren, committen**
 
 ```bash
 cd "$REPO/Pips39"
@@ -433,7 +433,7 @@ git commit -m "feat: drei Reiter statt Verfahrenswahl"
 Der Wunsch war, die Ansicht mit Wurffolge und Entropie zu schützen. **Sie ist es
 bereits**, seit Phase 5.
 
-- [ ] **Step 1: Nachsehen statt hinzufügen**
+- [x] **Step 1: Nachsehen statt hinzufügen**
 
 ```bash
 cd "$REPO/Pips39/Pips39"
@@ -441,7 +441,7 @@ grep -n "screenProtected()\|hiddenFromScreenCapture()" VerifyView.swift
 ```
 Expected: beide Modifier, auf der äußersten Ebene der `ScrollView`.
 
-- [ ] **Step 2: Den Stand aller Ansichten festhalten**
+- [x] **Step 2: Den Stand aller Ansichten festhalten**
 
 ```bash
 for f in *.swift; do
@@ -467,7 +467,7 @@ Erwartet: `WordsView`, `VerifyView`, `LookupView` mit beidem, `TranscriptionView
 
 Vor jedem Durchgang bauen **und** installieren.
 
-- [ ] **Step 1: Der Zustand überlebt den Reiterwechsel**
+- [x] **Step 1: Der Zustand überlebt den Reiterwechsel**
 
 Das ist die Prüfung, an der die ganze Phase hängt. Zuerst.
 
@@ -481,21 +481,21 @@ trägt die Annahme nicht und der Zustand muss aus `RollingFlow` heraus nach `Con
 wandern (drei Zustandssätze dort, per Reiter durchgereicht). In dem Fall hier abbrechen
 und Rücksprache halten.
 
-- [ ] **Step 2: Beide Würfel-Reiter arbeiten getrennt**
+- [x] **Step 2: Beide Würfel-Reiter arbeiten getrennt**
 
 Unter Coleman ebenfalls würfeln, dann zwischen den Reitern hin und her. Die
 Fortschrittsanzeigen müssen unterschiedlich bleiben, Coleman zählt Bits, SHA-256 Würfe.
 
-- [ ] **Step 3: Die Worttabelle**
+- [x] **Step 3: Die Worttabelle**
 
 Reiter Worttabelle, drei Würfel eingeben, Raster prüfen. Auf SHA-256 und zurück: Das
 Raster muss noch stehen.
 
-- [ ] **Step 4: Die Hilfe auf allen Reitern**
+- [x] **Step 4: Die Hilfe auf allen Reitern**
 
 Oben rechts, auf jeder der drei Startseiten und in jedem Schritt des Würfelablaufs.
 
-- [ ] **Step 5: Onboarding stellt den Reiter ein**
+- [x] **Step 5: Onboarding stellt den Reiter ein**
 
 App neu starten, auf Seite 3 „Du liest den Seed ab" wählen, „Los". Erwartet: der Reiter
 Worttabelle ist vorgewählt, und die beiden anderen sind trotzdem erreichbar.
@@ -504,16 +504,16 @@ Worttabelle ist vorgewählt, und die beiden anderen sind trotzdem erreichbar.
 
 ## Abschluss der Phase
 
-- [ ] **Spec 2.1 revidieren:** Der Abschnitt verbietet einen dauerhaft sichtbaren
+- [x] **Spec 2.1 revidieren:** Der Abschnitt verbietet einen dauerhaft sichtbaren
       Verfahrensumschalter. Die Begründung nennt jemanden, der eine Wurffolge aufhebt und
       später falsch nachrechnet. Seit Phase 12 sagt die App, dass hier keine Seeds für
       echtes Geld entstehen, damit gibt es diesen Menschen nicht mehr. Den Abschnitt um
       diese Revision ergänzen, die alte Begründung **stehen lassen** und datieren.
       Unverändert bleibt: Das Verfahren steht neben den Wörtern und in der Aufzeichnung.
 
-- [ ] **Spec 3 nachziehen:** Der Ablauf beginnt nicht mehr mit der Verfahrenswahl.
+- [x] **Spec 3 nachziehen:** Der Ablauf beginnt nicht mehr mit der Verfahrenswahl.
 
-- [ ] **README nachziehen:** Der Abschnitt zum Onboarding beschreibt eine Verzweigung,
+- [x] **README nachziehen:** Der Abschnitt zum Onboarding beschreibt eine Verzweigung,
       die einen Weg auswählt. Sie wählt jetzt nur noch einen Reiter vor.
 
 > [!warning] Vor dem Push: der Hook prüft auf `DEVELOPMENT_TEAM`

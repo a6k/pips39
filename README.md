@@ -41,10 +41,13 @@ Three shared pages, then a branch, then two pages for whichever way you chose:
 | **B** | B1 · What you need | Five dice, a coin, a hardware wallet, offline too |
 | | B2 · What the app sees | 6 of 11 bits, the 118, the 24th word |
 
-Checking comes before going offline, because checking needs a shell and a browser. The
-branch decides only the coarse question — does the app compute, or do I read off? The
-fine one (SHA-256 or Coleman, 12 or 24 words) stays on the start screen. Skipping the
-onboarding lands you there too, with both ways still on offer.
+Checking comes before going offline, because checking needs a shell and a browser.
+
+After the onboarding the app is three tabs: **SHA-256**, **Coleman** and **Word table**.
+The branch on page 3 preselects one of them and locks none. Each tab keeps its own
+state, so switching away mid-run and coming back finds the rolls exactly as you left
+them. That is deliberate: the app is for trying things out, and a switch that throws
+away 60 rolls does not invite that.
 
 ## Read this before you trust it
 
