@@ -13,7 +13,7 @@ struct TranscriptionView: View {
 
     var body: some View {
         VStack(spacing: 16) {
-            TopBar()
+            topBar
 
             header
 
@@ -37,6 +37,33 @@ struct TranscriptionView: View {
         }
         .padding()
         .screenProtected()
+    }
+
+    /// Der Ausgang aus der Kontrolle.
+    ///
+    /// Ohne ihn steckte man hier fest: Die Kontrolle endet sonst erst, wenn alle Wörter
+    /// stimmen, und wer abbrechen will, hätte keinen Weg zurück. Ein Reiterwechsel
+    /// hilft nicht, der Zustand bleibt stehen.
+    ///
+    /// Er führt zur Wortanzeige, also dorthin, wo man hergekommen ist. Der nächste
+    /// Anlauf beginnt dann bei Wort 1, weil `RollingFlow` eine neue Prüfung anlegt.
+    /// Deshalb auch **keine** Rückfrage: Es geht nichts verloren außer ein paar
+    /// Eingaben, und die Wörter stehen gleich wieder da.
+    ///
+    /// Am Ende fällt er weg. Dort steht „Fertig", und ein Rückweg wäre nur noch eine
+    /// zweite Antwort auf eine Frage, die niemand mehr stellt.
+    @ViewBuilder
+    private var topBar: some View {
+        if check.isComplete {
+            TopBar()
+        } else {
+            TopBar {
+                Button(action: onShowWordsAgain) {
+                    Label("Back", systemImage: "chevron.left")
+                        .font(.body)
+                }
+            }
+        }
     }
 
     /// Füllt den Raum zwischen Kandidaten und Tastatur mit dem Fortschritt.
