@@ -1,8 +1,11 @@
 import SwiftUI
 import Pips39Core
 
-/// Der Ablauf: Erklärseite → Verfahren wählen → würfeln → Wörter →
+/// Der Ablauf: Onboarding → Verfahren wählen → würfeln → Wörter →
 /// Abschreibkontrolle → verwerfen. Der Nachrechnen-Bereich hängt an der Wortanzeige.
+///
+/// Die Hilfe liegt über allem: Ein Sheet, das jede Ansicht über `\.showHelp` aus der
+/// Umgebung öffnen kann, ohne dass eine Closure durch sieben Ebenen gereicht wird.
 struct ContentView: View {
 
     private enum Step {
@@ -15,20 +18,28 @@ struct ContentView: View {
     @StateObject private var probe = EnvironmentProbe()
     @State private var hasStarted = false
     @State private var showsLookupTable = false
-    @State private var takenPath: OnboardingPath?
+    @State private var showsHelp = false
     @State private var session: DiceSession?
     @State private var step: Step = .rolling
 
     var body: some View {
+        flow
+            .environment(\.showHelp) { showsHelp = true }
+            .sheet(isPresented: $showsHelp) {
+                HelpView(onClose: { showsHelp = false }, probe: probe)
+            }
+    }
+
+    @ViewBuilder
+    private var flow: some View {
         if !hasStarted {
-            OnboardingView(probe: probe, startPath: takenPath) { destination in
-                takenPath = destination
+            OnboardingView(probe: probe) { destination in
                 showsLookupTable = destination == .lookupTable
                 hasStarted = true
             }
         } else if showsLookupTable {
             // Steht vor der Sitzungsprüfung, weil dieser Modus keine Sitzung hat und
-            // keinen Seed erzeugt — er ist ein Ausdruck, kein Ablauf.
+            // keinen Seed erzeugt. Er ist ein Ausdruck, kein Ablauf.
             LookupView { showsLookupTable = false }
         } else if let session {
             switch step {
@@ -37,11 +48,6 @@ struct ContentView: View {
                     step = .words
                 } onBack: {
                     startOver()
-                } onHelp: {
-                    // Wer mitten im Würfeln Hilfe sucht, will nicht bei „Was ein Seed
-                    // ist" anfangen — `startPath` überspringt die gemeinsamen Seiten.
-                    takenPath = .rollAndCompute
-                    hasStarted = false
                 }
             case .words:
                 WordsView(session: session) {

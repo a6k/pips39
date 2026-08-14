@@ -22,6 +22,8 @@ struct MethodChoiceView: View {
 
     private var content: some View {
         VStack(alignment: .leading, spacing: 24) {
+            TopBar()
+
             VStack(alignment: .leading, spacing: 8) {
                 Text("Pips39")
                     .font(.largeTitle.bold())

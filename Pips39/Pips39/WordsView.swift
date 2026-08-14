@@ -77,8 +77,7 @@ struct WordsView: View {
     /// dort kann der Puffer leer sein, hier stehen die Wörter bereits auf dem Schirm
     /// und es gibt keinen Weg, sie wiederzubekommen.
     private var discardBar: some View {
-        HStack {
-            Spacer()
+        TopBar {
             Button("Discard", role: .destructive) {
                 showsDiscardConfirmation = true
             }

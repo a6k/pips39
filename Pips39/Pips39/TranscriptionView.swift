@@ -13,6 +13,8 @@ struct TranscriptionView: View {
 
     var body: some View {
         VStack(spacing: 16) {
+            TopBar()
+
             header
 
             if check.isComplete {

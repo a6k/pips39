@@ -13,10 +13,6 @@ struct OnboardingView: View {
 
     @ObservedObject var probe: EnvironmentProbe
 
-    /// Springt direkt in die Seiten eines Wegs — für den Hilfe-Knopf aus einem
-    /// laufenden Durchlauf, wo die gemeinsamen Seiten nichts mehr beitragen.
-    let startPath: OnboardingPath?
-
     let onDone: (OnboardingPath?) -> Void
 
     @State private var path: OnboardingPath?
@@ -26,18 +22,11 @@ struct OnboardingView: View {
     private let lastSharedPage = 2
     private let lastPathPage = 1
 
-    init(probe: EnvironmentProbe,
-         startPath: OnboardingPath? = nil,
-         onDone: @escaping (OnboardingPath?) -> Void) {
-        self.probe = probe
-        self.startPath = startPath
-        self.onDone = onDone
-        _path = State(initialValue: startPath)
-    }
-
     var body: some View {
         if let path {
             VStack(spacing: 0) {
+                TopBar().padding(.horizontal).padding(.top, 8)
+
                 switch path {
                 case .rollAndCompute:
                     RollingOnboardingPages(probe: probe, page: $pathPage)
@@ -48,6 +37,8 @@ struct OnboardingView: View {
             }
         } else {
             VStack(spacing: 0) {
+                TopBar().padding(.horizontal).padding(.top, 8)
+
                 TabView(selection: $sharedPage) {
                     introPage.tag(0)
                     basicsPage.tag(1)
@@ -182,10 +173,8 @@ struct OnboardingView: View {
             Button("Back") {
                 if pathPage > 0 {
                     withAnimation { pathPage -= 1 }
-                } else if startPath == nil {
-                    withAnimation { self.path = nil }
                 } else {
-                    onDone(nil)
+                    withAnimation { self.path = nil }
                 }
             }
             .buttonStyle(.bordered)

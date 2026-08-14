@@ -33,7 +33,6 @@
 
 /* ===== Würfeln ===== */
 "Back" = "Zurück";
-"Help" = "Hilfe";
 "Undo" = "Rückgängig";
 "Show words" = "Wörter zeigen";
 "Discard and go back" = "Verwerfen und zurück";
@@ -114,3 +113,15 @@
 "Why it is 24 words only" = "Warum nur 24 Wörter";
 "With 12 words too little would stay hidden: 62 bits, which is within reach of an attacker who got hold of what you typed. There is no length switch on this path for that reason." = "Bei 12 Wörtern bliebe zu wenig verborgen: 62 Bit, und die sind für jemanden, der deine Eingaben hat, in Reichweite. Deshalb gibt es auf diesem Weg keine Längenwahl.";
 "It carries a checksum over the other 23, so working it out needs all of them. Your wallet offers eight valid options. Pick between them with three coin flips, not by feel." = "Es trägt eine Prüfsumme über die anderen 23, zum Ausrechnen braucht man also alle. Deine Wallet bietet acht gültige Möglichkeiten an. Zwischen ihnen mit drei Münzwürfen wählen, nicht nach Gefühl.";
+
+/* ===== Hilfe. Von jeder Seite über den Knopf oben rechts erreichbar. ===== */
+"Help" = "Hilfe";
+"What a seed is" = "Was ein Seed ist";
+"Your wallet is one very large number. Every key and every address is worked out from it. That number is the seed." = "Deine Wallet ist eine einzige sehr große Zahl. Jeder Schlüssel und jede Adresse wird daraus berechnet. Diese Zahl ist der Seed.";
+"It is written as words only so you can copy it by hand without mistakes. The words are not the secret. The number is." = "Geschrieben wird sie als Wörter, damit man sie ohne Fehler abschreiben kann. Nicht die Wörter sind das Geheimnis, sondern die Zahl.";
+"Nothing else protects it. No password, no device, no company. Whoever guesses the number has the wallet." = "Sonst schützt sie nichts. Kein Passwort, kein Gerät, keine Firma. Wer die Zahl errät, hat die Wallet.";
+"Dice make a number nobody can guess, not even you afterwards. A wallet can make one too, and then you are trusting it to have done it well, which you cannot check. That is the whole reason to roll it yourself." = "Würfel erzeugen eine Zahl, die niemand erraten kann, auch du selbst hinterher nicht. Eine Wallet kann das auch, dann vertraust du darauf, dass sie es ordentlich gemacht hat, und nachprüfen kannst du es nicht. Genau deshalb würfelt man selbst.";
+"About the dice" = "Zu den Würfeln";
+"While you roll, the app watches for sequences that cannot come from dice: all the same value, a repeated block, only two or three of the six values, or long blocks of one value. Each of those is rarer than one in a billion, so the notice never appears on a real run." = "Während des Würfelns achtet die App auf Folgen, die von keinem Würfel stammen können: alle Würfe gleich, ein wiederholter Block, nur zwei oder drei der sechs Zahlen, oder lange Blöcke derselben Zahl. Jedes davon ist seltener als eins zu einer Milliarde. Bei einem echten Durchlauf erscheint der Hinweis also nie.";
+"What it cannot see is the dice themselves. A loaded die, or one that leans a little because it is worn, produces sequences that look ordinary. Testing for that would mean a distribution test, and such a test flags correct runs often enough that people learn to ignore it. So there is none. Use dice you trust, and roll them properly." = "Was sie nicht sieht, sind die Würfel selbst. Ein gezinkter Würfel, oder einer, der durch Abnutzung leicht schief liegt, liefert Folgen, die gewöhnlich aussehen. Das zu prüfen hieße, die Verteilung zu testen, und ein solcher Test schlägt bei korrekten Durchläufen oft genug an, dass man sich angewöhnt, ihn zu übergehen. Deshalb gibt es ihn nicht. Wer würfelt, nimmt Würfel, denen er traut, und würfelt sie richtig.";
+"Take it offline" = "Gerät abschotten";

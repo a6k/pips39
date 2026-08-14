@@ -17,6 +17,14 @@ struct VerifyView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
+                TopBar {
+                    Button {
+                        onBack()
+                    } label: {
+                        Label("Back", systemImage: "chevron.left")
+                    }
+                }
+
                 Text("Your rolls and entropy")
                     .font(.title2.bold())
 
@@ -30,10 +38,6 @@ struct VerifyView: View {
                 Text("Keep these exactly as private as the words themselves, or do not keep them at all. If you write the rolls down, write the method down with them. The same rolls give different words under the other method.")
                     .font(.footnote)
                     .foregroundStyle(.secondary)
-
-                Button("Back", action: onBack)
-                    .buttonStyle(.bordered)
-                    .padding(.top)
             }
             .padding()
         }

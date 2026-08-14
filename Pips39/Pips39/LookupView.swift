@@ -58,11 +58,10 @@ struct LookupView: View {
     // MARK: Kopf
 
     private var bar: some View {
-        HStack {
+        TopBar {
             Button(action: onExit) {
                 Label("Back", systemImage: "chevron.left")
             }
-            Spacer()
         }
     }
 

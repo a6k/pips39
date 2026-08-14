@@ -7,7 +7,6 @@ struct RollingView: View {
     @ObservedObject var session: DiceSession
     let onFinished: () -> Void
     let onBack: () -> Void
-    let onHelp: () -> Void
 
     @State private var showsDiscardConfirmation = false
 
@@ -86,7 +85,7 @@ struct RollingView: View {
     /// leeren Puffer wäre reine Reiberei — er würde dazu erziehen, Rückfragen
     /// wegzutippen, und dann trifft es irgendwann die Rückfrage, die zählt.
     private var backBar: some View {
-        HStack {
+        TopBar {
             Button {
                 if session.rollCount > 0 {
                     showsDiscardConfirmation = true
@@ -97,12 +96,6 @@ struct RollingView: View {
                 Label("Back", systemImage: "chevron.left")
                     .font(.body)
             }
-            Spacer()
-            Button(action: onHelp) {
-                Image(systemName: "questionmark.circle")
-                    .font(.title3)
-            }
-            .accessibilityLabel("Help")
         }
         .confirmationDialog(
             "Discard \(session.rollCount) rolls?",
@@ -149,5 +142,5 @@ struct RollingView: View {
 
 #Preview {
     RollingView(session: DiceSession(method: .sha256),
-                onFinished: { }, onBack: { }, onHelp: { })
+                onFinished: { }, onBack: { })
 }
