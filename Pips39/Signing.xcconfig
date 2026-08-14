@@ -1,0 +1,12 @@
+// Signierung — die Team-ID steht bewusst NICHT in dieser Datei.
+//
+// Sie gehört einer Person, nicht dem Projekt, und dieses Repo ist öffentlich. Deshalb
+// zieht diese Datei sie aus `Local.xcconfig`, das über `.gitignore` draußen bleibt:
+//
+//     DEVELOPMENT_TEAM = <deine zehnstellige Team-ID>
+//
+// Das Fragezeichen macht den Include optional. Wer das Repo klont und nur für den
+// Simulator baut, braucht die Datei nicht und bekommt auch keine Warnung. Für einen
+// Build auf echter Hardware ist sie nötig — sonst meldet Xcode
+// „Signing for Pips39 requires a development team".
+#include? "Local.xcconfig"

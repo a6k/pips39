@@ -173,6 +173,29 @@ The app target is an ordinary Xcode project:
 open Pips39/Pips39.xcodeproj
 ```
 
+### Signing, and why there is no team ID in here
+
+Building for the **simulator** needs nothing extra. Building for a **real device** needs
+an Apple development team, and this project deliberately does not carry one: the ID
+belongs to a person, and this repository is public.
+
+Put yours in `Pips39/Local.xcconfig`, which `.gitignore` keeps out:
+
+```
+DEVELOPMENT_TEAM = <your ten-character team id>
+```
+
+`Pips39/Signing.xcconfig` pulls it in with an optional include, so a clone without that
+file still builds for the simulator without a warning.
+
+If you contribute, install the commit hook once per clone. It refuses any commit that
+carries a team ID into the repository — Xcode writes one back into `project.pbxproj`
+whenever you touch the team picker, and reading every diff is not a plan:
+
+```
+git config core.hooksPath scripts/githooks
+```
+
 Deployment target is iOS 16, deliberately — the point is to reuse an old iPhone. You
 will need to select your own signing team.
 

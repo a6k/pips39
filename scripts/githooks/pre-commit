@@ -1,0 +1,40 @@
+#!/bin/sh
+#
+# Blockiert Commits, die eine Apple-Team-ID einschleppen.
+#
+# Warum das nötig ist: Xcode schreibt DEVELOPMENT_TEAM beim Signieren ungefragt in die
+# project.pbxproj zurück. Die xcconfig in Pips39/Signing.xcconfig senkt die Häufigkeit,
+# verhindert es aber nicht — wer am Team-Auswahlfeld dreht, bekommt den Wert wieder in
+# die Projektdatei. Dieses Repo ist öffentlich, die ID gehört einer Person.
+#
+# Geprüft wird der **gestagte** Inhalt, nicht der Arbeitsstand: Nur was tatsächlich in
+# den Commit ginge, kann hier auffallen.
+#
+# Notausgang: git commit --no-verify
+
+set -eu
+
+found=$(git diff --cached -U0 --diff-filter=ACM \
+        | grep -nE '^\+.*DEVELOPMENT_TEAM[[:space:]]*=[[:space:]]*"?[A-Z0-9]{10}"?' || true)
+
+if [ -n "$found" ]; then
+    cat >&2 <<'MESSAGE'
+
+  Commit gestoppt: eine Apple-Team-ID steht in den gestagten Änderungen.
+
+  Dieses Repo ist öffentlich. Die ID gehört nach Pips39/Local.xcconfig,
+  das über .gitignore draußen bleibt — nicht in die project.pbxproj.
+
+  So kommt sie wieder raus:
+
+      git restore --staged --worktree Pips39/Pips39.xcodeproj/project.pbxproj
+
+  Falls die Zeile aus einer anderen Datei stammt, zeigt die Fundstelle unten,
+  wo sie steht.
+
+MESSAGE
+    printf '%s\n\n' "$found" >&2
+    exit 1
+fi
+
+exit 0
