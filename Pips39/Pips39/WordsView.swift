@@ -9,11 +9,15 @@ struct WordsView: View {
     let onCheck: () -> Void
     let onVerify: () -> Void
 
+    @State private var showsDiscardConfirmation = false
+
     private let columns = [GridItem(.flexible()), GridItem(.flexible())]
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
+                discardBar
+
                 VStack(alignment: .leading, spacing: 4) {
                     Text("Write these down")
                         .font(.title2.bold())
@@ -52,33 +56,58 @@ struct WordsView: View {
                     }
                 }
 
-                VStack(spacing: 10) {
-                    Button {
-                        onCheck()
-                    } label: {
-                        Text("I wrote them down")
-                            .frame(maxWidth: .infinity)
-                    }
-                    .buttonStyle(.borderedProminent)
-
-                    Button("Show rolls and entropy", action: onVerify)
-                        .buttonStyle(.bordered)
-                        .frame(maxWidth: .infinity)
-
-                    Button(role: .destructive) {
-                        onDiscard()
-                    } label: {
-                        Text("Discard and start over")
-                            .frame(maxWidth: .infinity)
-                    }
-                    .buttonStyle(.bordered)
-                }
-                .padding(.top)
             }
             .padding()
         }
+        .safeAreaInset(edge: .bottom) { footer }
         .screenProtected()
         .hiddenFromScreenCapture()
+    }
+
+    /// Der Weg hinaus, der nichts abschließt — deshalb oben rechts und rot, getrennt
+    /// von der Fußleiste, in der nur die Schritte nach vorn stehen.
+    ///
+    /// Hier wird **immer** nachgefragt, anders als beim Zurück in der Würfelansicht:
+    /// dort kann der Puffer leer sein, hier stehen die Wörter bereits auf dem Schirm
+    /// und es gibt keinen Weg, sie wiederzubekommen.
+    private var discardBar: some View {
+        HStack {
+            Spacer()
+            Button("Discard", role: .destructive) {
+                showsDiscardConfirmation = true
+            }
+            .font(.body)
+        }
+        .confirmationDialog(
+            "Discard these words?",
+            isPresented: $showsDiscardConfirmation,
+            titleVisibility: .visible
+        ) {
+            Button("Discard and start over", role: .destructive, action: onDiscard)
+            Button("Keep them", role: .cancel) { }
+        } message: {
+            Text("Nothing is stored. If you have not written them down, these words are gone.")
+        }
+    }
+
+    /// Bleibt stehen, während die Wörter darunter durchlaufen — der nächste Schritt
+    /// ist immer erreichbar, ohne ans Listenende zu scrollen. Gleiche Leiste wie im
+    /// Onboarding, damit die App ein Muster hat und nicht zwei.
+    private var footer: some View {
+        VStack(spacing: 12) {
+            Button("Show rolls and entropy", action: onVerify)
+                .font(.footnote)
+
+            Button(action: onCheck) {
+                Text("I wrote them down")
+                    .frame(maxWidth: .infinity)
+            }
+            .buttonStyle(.borderedProminent)
+            .controlSize(.large)
+        }
+        .padding(.horizontal)
+        .padding(.vertical, 12)
+        .background(.bar)
     }
 }
 

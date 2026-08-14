@@ -42,7 +42,11 @@
 "Write these down" = "Diese notieren";
 "I wrote them down" = "Notiert";
 "Show rolls and entropy" = "Würfe und Entropie zeigen";
+"Discard" = "Verwerfen";
+"Discard these words?" = "Diese Wörter verwerfen?";
 "Discard and start over" = "Verwerfen und neu beginnen";
+"Keep them" = "Behalten";
+"Nothing is stored. If you have not written them down, these words are gone." = "Nichts wird gespeichert. Wer sie nicht notiert hat, bekommt diese Wörter nicht zurück.";
 
 /* ===== Abschreibkontrolle ===== */
 "Show the words again" = "Wörter nochmal zeigen";
