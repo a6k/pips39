@@ -19,7 +19,9 @@ The first screen of the app says this, and so does this README:
 
 > **Do not use this app to create a seed for a wallet that will hold real money.**
 > Use dice, a printed table and paper for that, in a room without electronics. There is
-> a good guide at [bitbox.swiss](https://bitbox.swiss).
+> a very good guide at
+> [Würfle deine eigene Bitcoin-Wallet](https://blog.bitbox.swiss/de/wurfle-deine-eigene-bitcoin-wallet/)
+> on the bitbox.swiss blog. It is in German only.
 
 One catch that applies either way: paper and a pen get you 23 of the 24 words. The last
 one carries a checksum over the others and nobody works that out by hand, so a wallet

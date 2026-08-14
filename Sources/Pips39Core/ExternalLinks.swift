@@ -13,11 +13,10 @@ public enum ExternalLinks {
     /// nicht geprüftes Binary — wer Gewissheit will, baut hier selbst.
     public static let sourceCode = "https://github.com/a6k/pips39"
 
-    /// Die Würfelanleitung von Shift Crypto — der Weg, der ohne diese App auskommt.
+    /// Die Würfelanleitung von Shift Crypto, der Weg, der ohne diese App auskommt.
     ///
-    /// Bewusst die Startseite und kein tiefer Link: Eine Unterseite, die umzieht,
-    /// schickt Leute ins Leere, und dieser Link steht an der Stelle mit der größten
-    /// Reichweite. Wer eine stabile Direktadresse zur Anleitung hat, trägt sie hier
-    /// ein — dann bitte vorher im Browser öffnen.
-    public static let bitboxGuide = "https://bitbox.swiss"
+    /// Am 2026-08-14 geprüft, antwortet mit 200. Der Artikel liegt nur auf Deutsch vor;
+    /// unter `/en/` mit demselben und mit übersetztem Slug antwortet der Server mit 404.
+    /// Die englische Oberfläche verweist deshalb ebenfalls hierher.
+    public static let bitboxGuide = "https://blog.bitbox.swiss/de/wurfle-deine-eigene-bitcoin-wallet/"
 }

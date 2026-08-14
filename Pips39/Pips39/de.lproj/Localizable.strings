@@ -95,6 +95,7 @@
 "Not for real money" = "Nicht für echtes Geld";
 "Do not use this app to create a seed for a wallet that will hold real money." = "Erzeuge mit dieser App keinen Seed für eine Wallet, in die echtes Geld soll.";
 "Use dice, a printed table and paper for that, in a room without electronics." = "Nimm dafür Würfel, eine gedruckte Tabelle und Papier in einem Raum ohne Elektronik.";
+"There is a very good guide for it on the bitbox.swiss site:" = "Eine sehr gute Anleitung findest du auf der Seite von bitbox.swiss:";
 "What a seed is" = "Was ein Seed ist";
 "Your wallet is one very large number. Every key and every address is worked out from it. That number is the seed." = "Deine Wallet ist eine einzige sehr große Zahl. Jeder Schlüssel und jede Adresse wird daraus berechnet. Diese Zahl ist der Seed.";
 "It is written as words only so you can copy it by hand without mistakes. The words are not the secret. The number is." = "Geschrieben wird sie als Wörter, damit man sie ohne Fehler abschreiben kann. Nicht die Wörter sind das Geheimnis, sondern die Zahl.";

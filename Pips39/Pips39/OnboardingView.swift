@@ -78,8 +78,16 @@ struct OnboardingView: View {
             Text("Use dice, a printed table and paper for that, in a room without electronics.")
                 .font(.body)
 
-            Link("bitbox.swiss", destination: URL(string: ExternalLinks.bitboxGuide)!)
-                .font(.body.weight(.medium))
+            VStack(alignment: .leading, spacing: 6) {
+                Text("There is a very good guide for it on the bitbox.swiss site:")
+                    .font(.body)
+                // Als Beschriftung der Titel des Artikels und nicht die nackte
+                // Adresse: Der Satz nennt die Seite bereits, und ein Slug über zwei
+                // Zeilen sagt niemandem, was ihn erwartet.
+                Link("Würfle deine eigene Bitcoin-Wallet",
+                     destination: URL(string: ExternalLinks.bitboxGuide)!)
+                    .font(.body.weight(.medium))
+            }
         }
     }
 
