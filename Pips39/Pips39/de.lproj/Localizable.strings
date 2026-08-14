@@ -104,7 +104,7 @@
 "Nothing else protects it. No password, no device, no company. It is safe exactly as long as nobody can guess the number." = "Sonst schützt sie nichts. Kein Passwort, kein Gerät, keine Firma. Sie hält genau so lange, wie niemand die Zahl erraten kann.";
 "Dice make a number nobody can guess, not even you afterwards. A wallet can make one too, and then you are trusting it to have done it well — which you cannot check. That is the whole reason to roll it yourself." = "Würfel erzeugen eine Zahl, die niemand erraten kann — auch Sie selbst hinterher nicht. Eine Wallet kann das auch, dann vertrauen Sie darauf, dass sie es ordentlich gemacht hat, und nachprüfen können Sie es nicht. Genau deshalb würfelt man selbst.";
 "Two ways from here" = "Zwei Wege von hier";
-"They differ in one thing that matters: how much of your seed this app gets to see." = "Sie unterscheiden sich in einem Punkt, auf den es ankommt: wie viel vom Seed diese App zu sehen bekommt.";
+"What differs: what you tap in, and who turns it into words." = "Der Unterschied: was Sie eintippen, und wer daraus die Wörter macht.";
 "You can change your mind afterwards — both stay on the start screen." = "Sie können sich später umentscheiden — beide Wege bleiben auf der Startseite.";
 
 /* ===== Onboarding, Tabellen-Weg ===== */

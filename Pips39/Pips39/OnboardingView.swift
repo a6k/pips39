@@ -120,7 +120,7 @@ struct OnboardingView: View {
 
     private var choicePage: some View {
         OnboardingPage(title: "Two ways from here") {
-            Text("They differ in one thing that matters: how much of your seed this app gets to see.")
+            Text("What differs: what you tap in, and who turns it into words.")
                 .font(.footnote)
                 .foregroundStyle(.secondary)
 
