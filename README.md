@@ -225,6 +225,12 @@ will need to select your own signing team.
 - **The method and seed length are chosen at the start of a run, not in settings.**
   A setting that silently drifts between sessions would make a user believe a correct
   backup was broken.
+- **There is no warning colour.** The whole screen carries the app icon's gradient, and
+  on it system red measures 2.15:1 against white, which is unreadable. Warnings are
+  white bold text on a dark translucent panel instead: the panel reads as a panel at
+  1.5–1.6:1 against the gradient and carries text at 11.9–12.9:1, better than the bare
+  gradient's 7.3:1. An amber accent would have scored worse on both counts. The meaning
+  is carried by the icon and the weight, not by hue.
 
 ## Licence
 

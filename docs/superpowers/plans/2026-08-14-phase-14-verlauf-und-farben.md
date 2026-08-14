@@ -1,5 +1,12 @@
 # Pips39 — Phase 14: Verlauf über den ganzen Schirm — Implementation Plan
 
+> **Umgesetzt am 2026-08-14.** Drei Punkte kamen bei der Sichtprüfung dazu und stehen
+> nicht oben im Plan: Der Verlauf muss an **jeden Reiter einzeln** (`TabView` legt einen
+> eigenen deckenden Grund darunter), Nebentext braucht **78 statt 60 Prozent Weiß**
+> (`Color.secondary` kommt oben nur auf 4,23:1), und **Links brauchen einen Unterstrich**,
+> weil der Akzent jetzt Weiß ist. Beim Verwerfen-Knopf schlägt `role: .destructive` den
+> `.tint`; nur `.foregroundStyle` kommt dagegen an.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Die App trägt den Verlauf des App-Icons über den ganzen Schirm, bis hinter
@@ -98,7 +105,7 @@ vorhanden, ihr Symbol.
 **Files:**
 - Create: `Pips39/Pips39/BrandTheme.swift`
 
-- [ ] **Step 1: Die Datei anlegen**
+- [x] **Step 1: Die Datei anlegen**
 
 ```swift
 import SwiftUI
@@ -158,7 +165,7 @@ extension ButtonStyle where Self == BrandProminentButtonStyle {
 }
 ```
 
-- [ ] **Step 2: Bauen**
+- [x] **Step 2: Bauen**
 
 ```bash
 cd "$REPO/Pips39"
@@ -175,7 +182,7 @@ Expected: `** BUILD SUCCEEDED **`
 - Modify: `Pips39/Pips39/Pips39App.swift`
 - Modify: `Pips39/Pips39/ContentView.swift`
 
-- [ ] **Step 1: Farbschema und Akzent am Einstieg setzen**
+- [x] **Step 1: Farbschema und Akzent am Einstieg setzen**
 
 `Pips39App.swift` vollständig:
 
@@ -197,7 +204,7 @@ struct Pips39App: App {
 }
 ```
 
-- [ ] **Step 2: Den Verlauf hinter alles legen**
+- [x] **Step 2: Den Verlauf hinter alles legen**
 
 In `ContentView.body`, der Verlauf **hinter** dem Inhalt und über den sicheren Bereich
 hinaus:
@@ -222,7 +229,7 @@ hinaus:
 > dann steht die Leiste ohne Trennung im Bild und die Symbole schwimmen. In Task 6
 > ansehen und entscheiden, nicht vorher festlegen.
 
-- [ ] **Step 3: Bauen und ansehen**
+- [x] **Step 3: Bauen und ansehen**
 
 ```bash
 cd "$REPO/Pips39"
@@ -247,7 +254,7 @@ die Flächen darauf sehen noch falsch aus. Das räumt Task 3 auf.
 Neun Stellen benutzen heute `Color.secondary.opacity(…)` oder `Color(.systemBackground)`.
 Auf Violett wird beides schlammig oder weiß.
 
-- [ ] **Step 1: Ersetzen**
+- [x] **Step 1: Ersetzen**
 
 ```bash
 cd "$REPO/Pips39/Pips39"
@@ -270,7 +277,7 @@ Jede Fundstelle nach dieser Regel:
 > Sie soll durchlaufende Wörter verdecken, muss also deckend sein. Am unteren Rand des
 > Schirms steht ohnehin `gradientBottom`, damit fällt sie nicht auf.
 
-- [ ] **Step 2: Prominente Knöpfe umstellen**
+- [x] **Step 2: Prominente Knöpfe umstellen**
 
 ```bash
 grep -n "buttonStyle(.borderedProminent)" *.swift
@@ -279,7 +286,7 @@ grep -n "buttonStyle(.borderedProminent)" *.swift
 Jede Fundstelle auf `.buttonStyle(.brandProminent)`. Das mitgeführte
 `.controlSize(.large)` entfällt, die Größe steckt im Stil.
 
-- [ ] **Step 3: Bauen und committen**
+- [x] **Step 3: Bauen und committen**
 
 ```bash
 cd "$REPO"
@@ -295,14 +302,14 @@ git commit -m "feat: Verlauf ueber den ganzen Schirm, Flaechen auf durchscheinen
 - Modify: `OnboardingView.swift`, `WordsView.swift`, `RollingView.swift`,
   `HelpTopics.swift`, `ScreenProtection.swift`
 
-- [ ] **Step 1: Die vier Stellen finden**
+- [x] **Step 1: Die vier Stellen finden**
 
 ```bash
 cd "$REPO/Pips39/Pips39"
 grep -n "Color.red\|foregroundStyle(.red)\|\.orange\|Color.orange" *.swift
 ```
 
-- [ ] **Step 2: Freistehende Warnungen — weiß und fett, keine Fläche**
+- [x] **Step 2: Freistehende Warnungen — weiß und fett, keine Fläche**
 
 Die beiden Warnsätze im Onboarding (`introPage`, `basicsPage`) sind der Inhalt ihrer
 Seite und stehen für sich. Statt `.foregroundStyle(.red)`:
@@ -311,7 +318,7 @@ Seite und stehen für sich. Statt `.foregroundStyle(.red)`:
                 .fontWeight(.semibold)
 ```
 
-- [ ] **Step 3: Eingebettete Warnungen — weiß fett auf `Brand.panel`**
+- [x] **Step 3: Eingebettete Warnungen — weiß fett auf `Brand.panel`**
 
 Der Satz auf der Verzweigungsseite steht mitten im Fließtext und braucht die Fläche,
 weil dieselbe Strichstärke in derselben Farbe beim Überfliegen untergeht. In
@@ -343,7 +350,7 @@ bleibt und trägt jetzt die Bedeutung allein.
 `ScreenProtection.swift:74` braucht zusätzlich die `clipShape`-Zeile, die dort heute
 fehlt, sonst läuft die Fläche über die volle Breite.
 
-- [ ] **Step 4: „Verwerfen" wird ein Papierkorb**
+- [x] **Step 4: „Verwerfen" wird ein Papierkorb**
 
 Der destruktive Knopf oben links in `WordsView` benutzt `role: .destructive` und ist
 damit systemrot, auf Violett unlesbar. Weiße Schrift allein wäre von „Hilfe" rechts
@@ -366,7 +373,7 @@ VoiceOver den Knopf ansagt.
 > `confirmationDialog` zeichnet iOS selbst, auf eigenem Grund. Dort ist Rot lesbar und
 > bedeutet dasselbe wie überall im System. Nur die Knöpfe **in** der App wechseln.
 
-- [ ] **Step 5: Bauen und committen**
+- [x] **Step 5: Bauen und committen**
 
 ```bash
 cd "$REPO"
@@ -383,7 +390,7 @@ git commit -m "feat: Warnungen tragen Flaeche und Symbol statt Farbe"
 
 Das Sheet bringt einen eigenen Grund mit, und die `List` ebenfalls.
 
-- [ ] **Step 1: Beide durchsichtig machen**
+- [x] **Step 1: Beide durchsichtig machen**
 
 ```swift
             List {
@@ -402,7 +409,7 @@ von der Wurzel.
 > anderer Ort als die App darunter. Wer sie auch violett will, setzt zusätzlich
 > `.listRowBackground(Brand.surface)`.
 
-- [ ] **Step 2: Bauen und committen**
+- [x] **Step 2: Bauen und committen**
 
 ---
 
@@ -410,39 +417,39 @@ von der Wurzel.
 
 Vor jedem Durchgang bauen **und** installieren.
 
-- [ ] **Step 1: Statusleiste und Ränder**
+- [x] **Step 1: Statusleiste und Ränder**
 
 Verlauf muss oben hinter Uhrzeit und Batterie stehen und unten hinter dem
 Home-Indikator. Die Symbole der Statusleiste müssen **hell** sein.
 
-- [ ] **Step 2: Die Seed-Wörter**
+- [x] **Step 2: Die Seed-Wörter**
 
 12 Wörter würfeln, Wortanzeige. Die Wörter müssen klar lesbar sein, das ist der Fall,
 an dem diese Phase gemessen wird. Ebenso die Aufzeichnung mit Wurffolge und Hex.
 
-- [ ] **Step 3: Die Warnsätze**
+- [x] **Step 3: Die Warnsätze**
 
 Onboarding-Seite 1 und 2 tragen weiße fette Sätze ohne Fläche, die Verzweigungsseite
 den Satz auf dunkler Fläche. Prüfen, dass die Fläche sich vom Grund abhebt, ohne wie ein
 Loch im Verlauf zu wirken. Fällt sie zu schwach aus, `Brand.panel` auf 0,45 anheben.
 
-- [ ] **Step 4: Der Musterhinweis**
+- [x] **Step 4: Der Musterhinweis**
 
 50 gleiche Würfe. Die Meldung steht weiß auf dunkler Fläche, mit dem Warndreieck.
 Prüfen, dass sie als Hinweis erkennbar ist, obwohl keine Farbe mehr mitspielt.
 
-- [ ] **Step 5: Die Reiterleiste**
+- [x] **Step 5: Die Reiterleiste**
 
 Ansehen und entscheiden, ob sie mit ihrem eigenen dunklen Grund bleibt oder auf
 `.toolbarBackground(.hidden, for: .tabBar)` wechselt. **Nicht vorher festlegen.**
 
-- [ ] **Step 6: Die eigene Tastatur**
+- [x] **Step 6: Die eigene Tastatur**
 
 Abschreibkontrolle öffnen. Die Buchstaben sind der dichteste Bildschirm der App, dort
 fällt zu wenig Kontrast zuerst auf. Gesperrte Buchstaben müssen sich weiterhin klar von
 freien unterscheiden.
 
-- [ ] **Step 7: Der Bildschirmschutz**
+- [x] **Step 7: Der Bildschirmschutz**
 
 App in den Hintergrund schicken und im App-Umschalter ansehen. Die Verdeckung muss
 greifen und darf nicht durchsichtig auf dem Verlauf stehen.
@@ -451,12 +458,12 @@ greifen und darf nicht durchsichtig auf dem Verlauf stehen.
 
 ## Abschluss der Phase
 
-- [ ] **Spec ergänzen:** Ein Abschnitt 2.9 „Farben" mit den beiden Verlaufsfarben, der
+- [x] **Spec ergänzen:** Ein Abschnitt 2.9 „Farben" mit den beiden Verlaufsfarben, der
       Begründung für die Abdunklung und der dafür, dass Warnungen eine dunkle Fläche
       tragen statt einer Farbe. Die gemessenen Kontraste mit aufnehmen, sonst wird beim
       nächsten Umlackieren wieder Rot genommen.
 
-- [ ] **README:** Der Abschnitt zu den Design-Entscheidungen bekommt einen Satz dazu.
+- [x] **README:** Der Abschnitt zu den Design-Entscheidungen bekommt einen Satz dazu.
 
 > [!warning] Vor dem Push: der Hook prüft auf `DEVELOPMENT_TEAM`
 
