@@ -78,7 +78,14 @@
 "A die showing 5 or 6 carries no value here. Throw it again until it shows 1 to 4." = "Eine 5 oder 6 trägt hier keinen Wert. Den Würfel neu werfen, bis er 1 bis 4 zeigt.";
 "H" = "K";
 "T" = "Z";
-"H = heads (or a die showing 1 to 3), T = tails (4 to 6)." = "K = Kopf (oder ein Würfel mit 1 bis 3), Z = Zahl (4 bis 6).";
+"H = heads, T = tails. No coin? Throw a sixth die: 1 to 3 is heads, 4 to 6 is tails." = "K = Kopf, Z = Zahl. Keine Münze? Wirf einen sechsten Würfel: 1 bis 3 ist Kopf, 4 bis 6 ist Zahl.";
+
+"Your fourth die picks the column, your fifth die and the coin pick the row. Write down the word where they meet." = "Der vierte Würfel wählt die Spalte, der fünfte Würfel zusammen mit der Münze die Zeile. Das Wort, wo beide sich treffen, aufschreiben.";
+
+"Start over" = "Von vorn anfangen";
+"Start over?" = "Von vorn anfangen?";
+"Keep going" = "Weitermachen";
+"You are at word %lld of %lld. Your words stay on your paper, but the app cannot tell you where you were." = "Du bist bei Wort %lld von %lld. Deine Wörter bleiben auf deinem Papier, aber die App kann dir nicht sagen, wo du warst.";
 "Next word" = "Nächstes Wort";
 "The 24th word" = "Das 24. Wort";
 "This app cannot work it out. It never saw your words, and the last word carries a checksum over all the others." = "Diese App kann es nicht berechnen. Sie hat deine Wörter nie gesehen, und das letzte Wort trägt eine Prüfsumme über alle anderen.";

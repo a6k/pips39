@@ -23,6 +23,7 @@ struct LookupView: View {
     @State private var dice: [Int] = []
     @State private var wordNumber = 1
     @State private var isFinished = false
+    @State private var showsRestartConfirmation = false
 
     var body: some View {
         ScrollView {
@@ -55,9 +56,39 @@ struct LookupView: View {
 
     // MARK: Kopf
 
-    /// Nur die Hilfe. Ein Reiter hat kein Zurück, der Weg hinaus ist der Reiterwechsel.
+    /// Der Papierkorb setzt den Zähler auf Wort 1 zurück, zu jedem Zeitpunkt.
+    ///
+    /// Vorher stand hier nur die Hilfe, mit der Begründung, ein Reiter habe kein
+    /// Zurück. Das war falsch gedacht: Der Reiterwechsel bewahrt den Zustand, das ist
+    /// ja der Sinn der Reiter. Wer bei Wort 7 neu anfangen wollte, kam nirgends hin.
+    /// „Von vorn" gab es nur auf der Abschlussseite, also erst nach Wort 23.
+    ///
+    /// **Immer mit Rückfrage**, anders als beim Zurück in der Abschreibkontrolle. Dort
+    /// stehen die Wörter gleich wieder auf dem Schirm. Hier ist der Zähler die einzige
+    /// Erinnerung daran, wie weit du bist: Die Wörter stehen auf deinem Papier, die App
+    /// hat sie nie gesehen und kann dir die Stelle nicht zurückgeben.
     private var bar: some View {
-        TopBar()
+        TopBar {
+            Button(role: .destructive) {
+                showsRestartConfirmation = true
+            } label: {
+                Label("Start over", systemImage: "trash")
+                    .font(.body)
+            }
+            .foregroundStyle(.white)
+        }
+        .confirmationDialog("Start over?",
+                            isPresented: $showsRestartConfirmation,
+                            titleVisibility: .visible) {
+            Button("Start over", role: .destructive) {
+                wordNumber = 1
+                dice = []
+                isFinished = false
+            }
+            Button("Keep going", role: .cancel) { }
+        } message: {
+            Text("You are at word \(wordNumber) of \(totalWords). Your words stay on your paper, but the app cannot tell you where you were.")
+        }
     }
 
     private var header: some View {
@@ -118,6 +149,14 @@ struct LookupView: View {
 
     private func grid(for block: [String]) -> some View {
         VStack(spacing: 6) {
+            // Ohne diesen Satz steht man vor 32 Wörtern und weiß nicht, welches
+            // gemeint ist. Die Spaltenköpfe und die Zeilenmarken zeigen zwar Würfel
+            // und Münze, sagen aber nicht, dass es der vierte und der fünfte sind.
+            Text("Your fourth die picks the column, your fifth die and the coin pick the row. Write down the word where they meet.")
+                .font(.footnote)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.bottom, 4)
+
             HStack(spacing: 6) {
                 Text(" ").frame(width: 46)
                 ForEach(1...4, id: \.self) { fourth in
@@ -148,7 +187,11 @@ struct LookupView: View {
                 }
             }
 
-            Text("H = heads (or a die showing 1 to 3), T = tails (4 to 6).")
+            // Vorher: „H = heads (or a die showing 1 to 3), T = tails (4 to 6)."
+            // Die Werte 1 bis 3 und 4 bis 6 gehören zu einem **sechsten** Würfel, der
+            // die Münze ersetzt. In der Tabelle stehen daneben Würfel 1 bis 4, und
+            // beides zusammen las sich wie ein Widerspruch.
+            Text("H = heads, T = tails. No coin? Throw a sixth die: 1 to 3 is heads, 4 to 6 is tails.")
                 .font(.caption2)
                 .foregroundStyle(Brand.secondaryText)
                 .frame(maxWidth: .infinity, alignment: .leading)
