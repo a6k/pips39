@@ -30,6 +30,10 @@ struct RollingView: View {
                             .aspectRatio(1, contentMode: .fit)
                     }
                     .buttonStyle(.plain)
+                    // Ohne Beschriftung liest VoiceOver bestenfalls den Namen des
+                    // Symbols vor. Wer nicht sieht, welcher Würfel wo liegt, kann
+                    // sonst nicht würfeln.
+                    .accessibilityLabel("Roll \(face)")
                     .background(Brand.surface)
                     .clipShape(RoundedRectangle(cornerRadius: 14))
                     .disabled(session.isComplete)

@@ -10,7 +10,7 @@ that you copied them onto paper correctly. That is the whole app.
 transactions and has no network code. There is nothing in it to steal, because
 nothing stays behind.
 
-There is also a third mode, **Lookup table**, which does something different: it
+There is also a third mode, **Word table**, which does something different: it
 replaces a printed sheet rather than computing a seed. See below.
 
 ## Not for real money
@@ -35,7 +35,7 @@ Three shared pages, then a branch, then two pages for whichever way you chose:
 |---|---|---|
 | **shared** | 1 · Not for real money | The warning, in two sentences, and the BitBox link |
 | | 2 · What this app is for | Air-gapped iPhone, for learning, never for real money |
-| | 3 · Two ways from here | The two cards — **this is where it branches** |
+| | 3 · Two ways to roll | The two cards — **this is where it branches** |
 | **A** | A1 · Check the app | `shasum`, iancoleman, source — while still online |
 | | A2 · Take it offline | The device checklist and what the app cannot tell you |
 | **B** | B1 · What you need | Five dice, a coin, a hardware wallet, offline too |
@@ -118,7 +118,7 @@ Each roll is looked up in a variable-length bit table (`1→01`, `2→10`, `3→
 under this method is not fixed. The full analysis, with line references into Coleman's
 source, is in [`docs/coleman-verfahren.md`](docs/coleman-verfahren.md).
 
-## The lookup table mode
+## The word table mode
 
 This one is not a third way to compute a seed. It is a replacement for a sheet of
 paper, for people who own dice and a hardware wallet but no printer.

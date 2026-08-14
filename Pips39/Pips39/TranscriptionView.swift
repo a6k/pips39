@@ -37,6 +37,9 @@ struct TranscriptionView: View {
         }
         .padding()
         .screenProtected()
+        // Wie Wortanzeige, Aufzeichnung und Worttabelle. Die Fehlmeldung nennt ein
+        // vollständiges Wort, und der Eingabepräfix steht groß auf dem Schirm.
+        .hiddenFromScreenCapture()
     }
 
     /// Der Ausgang aus der Kontrolle.

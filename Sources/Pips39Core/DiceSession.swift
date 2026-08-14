@@ -76,6 +76,10 @@ public final class DiceSession: ObservableObject {
 
     /// Wirft alles weg und beginnt von vorn — gleiches Verfahren, leerer Puffer.
     public func discard() {
+        // Erst nullen, dann ersetzen. `reveal()` und `entropyHex` räumen ihre
+        // `SecretBytes` bereits per `defer` auf, der Wurfpuffer blieb bisher als
+        // Einziger liegen — und aus ihm fällt derselbe Seed wieder heraus.
+        buffer.wipe()
         words = []
         buffer = DiceEntropy(method: method, length: length)
     }

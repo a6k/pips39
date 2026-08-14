@@ -96,7 +96,9 @@ struct LookupView: View {
             Text("Word \(wordNumber) of \(totalWords)")
                 .font(.title2.weight(.semibold))
                 .monospacedDigit()
-            Text("Throw five dice and the coin. Re-throw any die showing 5 or 6. Then enter the first three dice.")
+            // Ohne „Re-throw any die showing 5 or 6": Dieselbe Regel steht darunter
+            // in `hint`, samt Begründung, und beide sind gleichzeitig sichtbar.
+            Text("Throw five dice and the coin. Then enter the first three dice.")
                 .font(.footnote)
                 .foregroundStyle(Brand.secondaryText)
         }
@@ -119,6 +121,8 @@ struct LookupView: View {
                             .aspectRatio(1, contentMode: .fit)
                     }
                     .buttonStyle(.plain)
+                    // Sonst liest VoiceOver bestenfalls den Symbolnamen vor.
+                    .accessibilityLabel("Die shows \(face)")
                     .background(Brand.surface)
                     .clipShape(RoundedRectangle(cornerRadius: 12))
                     .disabled(dice.count == 3)
@@ -174,6 +178,13 @@ struct LookupView: View {
                         Text(row.coin == .heads ? "H" : "T")
                             .font(.caption2.weight(.bold))
                     }
+                    // Dieselbe Absicherung wie bei den Wortzellen daneben: Bei
+                    // größter Systemschrift passt Symbol samt Buchstabe sonst nicht
+                    // in die 46 Punkte, und die Zeile schiebt die letzte Wortspalte
+                    // vom Schirm. Die Rolle scrollt nur senkrecht, waagerecht gibt
+                    // es nichts nachzuholen.
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.6)
                     .frame(width: 46, alignment: .leading)
                     .foregroundStyle(Brand.secondaryText)
 

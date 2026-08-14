@@ -45,6 +45,11 @@ struct WordsView: View {
                             Text("\(index + 1)")
                                 .font(.caption.monospacedDigit())
                                 .foregroundStyle(Brand.secondaryText)
+                                // Feste Breite plus große Systemschrift schneidet
+                                // zweistellige Nummern ab. Lieber kleiner setzen als
+                                // die 24 zur 2 machen.
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.6)
                                 .frame(width: 24, alignment: .trailing)
                             Text(word)
                                 .font(.body.weight(.medium))

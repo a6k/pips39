@@ -121,9 +121,13 @@ gerade Anführungszeichen haben.
 
 ## Was das für die App bedeutet
 
-Das **App-Target** ist davon nicht betroffen — dort baut Xcode, und String Catalogs
-sind der bequemere Weg. Es ist also in Ordnung, wenn im Paket `.strings` und in der
-App `.xcstrings` liegen. Zwei Mechanismen, aber jeder dort, wo er trägt.
+Das **App-Target** ist davon nicht betroffen, dort baut Xcode. String Catalogs wären
+dort möglich, **benutzt werden sie aber nicht**: Die App führt `Pips39/Pips39/de.lproj/
+Localizable.strings` und `en.lproj/Localizable.strings`, genau wie das Paket. Es ist
+also **ein** Mechanismus im ganzen Repo, keine zwei.
+
+Eine `Localizable.xcstrings` taucht trotzdem auf, wenn man danach sucht: unter
+`.build/…/Pips39Core_Pips39Core.bundle/`. Das ist ein Bauartefakt, keine Quelldatei.
 
 ## Verwaiste Schlüssel finden — und die zwei Fallen dabei
 

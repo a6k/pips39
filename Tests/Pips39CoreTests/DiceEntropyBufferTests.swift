@@ -52,4 +52,20 @@ final class DiceEntropyBufferTests: XCTestCase {
         }
         XCTAssertEqual(buffer.rolls, [1, 2, 3, 4, 5, 6])
     }
+
+    /// Dass die Bytes vorher genullt werden, kann von außen niemand sehen. Geprüft
+    /// wird deshalb, was prüfbar ist: dass `wipe()` den Puffer leert und ihn danach
+    /// wieder benutzbar lässt.
+    func testWipeEmptiesTheBuffer() throws {
+        var buffer = DiceEntropy(method: .sha256)
+        for face in UInt8(1)...UInt8(6) {
+            try buffer.append(face)
+        }
+
+        buffer.wipe()
+        XCTAssertTrue(buffer.rolls.isEmpty)
+
+        try buffer.append(4)
+        XCTAssertEqual(buffer.rolls, [4], "Nach dem Nullen weiter benutzbar")
+    }
 }

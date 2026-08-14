@@ -43,10 +43,10 @@ struct LookupOnboardingPages: View {
 
     private let needs: [LocalizedStringKey] = [
         "Five dice. One works too. Throw it five times and keep the order.",
-        "A coin. Or a sixth die: 1 to 3 is heads, 4 to 6 is tails.",
+        "A coin. Or a sixth die, where all six values count: 1 to 3 is heads, 4 to 6 is tails.",
         "Paper and a pen for the 23 words.",
         "A hardware wallet. It supplies the 24th word, which this app cannot work out.",
-        "A die showing 5 or 6 counts for nothing here. Throw it again until it shows 1 to 4."
+        "Of the five dice, a 5 or 6 counts for nothing. Throw that die again until it shows 1 to 4."
     ]
 
     // MARK: B2 — was die App dabei sieht

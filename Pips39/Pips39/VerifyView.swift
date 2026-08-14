@@ -59,9 +59,15 @@ struct VerifyView: View {
             Text(title)
                 .font(.caption.weight(.semibold))
                 .foregroundStyle(Brand.secondaryText)
+            // **Kein** `.textSelection`. Es schaltet das iOS-Bearbeitungsmenü frei,
+            // und ein Tipp auf „Kopieren" legt Wurffolge oder Hex-Entropie in
+            // `UIPasteboard`. Das ist ein systemweiter Speicher, den andere Apps
+            // lesen und den Universal Clipboard bei aktivem iCloud auf andere
+            // Geräte trägt. Auf genau den zwei Feldern, die diese Ansicht selbst
+            // als seed-gleichwertig bezeichnet, wäre das der einzige Weg, mit dem
+            // Seed-Material die App verlassen kann.
             Text(value)
                 .font(monospaced ? .system(.footnote, design: .monospaced) : .footnote)
-                .textSelection(.enabled)
         }
     }
 }

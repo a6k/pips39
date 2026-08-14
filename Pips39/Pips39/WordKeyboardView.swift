@@ -41,6 +41,11 @@ struct WordKeyboardView: View {
         } label: {
             Text(String(letter).uppercased())
                 .font(.title3.weight(.medium))
+                // Zehn Tasten je Reihe teilen sich die Breite. Bei größter
+                // Systemschrift wird ein Buchstabe breiter als seine Spalte und die
+                // abgerundete Maske schneidet ihn an, ausgerechnet beim Abschreiben.
+                .lineLimit(1)
+                .minimumScaleFactor(0.5)
                 .frame(maxWidth: .infinity, minHeight: 44)
                 .background(Color.white.opacity(enabled ? 0.18 : 0.05))
                 .foregroundStyle(enabled ? Color.primary : Color.white.opacity(0.4))
@@ -53,6 +58,7 @@ struct WordKeyboardView: View {
     private var deleteKey: some View {
         Button(action: onDelete) {
             Image(systemName: "delete.left")
+                .accessibilityLabel("Delete")
                 .frame(maxWidth: .infinity, minHeight: 44)
                 .background(Color.white.opacity(canDelete ? 0.18 : 0.05))
                 .foregroundStyle(canDelete ? Color.primary : Color.white.opacity(0.4))

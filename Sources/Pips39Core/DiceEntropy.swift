@@ -38,6 +38,23 @@ public struct DiceEntropy {
         rolls.append(roll)
     }
 
+    /// Überschreibt die Wurffolge mit Nullen und leert sie.
+    ///
+    /// Die Würfe sind das, was der Nutzer notiert hätte: Aus ihnen fällt derselbe
+    /// Seed wieder heraus. Beim bloßen Ersetzen des Puffers gibt ARC den Speicher
+    /// frei, ohne ihn anzufassen, und die Folge bliebe bis zur nächsten Belegung
+    /// als Klartext im Heap liegen.
+    ///
+    /// Wie bei `SecretBytes` ist das Sorgfalt, keine Garantie: Wächst `rolls`
+    /// während der Eingabe, legt Swift eine größere Kopie an und gibt die alte
+    /// ungenullt frei. Diese Zwischenkopien erreicht keine Methode von hier aus.
+    public mutating func wipe() {
+        for index in rolls.indices {
+            rolls[index] = 0
+        }
+        rolls.removeAll(keepingCapacity: false)
+    }
+
     /// Nimmt den letzten Wurf zurück. Auf einem leeren Puffer wirkungslos.
     public mutating func undo() {
         if !rolls.isEmpty {

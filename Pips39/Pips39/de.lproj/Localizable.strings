@@ -33,6 +33,7 @@
 "Undo" = "Rückgängig";
 "Show words" = "Wörter zeigen";
 "Discard and go back" = "Verwerfen und zurück";
+"Discard %lld rolls?" = "%lld Würfe verwerfen?";
 "Keep rolling" = "Weiterwürfeln";
 "Going back means choosing the seed length again. Your rolls so far cannot be carried over." = "Zurückgehen heißt, die Seed-Länge neu zu wählen. Die bisherigen Würfe lassen sich nicht mitnehmen.";
 
@@ -182,3 +183,8 @@
 "Pips39/Signing.xcconfig pulls that file in with an optional include, so a clone without it still builds for the simulator." = "Pips39/Signing.xcconfig zieht diese Datei über ein optionales Include herein. Ein Klon ohne sie baut trotzdem für den Simulator.";
 "Xcode writes the team ID back into project.pbxproj whenever you touch the team picker. If you contribute, install the commit hook once per clone; it refuses any commit that carries an ID into the repository." = "Xcode schreibt die Team-ID jedes Mal in project.pbxproj zurück, wenn du die Teamauswahl anfasst. Wer mitarbeitet, richtet den Commit-Hook einmal pro Klon ein; er weist jeden Commit ab, der eine Kennung ins Repo trägt.";
 "git config core.hooksPath scripts/githooks" = "git config core.hooksPath scripts/githooks";
+
+/* Beschriftungen fuer VoiceOver, sichtbar sind dort nur Symbole */
+"Roll %lld" = "Würfel %lld";
+"Die shows %lld" = "Würfel zeigt %lld";
+"Delete" = "Löschen";
