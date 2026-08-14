@@ -57,4 +57,14 @@ public final class DiceSession: ObservableObject {
         words = []
         buffer = DiceEntropy(method: method)
     }
+
+    /// Die erzeugte Entropie als Hex, oder `nil` solange nicht genug gewürfelt wurde.
+    ///
+    /// Seed-gleichwertig. Wird nur im Nachrechnen-Bereich gezeigt, zusammen mit dem
+    /// Hinweis, dafür eine Wegwerf-Folge zu benutzen.
+    public var entropyHex: String? {
+        guard var entropy = buffer.entropy() else { return nil }
+        defer { entropy.wipe() }
+        return entropy.bytes.map { String(format: "%02x", $0) }.joined()
+    }
 }

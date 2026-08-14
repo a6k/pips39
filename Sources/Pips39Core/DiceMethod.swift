@@ -44,4 +44,28 @@ public enum DiceMethod: String, CaseIterable, Equatable {
         case .coleman: return "Around 154 rolls, but the exact number varies."
         }
     }
+
+    /// Die Schritte, mit denen der Nutzer das Ergebnis unabhängig nachrechnet.
+    public var verificationSteps: [String] {
+        switch self {
+        case .sha256:
+            return [
+                "Run: printf '%s' \"<your rolls>\" | shasum -a 256",
+                "Open iancoleman.io/bip39 and paste the hex into the Entropy field.",
+                "Set Entropy type to Hex, then compare the words."
+            ]
+        case .coleman:
+            return [
+                "Open iancoleman.io/bip39.",
+                "Select the Dice entropy type first — otherwise a sequence of only 1s is read as binary.",
+                "Leave Mnemonic Length on Use Raw Entropy — a fixed word count hashes instead and truncates the other way.",
+                "Enter exactly the rolls shown here, no more, and compare the words."
+            ]
+        }
+    }
+
+    /// Der Satz, ohne den der Nachrechnen-Bereich mehr schadet als nützt.
+    public var verificationWarning: String {
+        "Use a throwaway sequence to try this out. Never type your real rolls into a browser."
+    }
 }
