@@ -8,3 +8,6 @@ DerivedData/
 
 # Die Apple-Team-ID gehoert einer Person, nicht dem Projekt. Siehe Pips39/Signing.xcconfig.
 Pips39/Local.xcconfig
+
+# Store-Screenshots: gross, binaer, gehoeren zu Connect und nicht zum Quelltext
+Screenshots Connect/
