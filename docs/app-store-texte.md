@@ -246,10 +246,14 @@ github.com/a6k/pips39
 
 ## Was noch fehlt, bevor eingereicht werden kann
 
-- [ ] **Support-URL.** Pflicht. Eine Seite unter comodin.com genügt, mit einer
-      Kontaktmöglichkeit.
-- [ ] **Datenschutzerklärung-URL.** Pflicht, auch wenn nichts erhoben wird. Sie muss
-      sagen, dass nichts erhoben wird.
+- [x] **Support-URL** und **Datenschutzerklärung-URL.** Beide Seiten liegen im
+      comodin.com-Repo und warten nur noch auf `cover.jpg` und ein Deployment:
+
+      | Feld in Connect | URL |
+      |---|---|
+      | Support | `https://comodin.com/projekte/pips39` |
+      | Datenschutz (DE) | `https://comodin.com/projekte/pips39/privacy` |
+      | Datenschutz (EN) | `https://comodin.com/en/projects/pips39/privacy` |
 - [ ] **App-Privacy-Fragebogen** in Connect. Antwort auf alles: „Data Not Collected".
 - [ ] **Altersfreigabe.** Der Fragebogen führt bei dieser App zu 4+.
 - [ ] **Kategorie.** Primär Education, sekundär Utilities.
