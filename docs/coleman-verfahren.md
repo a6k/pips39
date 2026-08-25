@@ -255,6 +255,11 @@ Ausschließlich Wegwerf-Folgen. Keine davon wurde je für einen echten Seed benu
 | 99 × `1` | 198 | 192 | 18 | `5555…5555` |
 | 99 × `6` | 198 | 192 | 18 | `0000…0000` |
 | 99 × `142536` | 165 | 160 | 15 | `e2b8ae2b8ae2b8ae2b8ae2b8ae2b8ae2b8ae2b8a` |
+| 128 × `1` | 256 | 256 | **24** | `5555…5555` (32 Byte) |
+
+Der letzte Vektor kam am 2026-08-25 dazu, mit demselben Verfahren erhoben. Er deckt den
+Fall ab, den die App in diesem Modus voreingestellt liefert. Bei der Gelegenheit wurden die
+fünf älteren Vektoren neu berechnet; sie stimmten zeichengleich.
 
 Die JSON-Datei enthält zusätzlich die gefilterte Folge, die vollständige Rohbitfolge, das
 Mnemonic und — zur Abgrenzung — die Ergebnisse des Hash-Pfads für 12 und 24 Wörter. Sie ist
