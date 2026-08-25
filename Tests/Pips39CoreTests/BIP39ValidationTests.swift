@@ -41,4 +41,37 @@ final class BIP39ValidationTests: XCTestCase {
         XCTAssertEqual(BIP39.firstMismatch(between: validTwelve,
                                            and: Array(validTwelve.dropLast())), 11)
     }
+
+    /// Der umgekehrte Fall: Der Nutzer hat ein Wort **zu viel** getippt. Gemeldet wird
+    /// die erste Stelle hinter dem Erwarteten, also 12 — dort steht in der Abschrift
+    /// etwas, wofür es keine Vorlage gibt.
+    ///
+    /// Bisher war nur die zu *kurze* Abschrift geprüft. Der Unterschied ist keiner der
+    /// Symmetrie: Die Schleife läuft über das kürzere der beiden Felder, und ein
+    /// Rückgabewert, der auf das längere zeigt, würde beim Markieren in der Ansicht
+    /// über den Rand greifen.
+    func testFirstMismatchReportsExtraTypedWord() {
+        let typed = validTwelve + ["zoo"]
+        XCTAssertEqual(BIP39.firstMismatch(between: validTwelve, and: typed), 12)
+    }
+
+    /// Zu viel getippt **und** vorher schon falsch: Der frühere Fehler gewinnt, die
+    /// überzähligen Wörter interessieren dann nicht mehr.
+    func testEarlierMismatchWinsOverExtraWords() {
+        var typed = validTwelve + ["zoo", "zoo"]
+        typed[2] = "zebra"
+        XCTAssertEqual(BIP39.firstMismatch(between: validTwelve, and: typed), 2)
+    }
+
+    /// Eine viel längere Abschrift meldet trotzdem die Länge der Vorlage, nicht ihre
+    /// eigene.
+    func testFirstMismatchWithMuchLongerInput() {
+        let typed = validTwelve + Array(repeating: "abandon", count: 12)
+        XCTAssertEqual(BIP39.firstMismatch(between: validTwelve, and: typed), 12)
+    }
+
+    /// Und die Gegenrichtung mit leerer Abschrift: Stelle 0, nicht `nil`.
+    func testFirstMismatchWithEmptyInput() {
+        XCTAssertEqual(BIP39.firstMismatch(between: validTwelve, and: []), 0)
+    }
 }

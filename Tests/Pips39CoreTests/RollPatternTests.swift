@@ -71,6 +71,45 @@ final class RollPatternTests: XCTestCase {
         XCTAssertEqual(RollPattern.finding(for: rolls(sequence)), .fewRuns(6))
     }
 
+    // MARK: Die Grenze der Periodenerkennung
+
+    /// Die längste Periode, die überhaupt gefunden werden kann, ist `n − 13`.
+    ///
+    /// Die 13 ist keine gewählte Zahl: 6⁻¹³ ≈ 8·10⁻¹¹, über alle in Frage kommenden
+    /// Periodenlängen aufsummiert rund 10⁻¹⁰ — also unter der Grenze von 10⁻⁹, und
+    /// zwar unabhängig von der Folgenlänge. Was die Wiederholung belegt, ist der
+    /// *Schwanz*, nicht der Block: Ein zwanziger Block, der einmal beginnt, sich zu
+    /// wiederholen, sagt nichts; erst dreizehn weitere Würfe an derselben Stelle
+    /// tun es.
+    ///
+    /// Geprüft wird die Grenze von beiden Seiten, weil ein Fehler um eins hier nicht
+    /// auffiele: Zu großzügig gerechnet meldet die Prüfung Folgen, die es zu häufig
+    /// gibt; zu knapp gerechnet übersieht sie echte Wiederholungen.
+    func testPeriodExactlyAtTheLimitIsFound() {
+        // 40 Würfe, Periode 27 — der Schwanz umfasst genau 13 Würfe.
+        let sequence = "4413544343525232153565231614413544343525"
+        XCTAssertEqual(rolls(sequence).count, 40)
+        XCTAssertEqual(RollPattern.finding(for: rolls(sequence)), .repeatingBlock(27))
+    }
+
+    /// Eine Periode über der Grenze bleibt unbemerkt, und das ist Absicht: Bei 40
+    /// Würfen ließe eine Periode von 28 nur noch zwölf wiederholte Würfe übrig, und
+    /// die kommen bei echtem Würfeln zu oft vor.
+    func testPeriodOneAboveTheLimitIsNotFound() {
+        // Dieselbe Bauart, aber aus einer 28er-Grundfolge.
+        let sequence = "5316161661353216541315213553531616166135"
+        XCTAssertEqual(rolls(sequence).count, 40)
+        XCTAssertNil(RollPattern.finding(for: rolls(sequence)))
+    }
+
+    /// Ein Wurf mehr, und dieselbe Folge fällt auf: Bei 41 Würfen ist 28 genau
+    /// `n − 13`. Die Grenze wandert mit der Folgenlänge mit.
+    func testTheSameSequenceIsFoundOneRollLater() {
+        let sequence = "53161616613532165413152135535316161661353"
+        XCTAssertEqual(rolls(sequence).count, 41)
+        XCTAssertEqual(RollPattern.finding(for: rolls(sequence)), .repeatingBlock(28))
+    }
+
     // MARK: Der entscheidende Test — keine Fehlalarme
 
     /// Zehntausend echte Zufallsfolgen dürfen **keine** Meldung erzeugen. Das ist die

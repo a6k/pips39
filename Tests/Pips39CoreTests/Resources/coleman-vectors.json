@@ -1,7 +1,7 @@
 {
   "quelle": "https://github.com/iancoleman/bip39 — Entropy-Typ 'Dice' / Base 6",
   "quelltext_stand": "master de71c22328b2 (2023-08-01); src/js/entropy.js sha256 10277942f7ce12507bf102e947fa8157602be88c9eab0f7a0b2c8d3610e38163, src/js/index.js sha256 3dd950f5d2f32cfe32963c1b3d4adea06e787ec7adb66daaaf19812e55a6f370. Beide Codestellen sind in der ausgelieferten Seite https://iancoleman.io/bip39/ zeichengleich enthalten (Stand 2026-08-13).",
-  "erhoben_am": "2026-08-13 (fünf Vektoren), 2026-08-25 (der 24-Wort-Vektor)",
+  "erhoben_am": "2026-08-13 (fünf Vektoren), 2026-08-25 (der 24-Wort-Vektor und die zwei gemischten Folgen)",
   "methode": "ausgeführt mit node — Colemans unveränderte Dateien entropy.js, jsbip39.js, sjcl-bip39.js und wordlist_english.js in einem vm-Kontext geladen, setMnemonicFromEntropy() aus index.js zeilengetreu nachgebildet (einzige Abweichung: libs.BigInteger durch natives BigInt ersetzt, nur im Hash-Pfad benutzt). Am 2026-08-25 mit demselben Verfahren um den 24-Wort-Vektor ergänzt; dabei wurden die fünf bestehenden Vektoren neu berechnet und stimmten zeichengleich.",
   "einstellung": "Entropy-Typ ausdrücklich 'Dice' (kein Auto-Erkennen), Mnemonic Length 'Use Raw Entropy' — die Werkseinstellung des Werkzeugs. entropie_hex und mnemonic gehören zu dieser Einstellung; die Felder variante_hash_* zeigen, was bei fest gewählter Wortzahl herauskäme (dann zählt nur SHA-256 über die gefilterte Ziffernfolge).",
   "hinweis": "Ausschließlich Wegwerf-Folgen. Keine dieser Eingaben wurde je für einen echten Seed verwendet.",
@@ -131,6 +131,48 @@
         "mnemonic": "exit pulp believe feature horror vehicle home more patrol hair drink resist humor odor height flock galaxy actress hold mule measure receive total exit"
       },
       "hinweis": "Der Fall, den die App in diesem Modus voreingestellt liefert: 24 Wörter. Erreichbar nur über die Bitzahl, nicht über 99 Würfe — 128 Würfe zu je 2 Bit ergeben genau 256 Rohbits, es wird also nichts abgeschnitten. Ohne gesetzten Radio-Button erkennt Coleman die Eingabe als \"binary\" (128 Bit -> 12 Wörter: \"zoo zoo … zoo wrong\"); nur mit ausdrücklich gewähltem Typ \"Dice\" gilt der hier notierte Wert."
+    },
+    {
+      "name": "Gemischte Folge, genau 256 Bit",
+      "wuerfe": "23412246516363621361311434145533614435351661625545643346342541236326661464514116664155564626552154625262251543536252522233321125121161145433622323511415",
+      "entropie_hex": "b34299938eacbf13f412d1e353670085280782398b156f96d5fcb59455e57753",
+      "mnemonic": "rebuild below gossip bubble slogan measure space focus today open scan apart lesson scissors tower glance hurdle repeat left hen earn verify tail input",
+      "gefilterte_folge": "23412240510303021301311434145533014435351001025545043340342541230320001404514110004155504020552154025202251543530252522233321125121101145433022323511415",
+      "roh_binaer": "1011001101000010100110011001001110001110101011001011111100010011111101000001001011010001111000110101001101100111000000001000010100101000000001111000001000111001100010110001010101101111100101101101010111111100101101011001010001010101111001010111011101010011",
+      "roh_bits": 256,
+      "genutzte_bits": 256,
+      "woerter": 24,
+      "autoerkannter_typ_ohne_radio": "base 6 (dice)",
+      "variante_hash_12_woerter": {
+        "entropie_hex": "2a2e183fca280d908c015261d5515836",
+        "mnemonic": "clay ignore avocado nephew liar sign copy clean gift pride figure honey"
+      },
+      "variante_hash_24_woerter": {
+        "entropie_hex": "2a2e183fca280d908c015261d5515836e1f1526a9acf7c5d8aafef23f8f755fb",
+        "mnemonic": "clay ignore avocado nephew liar sign copy clean gift pride figure horse business powder price fly labor unable program tattoo display knife fitness just"
+      },
+      "hinweis": "Alle sechs Augenzahlen gemischt, 152 Würfe, die genau 256 Rohbits ergeben. Die älteren Vektoren würfeln entweder durchgehend dieselbe Augenzahl oder wiederholen einen Block; hier wechseln Ein- und Zwei-Bit-Würfe unregelmäßig. Nichts wird abgeschnitten. Erzeugt mit einem festen Startwert, reine Wegwerf-Folge."
+    },
+    {
+      "name": "Gemischte Folge, 257 Bit — ein Bit fällt vorne weg",
+      "wuerfe": "1362566614232125214114212634415212221646225542641662565246664141655166633221566426234336135364422445563643466511212112341235634623246442652336541542153",
+      "entropie_hex": "e5015cd92a631cd482b410a60049a07d3045bc7e1466305665b373170237934f",
+      "mnemonic": "topic april curve feel crack heart approve link plastic across gym whip affair taste weapon mimic core rebel holiday tower ice bridge essay tool",
+      "gefilterte_folge": "1302500014232125214114212034415212221040225542041002505240004141055100033221500420234330135304422445503043400511212112341235034023240442052330541542153",
+      "roh_binaer": "01110010100000001010111001101100100101010011000110001110011010100100000101011010000010000101001100000000001001001101000000111110100110000010001011011110001111110000101000110011000110000010101100110010110110011011100110001011100000010001101111001001101001111",
+      "roh_bits": 257,
+      "genutzte_bits": 256,
+      "woerter": 24,
+      "autoerkannter_typ_ohne_radio": "base 6 (dice)",
+      "variante_hash_12_woerter": {
+        "entropie_hex": "4daa9c298b103db09a8059682724ddd6",
+        "mnemonic": "ethics female apology bike adult success head arctic habit decrease danger provide"
+      },
+      "variante_hash_24_woerter": {
+        "entropie_hex": "4daa9c298b103db09a8059682724ddd6d3b7cc927a3288284ca328e8dd171f92",
+        "mnemonic": "ethics female apology bike adult success head arctic habit decrease danger pumpkin derive town enemy edge market draw churn fade miss merit layer emotion"
+      },
+      "hinweis": "Der Überschussfall mit gemischten Würfen: 151 Würfe ergeben 257 Rohbits, genutzt werden 256. Coleman schneidet **vorne** ab, das erste Bit fällt weg. Der Vektor prüft damit genau die Stelle, an der eine Kürzung von hinten dasselbe Ergebnis vortäuschen würde, solange die Folge glatt aufgeht."
     }
   ]
 }
