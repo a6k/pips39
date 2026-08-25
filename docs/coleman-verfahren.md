@@ -271,7 +271,7 @@ die beiden Lesarten.
 
 Der letzte prüft zusätzlich die Richtung der Kürzung. 257 Rohbits werden auf 256 gekürzt,
 und zwar **vorne**. Bei einer glatt aufgehenden Folge fällt der Unterschied nicht auf,
-weil gar nichts abgeschnitten wird — nur an einem Überschuss zeigt er sich. Die Probe:
+weil gar nichts abgeschnitten wird. Erst an einem Überschuss zeigt er sich. Die Probe:
 Setzt man in `ColemanEncoding` `suffix` auf `prefix`, fallen vier Tests.
 
 Erhoben wurden alle acht mit Colemans Repository beim Stand `de71c22328b2`; die im

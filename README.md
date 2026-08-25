@@ -246,7 +246,7 @@ is counted in bits rather than rolls, and that undo reopens a finished run.
 warning that fires during correct behaviour teaches people to dismiss warnings, so:
 
 - 15 000 genuinely random sequences across six lengths, none of them flagged
-- Roughly 40 000 live queries — 200 sessions of 99 rolls plus 100 Coleman sessions,
+- Roughly 40 000 live queries: 200 sessions of 99 rolls plus 100 Coleman sessions,
   asked after **every single roll**, because that is what the UI does. The per-session
   false alarm rate is about 1 in 42 million, which no test can demonstrate; what this
   one rules out is being orders of magnitude off
@@ -279,8 +279,8 @@ by one drops two tests, and truncating from the front instead of the back drops 
 - **Nothing is persisted, not even a "don't show this again" flag.** That is why the
   onboarding appears on every launch. It is also why the app has no rating prompt: a
   threshold counter would have to remember how often you used it, and "stores nothing"
-  would stop being true. On top of that, a rating dialog is a Store dialog — it needs a
-  network, and this app is meant to be used on a device that has none. For the same
+  would stop being true. And a rating dialog is a Store dialog. It needs a network, and
+  this app is meant to be used on a device that has none. For the same
   reason there is no support link and no version line inside the app; a `mailto:` on an
   air-gapped phone leads nowhere. Support lives on the help pages, which you read from a
   second device.
