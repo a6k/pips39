@@ -6,8 +6,8 @@ DerivedData/
 .swiftpm/
 *.xcodeproj/project.xcworkspace/xcuserdata/
 
-# Die Apple-Team-ID gehoert einer Person, nicht dem Projekt. Siehe Pips39/Signing.xcconfig.
-Pips39/Local.xcconfig
+# Die Apple-Team-ID gehoert einer Person, nicht dem Projekt. Siehe Signing.xcconfig.
+Local.xcconfig
 
 # Store-Screenshots: gross, binaer, gehoeren zu Connect und nicht zum Quelltext
 Screenshots Connect/

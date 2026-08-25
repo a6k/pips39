@@ -175,16 +175,16 @@ struct HelpSourceTopic: View {
                 .underline()
 
             HelpHeading(text: "Building it")
-            Text("Clone the repository and open Pips39/Pips39.xcodeproj. For the simulator that is everything you need.")
+            Text("Clone the repository and open Pips39.xcodeproj. For the simulator that is everything you need.")
 
             HelpHeading(text: "Checking the maths without a simulator")
             Text("The part that turns dice into words is a Swift package with no interface, so it can be tested on its own. Running swift test in the repository checks it against the official BIP39 test vectors, among others.")
 
             HelpHeading(text: "Building for a real iPhone")
             Text("That needs an Apple development team, and this project carries none on purpose: the ID belongs to a person, and the repository is public.")
-            Text("Put yours in Pips39/Local.xcconfig, a file that .gitignore keeps out of the repository:")
+            Text("Put yours in Local.xcconfig, a file that .gitignore keeps out of the repository:")
             HelpCode(text: "DEVELOPMENT_TEAM = your ten-character team id")
-            Text("Pips39/Signing.xcconfig pulls that file in with an optional include, so a clone without it still builds for the simulator.")
+            Text("Signing.xcconfig pulls that file in with an optional include, so a clone without it still builds for the simulator.")
             Text("Xcode writes the team ID back into project.pbxproj whenever you touch the team picker. If you contribute, install the commit hook once per clone; it refuses any commit that carries an ID into the repository.")
             HelpCode(text: "git config core.hooksPath scripts/githooks")
         }
