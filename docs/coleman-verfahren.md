@@ -256,10 +256,27 @@ Ausschließlich Wegwerf-Folgen. Keine davon wurde je für einen echten Seed benu
 | 99 × `6` | 198 | 192 | 18 | `0000…0000` |
 | 99 × `142536` | 165 | 160 | 15 | `e2b8ae2b8ae2b8ae2b8ae2b8ae2b8ae2b8ae2b8a` |
 | 128 × `1` | 256 | 256 | **24** | `5555…5555` (32 Byte) |
+| 152 gemischte Würfe | 256 | 256 | **24** | `b34299938eacbf13…55e57753` |
+| 151 gemischte Würfe | 257 | 256 | **24** | `e5015cd92a631cd4…0237934f` |
 
-Der letzte Vektor kam am 2026-08-25 dazu, mit demselben Verfahren erhoben. Er deckt den
-Fall ab, den die App in diesem Modus voreingestellt liefert. Bei der Gelegenheit wurden die
-fünf älteren Vektoren neu berechnet; sie stimmten zeichengleich.
+Die drei letzten kamen am 2026-08-25 dazu, mit demselben Verfahren erhoben. Bei der
+Gelegenheit wurden die fünf älteren neu berechnet; sie stimmten zeichengleich.
+
+**Warum drei und nicht einer.** Der erste deckt ab, was die App in diesem Modus
+voreingestellt liefert: 24 Wörter. Die beiden gemischten decken ab, was eine Folge aus
+einer einzigen Augenzahl grundsätzlich nicht kann. Wer immer die `1` würfelt, bekommt je
+Wurf zwei Bit; eine Umsetzung, die *Würfe* zählt, käme dort zum selben Ergebnis wie eine,
+die *Bits* zählt. Erst wenn Ein- und Zwei-Bit-Würfe unregelmäßig wechseln, trennen sich
+die beiden Lesarten.
+
+Der letzte prüft zusätzlich die Richtung der Kürzung. 257 Rohbits werden auf 256 gekürzt,
+und zwar **vorne**. Bei einer glatt aufgehenden Folge fällt der Unterschied nicht auf,
+weil gar nichts abgeschnitten wird — nur an einem Überschuss zeigt er sich. Die Probe:
+Setzt man in `ColemanEncoding` `suffix` auf `prefix`, fallen vier Tests.
+
+Erhoben wurden alle acht mit Colemans Repository beim Stand `de71c22328b2`; die im
+Kopf der JSON notierten SHA-256 von `entropy.js` und `index.js` stimmten beim
+Nachmessen am 2026-08-25 zeichengleich.
 
 Die JSON-Datei enthält zusätzlich die gefilterte Folge, die vollständige Rohbitfolge, das
 Mnemonic und — zur Abgrenzung — die Ergebnisse des Hash-Pfads für 12 und 24 Wörter. Sie ist

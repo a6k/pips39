@@ -203,17 +203,73 @@ will need to select your own signing team.
 
 ### What the tests actually check
 
-- All 24 official BIP39 vectors from `trezor/python-mnemonic`
-- The word list is byte-identical to `bitcoin/bips` `english.txt`, 2048 entries,
-  sorted and duplicate-free
-- Five dice vectors produced by running Ian Coleman's **actual JavaScript** under
-  node, matched on raw bits, entropy hex and the resulting words
+240 tests, about fifteen seconds. They are not a formality, so here is what they
+actually establish.
+
+**The BIP39 core is measured against other people's numbers, not its own.**
+
+- All 24 official BIP39 vectors from `trezor/python-mnemonic`, for all five entropy
+  sizes, byte for byte
+- The word list is byte-identical to `bitcoin/bips` `english.txt`: 2048 entries,
+  sorted, duplicate-free, SHA-256 `2f5eed53…3b24dbda`
 - The SHA-256 path against values computed independently with `shasum`
+
+**The Coleman path is measured against Coleman's own code.** Eight dice vectors, each
+produced by loading Ian Coleman's unmodified `entropy.js`, `jsbip39.js`,
+`sjcl-bip39.js` and `wordlist_english.js` under node and reproducing
+`setMnemonicFromEntropy()` line by line. The repository is pinned at commit
+`de71c22328b2`, and the SHA-256 of the two files that matter is recorded alongside the
+vectors, so the measurement can be repeated and checked rather than believed. The eight
+cover deliberately different shapes:
+
+| Vector | What it pins down |
+|---|---|
+| `1`, `123456` | Below 32 raw bits Coleman produces **no** mnemonic at all |
+| 99 × `1`, 99 × `6` | 198 raw bits → 192 used → 18 words. Not a BIP39 size |
+| 99 × `142536` | 165 raw bits → 160 → 15 words. One-bit and two-bit faces mixed |
+| 128 × `1` | Exactly 256 bits → 24 words, the app's default in this mode |
+| 152 mixed rolls | Exactly 256 bits again, but with all six faces in an irregular order |
+| 151 mixed rolls | 257 raw bits: the leading bit is dropped, not the trailing one |
+
+The last two exist because a uniform sequence cannot tell a bit count from a roll
+count. Every roll of a `1` yields two bits, so a wrong implementation that counted
+rolls would agree with a right one that counted bits. Only a sequence where one-bit and
+two-bit faces alternate irregularly separates them.
+
+**The layer above the arithmetic is tested separately**, because a correct calculation
+reached at the wrong moment is still wrong: that the buffer completes at exactly the
+right roll and not one earlier, that it refuses every further roll afterwards (one more
+roll would be truncated differently and silently yield different words), that progress
+is counted in bits rather than rolls, and that undo reopens a finished run.
+
+**The pattern check is tested for false alarms, which is the claim it stands on.** A
+warning that fires during correct behaviour teaches people to dismiss warnings, so:
+
+- 15 000 genuinely random sequences across six lengths, none of them flagged
+- Roughly 40 000 live queries — 200 sessions of 99 rolls plus 100 Coleman sessions,
+  asked after **every single roll**, because that is what the UI does. The per-session
+  false alarm rate is about 1 in 42 million, which no test can demonstrate; what this
+  one rules out is being orders of magnitude off
+- A counter-test that the live path reports real patterns, so the two above cannot pass
+  by checking nothing
+
+**Both sides of every threshold.** The longest detectable period is `n − 13`, and an
+off-by-one there would either flag honest sequences or miss rigged ones. So: a period of
+27 in 40 rolls is found, 28 is not, and the same sequence is found once it runs to 41
+rolls. Same for the 22-roll minimum and the 35-roll minimum for "three faces only".
+
+**The rest of the surface:**
+
+- The transcription check reports the first differing position, including when the typed
+  phrase is longer than the original, much longer, or empty
 - That the environment notice never contains the words *safe*, *secure*, *protected*,
   *offline* or *air-gap* — the "no false all-clear" rule, enforced rather than
   intended
 - That all 49 BIP39 words which are a prefix of another word stay ambiguous in the
   keyboard, so nothing is ever auto-completed to the wrong word
+
+Two of these were checked by breaking the code on purpose: raising the period threshold
+by one drops two tests, and truncating from the front instead of the back drops four.
 
 ## Design notes worth knowing
 
@@ -221,7 +277,13 @@ will need to select your own signing team.
   words, has autocorrect and dictation, and can be replaced by third-party keyboards.
   Typing a seed through it would be a leak in the middle of the security core.
 - **Nothing is persisted, not even a "don't show this again" flag.** That is why the
-  onboarding appears on every launch.
+  onboarding appears on every launch. It is also why the app has no rating prompt: a
+  threshold counter would have to remember how often you used it, and "stores nothing"
+  would stop being true. On top of that, a rating dialog is a Store dialog — it needs a
+  network, and this app is meant to be used on a device that has none. For the same
+  reason there is no support link and no version line inside the app; a `mailto:` on an
+  air-gapped phone leads nowhere. Support lives on the help pages, which you read from a
+  second device.
 - **The method and seed length are chosen at the start of a run, not in settings.**
   A setting that silently drifts between sessions would make a user believe a correct
   backup was broken.
