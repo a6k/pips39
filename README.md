@@ -115,8 +115,13 @@ Two things there will silently give you the wrong answer if you miss them:
 Coleman does **not** convert dice as a base-6 number, which is what most people assume.
 Each roll is looked up in a variable-length bit table (`1→01`, `2→10`, `3→11`, `6→00`,
 `4→0`, `5→1`), yielding 1.67 bits per roll instead of 2.585. That is why the roll count
-under this method is not fixed. The full analysis, with line references into Coleman's
-source, is in [`docs/coleman-verfahren.md`](docs/coleman-verfahren.md).
+under this method is not fixed.
+
+The exact rules, including where Coleman truncates and why 99 rolls do not give you 24
+words, are readable in this repository without any prose: `ColemanEncoding.swift` is
+forty lines, and `Tests/Pips39CoreTests/Resources/coleman-vectors.json` holds eight
+measurements taken from Coleman's own JavaScript, each with the raw bit string, the
+entropy and the resulting words.
 
 ## The word table mode
 

@@ -11,7 +11,7 @@ import Foundation
 /// > Für die Regeltests wäre das fatal: Sie würden zweimal dieselbe Sprache prüfen
 /// > und trotzdem grün sein. Deshalb geht es hier über ein eigenes Bundle je Sprache.
 /// >
-/// > Gemessen und belegt in `docs/lokalisierung-mechanismus.md`.
+/// > Gemessen und belegt, die Aufzeichnung dazu liegt außerhalb des Repos.
 enum Localized {
 
     static func string(_ key: String, _ locale: Locale = .current) -> String {

@@ -2,7 +2,8 @@ import Foundation
 
 /// Colemans Umrechnung von Würfen in Entropie, bitgenau nachgebaut.
 ///
-/// Belegt am Quelltext von `iancoleman/bip39`, siehe `docs/coleman-verfahren.md`.
+/// Belegt am Quelltext von `iancoleman/bip39`; die Messwerte dazu liegen als
+/// `Tests/Pips39CoreTests/Resources/coleman-vectors.json` im Repo.
 /// Jeder Wurf liefert ein oder zwei Bit; die Ausbeute liegt bei 1,67 Bit pro Wurf
 /// statt der 2,585 Bit einer ganzzahligen Base-6-Umrechnung. Dafür ist die Abbildung
 /// bias-frei.
