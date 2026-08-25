@@ -1,6 +1,6 @@
 # App-Store-Texte für Pips39
 
-Stand 2026-08-15, Version 0.0.1. Zwei Lokalisierungen: **Deutsch (primär)** und
+Stand 2026-08-25 (Name in beiden Sprachen erweitert), Version 0.0.1 ist veröffentlicht. Zwei Lokalisierungen: **Deutsch (primär)** und
 **Englisch**. Fehlt eine Sprache, zeigt der Store die primäre, ein Leser in den USA
 bekäme also den deutschen Text.
 
@@ -11,11 +11,28 @@ sind die knappsten, dort ist jedes Zeichen gezählt.
 
 ## Deutsch
 
-### Name (30 Zeichen)
+### Name (30 Zeichen, hier 24)
 
 ```
-Pips39
+Pips39: Seed aus Würfeln
 ```
+
+> [!note] Der Zusatz kam am 2026-08-25 dazu
+> Vorher stand dort nur `Pips39`. Der Name wird bei der Suche am stärksten gewichtet, und
+> 24 von 30 Zeichen zu verschenken ist Verschwendung.
+>
+> **BIP39 steht bewusst nicht im Namen**, sondern bleibt im Untertitel. Sonst hieße es
+> „Pips39: BIP39 …", und dieselbe Zahl zweimal stolpert. So decken Name und Untertitel
+> zwei verschiedene Phrasen ab, statt eine zu wiederholen.
+>
+> **Keine Aufforderung.** „Würfle deinen Seed" wäre die stärkere Werbung, liest sich aber
+> als Aufruf zu genau dem, wovon der erste Bildschirm abrät. Die Einordnung als
+> Lernwerkzeug ist das Argument, mit dem die App durch die Review kam; sie steht unter
+> Education, nicht Finance. Siehe Guideline 3.1.5 (b) in den Review-Notizen unten.
+>
+> Der Name auf dem Home-Bildschirm bleibt `Pips39`. Der kommt aus
+> `INFOPLIST_KEY_CFBundleDisplayName` und hat mit dem Store-Namen nichts zu tun.
+> **Wirksam wird der neue Name erst mit der nächsten eingereichten Version.**
 
 ### Untertitel (30 Zeichen, hier 26)
 
@@ -112,10 +129,10 @@ bip39,seed,würfel,mnemonic,entropie,offline,airgap,dice,sha256,wortliste,selbst
 
 ## Englisch
 
-### Name
+### Name (30 Zeichen, hier 22)
 
 ```
-Pips39
+Pips39: Seed from dice
 ```
 
 ### Untertitel (30 Zeichen, hier 28)
