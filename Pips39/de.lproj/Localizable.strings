@@ -188,3 +188,7 @@
 "Roll %lld" = "Würfel %lld";
 "Die shows %lld" = "Würfel zeigt %lld";
 "Delete" = "Löschen";
+
+/* Hilfe: Quelltext, Nennung des App-Symbols */
+"The app icon" = "Das App-Symbol";
+"The dice in the app icon are not drawn here. The symbol comes from Font Awesome Free 7.3.1 by Fonticons, Inc. and is used under the Creative Commons Attribution 4.0 licence, which asks for this note." = "Die Würfel im App-Symbol sind nicht hier gezeichnet. Das Symbol stammt aus Font Awesome Free 7.3.1 von Fonticons, Inc. und wird unter der Lizenz Creative Commons Attribution 4.0 benutzt, die diese Nennung verlangt.";

@@ -19,4 +19,11 @@ public enum ExternalLinks {
     /// unter `/en/` mit demselben und mit übersetztem Slug antwortet der Server mit 404.
     /// Die englische Oberfläche verweist deshalb ebenfalls hierher.
     public static let bitboxGuide = "https://blog.bitbox.swiss/de/wurfle-deine-eigene-bitcoin-wallet/"
+
+    /// Die Lizenz des Würfelsymbols im App-Symbol.
+    ///
+    /// Font Awesome Free stellt die Symbole unter CC BY 4.0, und die verlangt eine
+    /// Nennung. Im heruntergeladenen SVG steht sie als Kommentar, der überlebt das
+    /// Rastern zum App-Symbol aber nicht. Deshalb steht sie sichtbar in der Hilfe.
+    public static let fontAwesomeLicense = "https://fontawesome.com/license/free"
 }

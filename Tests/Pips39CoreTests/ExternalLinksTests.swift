@@ -4,7 +4,8 @@ import XCTest
 final class ExternalLinksTests: XCTestCase {
 
     private var all: [String] {
-        [ExternalLinks.colemanTool, ExternalLinks.sourceCode, ExternalLinks.bitboxGuide]
+        [ExternalLinks.colemanTool, ExternalLinks.sourceCode, ExternalLinks.bitboxGuide,
+         ExternalLinks.fontAwesomeLicense]
     }
 
     func testAllLinksParseAsURLs() {

@@ -187,6 +187,13 @@ struct HelpSourceTopic: View {
             Text("Signing.xcconfig pulls that file in with an optional include, so a clone without it still builds for the simulator.")
             Text("Xcode writes the team ID back into project.pbxproj whenever you touch the team picker. If you contribute, install the commit hook once per clone; it refuses any commit that carries an ID into the repository.")
             HelpCode(text: "git config core.hooksPath scripts/githooks")
+
+            HelpHeading(text: "The app icon")
+            Text("The dice in the app icon are not drawn here. The symbol comes from Font Awesome Free 7.3.1 by Fonticons, Inc. and is used under the Creative Commons Attribution 4.0 licence, which asks for this note.")
+            Link("fontawesome.com/license/free",
+                 destination: URL(string: ExternalLinks.fontAwesomeLicense)!)
+                .font(.footnote.weight(.medium))
+                .underline()
         }
         .font(.footnote)
     }

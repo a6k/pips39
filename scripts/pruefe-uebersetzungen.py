@@ -25,12 +25,13 @@ import os
 import re
 import sys
 
-APP = "Pips39/Pips39"
+APP = "Pips39"
 AUSNAHMEN = {
     # In beiden Sprachen gleich, deshalb absichtlich nicht in der Tabelle.
     "Würfle deine eigene Bitcoin-Wallet",
     "github.com/a6k/pips39",
     "iancoleman.io/bip39",
+    "fontawesome.com/license/free",
     "git config core.hooksPath scripts/githooks",
 }
 

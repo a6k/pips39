@@ -309,3 +309,11 @@ under **CC BY-SA 4.0**. Those documents are not part of this repository; the cod
 is an independent implementation of the method, not a derivative of them. Attribution
 and the detail of what was taken:
 [`BitBox-Anleitung/README.md`](BitBox-Anleitung/README.md).
+
+The dice symbol in the app icon is from **Font Awesome Free 7.3.1**, Copyright
+Fonticons, Inc., used under **CC BY 4.0**: <https://fontawesome.com/license/free>. The
+icon artwork itself is not MIT-licensed; the rest of this repository is. Font Awesome
+embeds the attribution as a comment in the downloaded SVG
+(`Pips39/AppIcon.icon/Assets/`), and because that comment does not survive rasterising
+into an app icon, the same credit is stated here, inside the app under Help, and on the
+project page.
